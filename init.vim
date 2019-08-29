@@ -89,6 +89,8 @@ Plug 'digitaltoad/vim-jade', { 'for': ['jade', 'pug'] }
 " Initialize plugin system
 call plug#end()
 
+set hid
+
 " Plugins settings
 let g:NERDSpaceDelims = 1
 let g:NERDTrimTrailingWhitespace = 1
