@@ -1,0 +1,30 @@
+<snippet>
+  <content><![CDATA[
+import React, { Component } from 'react'
+import styled from 'styled-components'
+import PropTypes from 'prop-types'
+
+const ${1:Component} = styled('${2:div}')`
+  display: block;
+`
+
+class ${1:Component}Wrapper extends Component {
+  static propTypes = {
+    children: PropTypes.node,
+  }
+
+  render() {
+    const { children } = this.props
+    
+    return (
+      <${1:Component}>{children}</${1:Component}>
+    )
+  } 
+}
+
+export default ${1:Component}Wrapper
+]]></content>
+  <tabTrigger>rscc</tabTrigger>
+  <description>React styled class component</description>
+  <scope>source.js</scope>
+</snippet>

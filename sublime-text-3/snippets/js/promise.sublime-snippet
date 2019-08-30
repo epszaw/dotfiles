@@ -1,0 +1,9 @@
+<snippet>
+  <content><![CDATA[
+new Promise((resolve, reject) => {
+  {$1}
+})
+]]></content>
+  <tabTrigger>promise</tabTrigger>
+  <scope>source.js</scope>
+</snippet>

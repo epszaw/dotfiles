@@ -1,0 +1,18 @@
+<snippet>
+  <content><![CDATA[
+@font-face {
+  font-family: "${1:Font}";
+  src: url("${2:path/to/font}.eot");
+  src: url("${2:path/to/font}.eot?#iefix") format("embedded-opentype"),
+       url("${2:path/to/font}.woff2") format("woff2"),
+       url("${2:path/to/font}.woff") format("woff"),
+       url("${2:path/to/font}.ttf") format("truetype"),
+       url("${2:path/to/font}.svg") format("svg");
+
+  font-style: normal;
+  font-weight: 400;
+}
+]]></content>
+  <tabTrigger>ff</tabTrigger>
+  <scope>source.css</scope>
+</snippet>

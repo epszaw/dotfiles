@@ -1,0 +1,12 @@
+<snippet>
+  <content><![CDATA[
+describe('${1:feature}', () => {
+  it('should ${2:do something}', () => {
+    expect(${3:1 + 1}).toBe(${4:2})
+  })
+})
+]]></content>
+  <description>Jest describe block</description>
+  <tabTrigger>desc</tabTrigger>  
+  <scope>source.js</scope>
+</snippet>
