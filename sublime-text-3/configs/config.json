@@ -1,0 +1,56 @@
+{
+  "always_show_minimap_viewport": true,
+  "auto_complete": true,
+  "auto_find_in_selection": true,
+  "color_scheme": "Packages/Color Scheme - Wallaby/Solarized (light).sublime-color-scheme",
+  "draw_indent_guides": false,
+  "draw_white_space": "off",
+  "find_selected_text": true,
+  "folder_exclude_patterns":
+  [
+    ".svn",
+    ".git",
+    ".hg",
+    ".cache",
+    "CVS",
+    "node_modules",
+    "bower_components",
+    ".next",
+    "out",
+    "dist"
+  ],
+  "font_face": "Iosevka SS01",
+  "font_options":
+  [
+    "dlig",
+    "ss01"
+  ],
+  "font_size": 14,
+  "highlight_line": true,
+  "highlight_modified_tabs": true,
+  "hot_exit": false,
+  "ignored_packages":
+  [
+    "Rust",
+    "sublime-scheme-alabaster",
+    "TabNine",
+    "tern_for_sublime",
+    "Vintage"
+  ],
+  "index_exclude_patterns":
+  [
+    "*.log",
+    "*.lock",
+    "package-lock.json"
+  ],
+  "line_padding_bottom": 5,
+  "line_padding_top": 5,
+  "save_on_focus_lost": true,
+  "scroll_past_end": true,
+  "shift_tab_unindent": true,
+  "tab_size": 2,
+  "theme": "Adaptive.sublime-theme",
+  "translate_tabs_to_spaces": true,
+  "trim_automatic_white_space": true,
+  "word_wrap": false
+}
