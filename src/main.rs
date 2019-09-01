@@ -34,7 +34,7 @@ fn copy_snippet(snippet_path: path::PathBuf) {
 }
 
 fn install_snippets() {
-    for entry in glob("snippets/**/*.sublime-snippet").expect("Failed to install snippets!") {
+    for entry in glob("./sublime-text-3/snippets/**/*.sublime-snippet").expect("Failed to install snippets!") {
         match entry {
             Ok(snippet_path) => copy_snippet(snippet_path),
             Err(e) => println!("{:?}", e),
