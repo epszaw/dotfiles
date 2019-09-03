@@ -1,5 +1,5 @@
 [package]
-name = "sublime-text-3"
+name = "dotfiles-manager"
 version = "0.1.0"
 authors = ["lamartire <lamartire@gmail.com>"]
 edition = "2018"
