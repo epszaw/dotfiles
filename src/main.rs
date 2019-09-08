@@ -50,11 +50,22 @@ fn install_snippets() {
     }
 }
 
+fn install_nvim_config() {
+    let mut new_path = path::PathBuf::from("/");
+
+    new_path.push(get_home_dir_path());
+    new_path.push(".config/nvim/init.vim");
+
+    fs::copy("./configs/init.vim", new_path);
+}
+
 fn main() {
     let args: Vec<String> = env::args().collect();
     let command = &args[1];
 
     if command == "snippets" {
         install_snippets();
+    } else if command == "nvim" {
+        install_nvim_config();
     }
 }
