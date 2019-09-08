@@ -1,7 +1,7 @@
 call plug#begin('~/.local/share/nvim/plugged')
 
 Plug 'kien/ctrlp.vim'
-Plug '/usr/local/opt/fzf'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'rakr/vim-one'
 Plug 'editorconfig/editorconfig-vim'
@@ -21,7 +21,7 @@ else
   Plug 'roxma/vim-hug-neovim-rpc'
 endif
 
-Plug 'tbodt/deoplete-tabnine', { 'do': './install.sh' }
+" Plug 'tbodt/deoplete-tabnine', { 'do': './install.sh' }
 
 let g:deoplete#enable_at_startup = 1
 
@@ -35,6 +35,7 @@ Plug 'vim-airline/vim-airline'
 Plug 'gertjanreynaert/cobalt2-vim-theme'
 Plug 'mhartington/oceanic-next'
 Plug 'arcticicestudio/nord-vim'
+Plug 'lifepillar/vim-solarized8'
 
 " Shorthand notation; fetches https://github.com/junegunn/vim-easy-align
 Plug 'junegunn/vim-easy-align'
@@ -67,7 +68,7 @@ Plug 'vim-scripts/paredit.vim', { 'for': ['clojure', 'clojurescript'] }
 "=======================================================================
 
 Plug 'gregsexton/MatchTag', { 'for': ['html', 'javascript'] }
-Plug 'mattn/emmet-vim', { 'for': ['html', 'javascript'] }
+Plug 'mattn/emmet-vim', { 'for': ['html', 'javascript', 'vue'] }
 Plug 'othree/html5.vim', { 'for': ['html', 'javascript'] }
 
 "=======================================================================
@@ -89,8 +90,6 @@ Plug 'digitaltoad/vim-jade', { 'for': ['jade', 'pug'] }
 " Initialize plugin system
 call plug#end()
 
-set hid
-
 " Plugins settings
 let g:NERDSpaceDelims = 1
 let g:NERDTrimTrailingWhitespace = 1
@@ -100,25 +99,25 @@ let NERDTreeShowHidden=1
 
 " Linting
 call neomake#configure#automake('nw', 750)
-	
 let g:neomake_javascript_enabled_makers = ['eslint']
 
-" Commond editor settings
+" Common editor settings
 set encoding=UTF-8
 set number
 set relativenumber
 set incsearch
 set wildignore+=*/tmp/*,*/node_modules/*,*/dist/*,*/build/*
-
-" Appearance
-if (has("termguicolors"))
- set termguicolors
-endif
+set hid
+set autochdir
 
 syntax enable
+set autoread
+set t_Co=256
+set background=dark
 colorscheme nord
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
+
+" let g:airline#extensions#tabline#enabled = 1
+" let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
 
 " Keybindings
 noremap <C-b> :NERDTreeToggle<CR>
@@ -129,9 +128,11 @@ nmap <Down> <Nop>
 nmap <Left> <Nop>
 nmap <Right> <Nop>
 
+" Navigation between buffers
 map <C-h> :bp<CR>
 map <C-l> :bn<CR>
 
+" Reset current highlight
 map <Esc> :noh<CR>
 
 " Navigation between vim windows
@@ -143,10 +144,16 @@ nmap <silent> <A-Right> :wincmd l<CR>
 " Quick quit from insert mode without esc
 imap jj <Esc>
 
-inoremap <C-h> <Left>
-inoremap <C-j> <Down>
-inoremap <C-k> <Up>
-inoremap <C-l> <Right>
+" Much simple panels resize
+noremap <C-w>+ :resize +5<CR>
+noremap <C-w>- :resize -5<CR>
+
+" More intuitive page navigation
+noremap <C-j> <C-d>
+noremap <C-k> <C-u>
 
 " Replace Leader for Easymotion
 map <Leader> <Plug>(easymotion-prefix)
+
+" Open all current buffers, like <Cmd+T> in sublime text or vs code
+noremap <C-t> :Buffers<CR>
