@@ -11,6 +11,7 @@ Plug 'easymotion/vim-easymotion'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-abolish'
 Plug 'a-x-/vim-cyr'
+Plug 'junegunn/goyo.vim'
 
 " Deoplete – autocomplete for evetethyng
 if has('nvim')
@@ -159,3 +160,6 @@ map <Leader> <Plug>(easymotion-prefix)
 
 " Open all current buffers, like <Cmd+T> in sublime text or vs code
 noremap <C-t> :Buffers<CR>
+
+" Distraction free mode
+noremap <C-S-f> :Goyo<CR>
