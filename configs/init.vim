@@ -148,9 +148,11 @@ imap jj <Esc>
 noremap <C-w>+ :resize +5<CR>
 noremap <C-w>- :resize -5<CR>
 
-" More intuitive page navigation
+" More intuitive navigation
 noremap <C-j> <C-d>
 noremap <C-k> <C-u>
+noremap f w
+noremap <S-f> b
 
 " Replace Leader for Easymotion
 map <Leader> <Plug>(easymotion-prefix)
