@@ -1,17 +1,24 @@
 call plug#begin('~/.local/share/nvim/plugged')
 
-Plug 'kien/ctrlp.vim'
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plug 'junegunn/fzf.vim'
-Plug 'rakr/vim-one'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'airblade/vim-gitgutter'
 Plug 'jiangmiao/auto-pairs'
 Plug 'easymotion/vim-easymotion'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-abolish'
-Plug 'a-x-/vim-cyr'
 Plug 'junegunn/goyo.vim'
+Plug 'dyng/ctrlsf.vim'
+Plug 'terryma/vim-multiple-cursors'
+Plug 'danro/rename.vim'
+Plug 'vim-scripts/BufOnly.vim'
+Plug 'kien/ctrlp.vim'
+Plug 'MattesGroeger/vim-bookmarks'
+Plug 'dyng/ctrlsf.vim'
+Plug 'liuchengxu/vim-which-key', { 'on': ['WhichKey', 'WhichKey!'] }
+Plug 'heavenshell/vim-jsdoc'
+Plug 'tpope/vim-vinegar'
+Plug 'danro/rename.vim'
+Plug 'herrbischoff/cobalt2.vim'
 
 " Deoplete – autocomplete for evetethyng
 if has('nvim')
@@ -24,8 +31,6 @@ endif
 
 " Plug 'tbodt/deoplete-tabnine', { 'do': './install.sh' }
 
-let g:deoplete#enable_at_startup = 1
-
 " Neomake – neovim linter
 Plug 'neomake/neomake'
 
@@ -33,16 +38,11 @@ Plug 'neomake/neomake'
 Plug 'vim-airline/vim-airline'
 
 " Themes
-Plug 'gertjanreynaert/cobalt2-vim-theme'
-Plug 'mhartington/oceanic-next'
 Plug 'arcticicestudio/nord-vim'
-Plug 'lifepillar/vim-solarized8'
 
 " Shorthand notation; fetches https://github.com/junegunn/vim-easy-align
 Plug 'junegunn/vim-easy-align'
-Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
-" Plug 'ryanoasis/vim-devicons'
-Plug 'scrooloose/nerdcommenter'
+" Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 
 "=======================================================================
 " Javascript dev
@@ -62,7 +62,14 @@ Plug 'jelera/vim-javascript-syntax', { 'for': 'javascript' }
 Plug 'tpope/vim-fireplace', { 'for': ['clojure', 'clojurescript'] }
 Plug 'guns/vim-clojure-static', { 'for': ['clojure', 'clojurescript'] }
 Plug 'guns/vim-clojure-highlight', { 'for': ['clojure', 'clojurescript'] }
+Plug 'venantius/vim-cljfmt', { 'for': ['clojure', 'clojurescript'] }
 Plug 'vim-scripts/paredit.vim', { 'for': ['clojure', 'clojurescript'] }
+
+"=======================================================================
+" GO dev
+"=======================================================================
+
+Plug 'fatih/vim-go', { 'for': ['go'] }
 
 "=======================================================================
 " HTML dev
@@ -92,15 +99,19 @@ Plug 'digitaltoad/vim-jade', { 'for': ['jade', 'pug'] }
 call plug#end()
 
 " Plugins settings
-let g:NERDSpaceDelims = 1
-let g:NERDTrimTrailingWhitespace = 1
+let g:deoplete#enable_at_startup = 1
 
 " Nerdtree
-let NERDTreeShowHidden=1
+let g:NERDSpaceDelims = 1
+let g:NERDTrimTrailingWhitespace = 1
 
 " Linting
 call neomake#configure#automake('nw', 750)
 let g:neomake_javascript_enabled_makers = ['eslint']
+
+" Grep reassign
+let g:rg_command = 'rg --vimgrep -S'
+let g:ctrlsf_default_root = 'project'
 
 " Common editor settings
 set encoding=UTF-8
@@ -110,37 +121,48 @@ set incsearch
 set wildignore+=*/tmp/*,*/node_modules/*,*/dist/*,*/build/*
 set hid
 set autochdir
+set autowrite
 
 syntax enable
 set autoread
-set t_Co=256
 set background=dark
-colorscheme nord
+set termguicolors
+colorscheme cobalt2 
 
-" let g:airline#extensions#tabline#enabled = 1
+" Distraction free mode configuration
+let g:goyo_height=95
+let g:goyo_width=90
+
+function! s:goyo_enter()
+  set relativenumber
+endfunction
+
+autocmd! User GoyoEnter nested call <SID>goyo_enter()
+
+let g:airline#extensions#tabline#enabled = 0
 " let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
 
 " Keybindings
-noremap <C-b> :NERDTreeToggle<CR>
+noremap <C-p> :CtrlP<CR>
 
 " Disabling native arrows
-nmap <Up> <Nop>
-nmap <Down> <Nop>
-nmap <Left> <Nop>
-nmap <Right> <Nop>
-
-" Navigation between buffers
-map <C-h> :bp<CR>
-map <C-l> :bn<CR>
+map <Up> <Nop>
+map <Down> <Nop>
+map <Left> <Nop>
+map <Right> <Nop>
+imap <Up> <Nop>
+imap <Down> <Nop>
+imap <Left> <Nop>
+imap <Right> <Nop>
 
 " Reset current highlight
-map <Esc> :noh<CR>
+nmap <Esc> :noh<CR>
 
 " Navigation between vim windows
-nmap <silent> <A-Up> :wincmd k<CR>
-nmap <silent> <A-Down> :wincmd j<CR>
-nmap <silent> <A-Left> :wincmd h<CR>
-nmap <silent> <A-Right> :wincmd l<CR>
+nmap <silent> <S-k> :wincmd k<CR>
+nmap <silent> <S-j> :wincmd j<CR>
+nmap <silent> <S-h> :wincmd h<CR>
+nmap <silent> <S-l> :wincmd l<CR>
 
 " Quick quit from insert mode without esc
 imap jj <Esc>
@@ -149,9 +171,7 @@ imap jj <Esc>
 noremap <C-w>+ :resize +5<CR>
 noremap <C-w>- :resize -5<CR>
 
-" More intuitive navigation
-noremap <C-j> <C-d>
-noremap <C-k> <C-u>
+" More simple Navigation
 noremap f w
 noremap <S-f> b
 
@@ -159,7 +179,17 @@ noremap <S-f> b
 map <Leader> <Plug>(easymotion-prefix)
 
 " Open all current buffers, like <Cmd+T> in sublime text or vs code
-noremap <C-t> :Buffers<CR>
+noremap <C-t> :CtrlPBuffer<CR>
 
 " Distraction free mode
-noremap <C-S-f> :Goyo<CR>
+noremap <C-Shift-F> :Goyo<CR>
+
+" Netrw explorer
+let g:netrw_banner = 0
+let g:netrw_liststyle = 3
+let g:netrw_browse_split = 4
+let g:netrw_altv = 1
+let g:netrw_winsize = 25
+let g:netrw_list_hide = netrw_gitignore#Hide()
+ 
+noremap <C-b> :Lexplore<CR>
