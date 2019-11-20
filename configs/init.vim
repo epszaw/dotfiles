@@ -24,6 +24,7 @@ Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 Plug 'unkiwii/vim-nerdtree-sync'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'morhetz/gruvbox'
+Plug 'flazz/vim-colorschemes'
 
 " Deoplete – autocomplete for evetethyng
 if has('nvim')
@@ -135,13 +136,11 @@ let g:lightline = {
       	\       'filename':'LightlineFilename',
 	\ }
 	\}
-let g:lightline#neomake#prefix_errors = '❌ :'
-let g:lightline#neomake#prefix_warnings = '⚠️  :'
 let g:neomake_error_sign = {
-	\ 'text': '❌'
+	\ 'text': 'e'
 	\ }
 let g:neomake_warning_sign = {
-	\ 'text': '⚠️'
+	\ 'text': 'w'
 	\ }
 
 function! LightlineFilename()
@@ -177,7 +176,7 @@ noremap <S-f> b
 noremap <C-t> :CtrlPBuffer<CR>
 noremap <C-Shift-F> :Goyo<CR>
 noremap <C-b> :NERDTreeToggle<CR>
-noremap <Leader>gf :CtrlSF
-noremap <Leader>rf :%s
+noremap <Leader>gf "hy:CtrlSF <C-r>h
+noremap <Leader>rf "hy:%s/<C-r>h//gc<left><left><left>
 inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
 inoremap <expr><S-tab> pumvisible() ? "\<c-p>" : "\<S-tab>"
