@@ -17,8 +17,8 @@ Plug 'liuchengxu/vim-which-key', { 'on': ['WhichKey', 'WhichKey!'] }
 Plug 'mhartington/oceanic-next'
 Plug 'neomake/neomake'
 Plug 'junegunn/vim-easy-align'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
+Plug 'itchyny/lightline.vim'
+Plug 'sinetoami/lightline-neomake'
 Plug 'tpope/vim-fugitive'
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 Plug 'unkiwii/vim-nerdtree-sync'
@@ -35,7 +35,7 @@ else
 endif
 
 " Plug 'tbodt/deoplete-tabnine', { 'do': './install.sh' }
-"
+
 " JS
 Plug 'prettier/vim-prettier'
 Plug 'mxw/vim-jsx'
@@ -70,9 +70,9 @@ Plug 'wavded/vim-stylus', { 'for': 'stylus' }
 Plug 'vim-ruby/vim-ruby'
 
 " Dart
-Plug 'dart-lang/dart-vim-plugin'
-Plug 'natebosch/vim-lsc'
-Plug 'natebosch/vim-lsc-dart'
+Plug 'dart-lang/dart-vim-plugin', { 'for': ['dart'] }
+Plug 'natebosch/vim-lsc', { 'for': ['dart'] }
+Plug 'natebosch/vim-lsc-dart', { 'for': ['dart'] }
 
 " Other
 Plug 'digitaltoad/vim-jade', { 'for': ['jade', 'pug'] }
@@ -88,6 +88,7 @@ autocmd! User GoyoEnter nested call <SID>goyo_enter()
 
 colorscheme gruvbox
 syntax enable
+
 set encoding=UTF-8
 set number
 set relativenumber
@@ -115,6 +116,45 @@ let g:paredit_mode = 1
 let dart_format_on_save = 1
 let dart_style_guide = 2
 let g:lsc_auto_map = v:true
+let g:lightline = {
+	\ 'colorscheme': 'gruvbox',
+	\ 'active': {
+	\ 'left': [['mode', 'paste'],
+	\	   ['gitbranch', 'filename', 'modified']],
+        \ 'right': [['neomake_warnings', 'neomake_errors', 'neomake_ok'],
+	\	    ['fileencoding', 'filetype'],
+	\	    ['percent']]
+	\ },
+	\ 'component_expand': {
+  	\ 	'neomake_warnings': 'lightline#neomake#warnings',
+  	\ 	'neomake_errors': 'lightline#neomake#errors',
+  	\ 	'neomake_ok': 'lightline#neomake#ok',
+	\ },
+	\ 'component_function': {
+	\       'gitbranch': 'fugitive#head',
+      	\       'filename':'LightlineFilename',
+	\ }
+	\}
+let g:lightline#neomake#prefix_errors = '❌ :'
+let g:lightline#neomake#prefix_warnings = '⚠️  :'
+let g:neomake_error_sign = {
+	\ 'text': '❌'
+	\ }
+let g:neomake_warning_sign = {
+	\ 'text': '⚠️'
+	\ }
+
+function! LightlineFilename()
+  let filename = expand('%:p') !=# '' ? expand('%:p') : '[No Name]'
+  let allowedFilenameLen = 30 
+  let filenameLen = strlen(filename)
+
+  if (filenameLen > allowedFilenameLen)
+	return '...' . strpart(filename, filenameLen - allowedFilenameLen)
+  endif
+
+  return filename
+endfunction
 
 map <Leader> <Plug>(easymotion-prefix)
 map <Up> <Nop>
