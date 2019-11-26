@@ -10,9 +10,7 @@ Plug 'junegunn/goyo.vim'
 Plug 'dyng/ctrlsf.vim'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'vim-scripts/BufOnly.vim'
-Plug 'kien/ctrlp.vim'
 Plug 'MattesGroeger/vim-bookmarks'
-Plug 'dyng/ctrlsf.vim'
 Plug 'liuchengxu/vim-which-key', { 'on': ['WhichKey', 'WhichKey!'] }
 Plug 'mhartington/oceanic-next'
 Plug 'neomake/neomake'
@@ -24,7 +22,9 @@ Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 Plug 'unkiwii/vim-nerdtree-sync'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'morhetz/gruvbox'
-Plug 'flazz/vim-colorschemes'
+Plug 'drewtempelmeyer/palenight.vim'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
 
 " Deoplete – autocomplete for evetethyng
 if has('nvim')
@@ -38,6 +38,7 @@ endif
 " Plug 'tbodt/deoplete-tabnine', { 'do': './install.sh' }
 
 " JS
+Plug 'leafgarland/typescript-vim'
 Plug 'prettier/vim-prettier'
 Plug 'mxw/vim-jsx'
 Plug 'posva/vim-vue', { 'for': ['javascript', 'typescript'] }
@@ -57,7 +58,7 @@ Plug 'fatih/vim-go', { 'for': ['go'] }
 
 " HTML
 Plug 'gregsexton/MatchTag', { 'for': ['html', 'javascript'] }
-Plug 'mattn/emmet-vim', { 'for': ['html', 'javascript', 'vue'] }
+Plug 'mattn/emmet-vim', { 'for': ['html', 'javascript', 'vue', 'typescript'] }
 Plug 'othree/html5.vim', { 'for': ['html', 'javascript'] }
 
 " CSS
@@ -87,7 +88,7 @@ endfunction
 
 autocmd! User GoyoEnter nested call <SID>goyo_enter()
 
-colorscheme gruvbox
+colorscheme palenight 
 syntax enable
 
 set encoding=UTF-8
@@ -102,11 +103,13 @@ set autoread
 set background=dark
 set termguicolors
 
+let $FZF_DEFAULT_COMMAND = 'ag --hidden --ignore .git -g ""'
 let g:deoplete#enable_at_startup = 1
 let g:NERDSpaceDelims = 1
 let g:NERDTrimTrailingWhitespace = 1
 let g:nerdtree_sync_cursorline = 1
 let g:neomake_javascript_enabled_makers = ['eslint']
+let g:neomake_typescript_enabled_makers = ['tsc', 'eslint']
 let g:rg_command = 'rg --vimgrep -S'
 let g:ctrlsf_default_root = 'project'
 let g:goyo_height=95
@@ -118,7 +121,7 @@ let dart_format_on_save = 1
 let dart_style_guide = 2
 let g:lsc_auto_map = v:true
 let g:lightline = {
-	\ 'colorscheme': 'gruvbox',
+	\ 'colorscheme': 'palenight',
 	\ 'active': {
 	\ 'left': [['mode', 'paste'],
 	\	   ['gitbranch', 'filename', 'modified']],
@@ -155,6 +158,12 @@ function! LightlineFilename()
   return filename
 endfunction
 
+function! s:find_git_root()
+  return system('git rev-parse --show-toplevel 2> /dev/null')[:-2]
+endfunction
+
+command! ProjectFiles execute 'Files' s:find_git_root()
+
 map <Leader> <Plug>(easymotion-prefix)
 map <Up> <Nop>
 map <Down> <Nop>
@@ -170,13 +179,13 @@ nmap <silent> <S-k> :wincmd k<CR>
 nmap <silent> <S-j> :wincmd j<CR>
 nmap <silent> <S-h> :wincmd h<CR>
 nmap <silent> <S-l> :wincmd l<CR>
-noremap <C-p> :CtrlP<CR>
+noremap <C-p> :ProjectFiles<CR>
 noremap f w
 noremap <S-f> b
-noremap <C-t> :CtrlPBuffer<CR>
+noremap <C-t> :Buffers<CR>
 noremap <C-Shift-F> :Goyo<CR>
 noremap <C-b> :NERDTreeToggle<CR>
-noremap <Leader>gf "hy:CtrlSF <C-r>h
+noremap <Leader>gf "hy:CtrlSF <C-r>h<CR>
 noremap <Leader>rf "hy:%s/<C-r>h//gc<left><left><left>
 inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
 inoremap <expr><S-tab> pumvisible() ? "\<c-p>" : "\<S-tab>"
