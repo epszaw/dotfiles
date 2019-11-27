@@ -147,15 +147,21 @@ let g:neomake_warning_sign = {
 	\ }
 
 function! LightlineFilename()
-  let filename = expand('%:p') !=# '' ? expand('%:p') : '[No Name]'
-  let allowedFilenameLen = 30 
-  let filenameLen = strlen(filename)
+  let filename = expand('%:p')
 
-  if (filenameLen > allowedFilenameLen)
-	return '...' . strpart(filename, filenameLen - allowedFilenameLen)
+  if (filename == '')
+  	return '[No Name]'
   endif
 
-  return filename
+  let filenameSplit = split(filename, '/')
+	
+  if (len(filenameSplit) == 1)
+	return filename
+  endif
+
+  let reversedParts = reverse(filenameSplit)[:2]
+
+  return '~ ' . join(reverse(reversedParts), '/') 
 endfunction
 
 function! s:find_git_root()
