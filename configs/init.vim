@@ -12,7 +12,6 @@ Plug 'terryma/vim-multiple-cursors'
 Plug 'vim-scripts/BufOnly.vim'
 Plug 'MattesGroeger/vim-bookmarks'
 Plug 'liuchengxu/vim-which-key', { 'on': ['WhichKey', 'WhichKey!'] }
-Plug 'mhartington/oceanic-next'
 Plug 'neomake/neomake'
 Plug 'junegunn/vim-easy-align'
 Plug 'itchyny/lightline.vim'
@@ -21,10 +20,12 @@ Plug 'tpope/vim-fugitive'
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 Plug 'unkiwii/vim-nerdtree-sync'
 Plug 'Xuyuanp/nerdtree-git-plugin'
-Plug 'morhetz/gruvbox'
-Plug 'drewtempelmeyer/palenight.vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
+Plug 'drewtempelmeyer/palenight.vim'
+Plug 'lamartire/vim-ascetic'
+Plug 'morhetz/gruvbox'
+Plug 'lifepillar/vim-solarized8'
 
 " Deoplete – autocomplete for evetethyng
 if has('nvim')
@@ -68,9 +69,6 @@ Plug 'groenewege/vim-less', { 'for': 'less' }
 Plug 'hail2u/vim-css3-syntax', { 'for': ['css', 'scss'] }
 Plug 'wavded/vim-stylus', { 'for': 'stylus' }
 
-" Ruby
-Plug 'vim-ruby/vim-ruby'
-
 " Dart
 Plug 'dart-lang/dart-vim-plugin', { 'for': ['dart'] }
 Plug 'natebosch/vim-lsc', { 'for': ['dart'] }
@@ -88,20 +86,20 @@ endfunction
 
 autocmd! User GoyoEnter nested call <SID>goyo_enter()
 
-colorscheme palenight 
-syntax enable
-
 set encoding=UTF-8
 set number
 set relativenumber
 set incsearch
-set wildignore+=*/tmp/*,*/node_modules/*,*/dist/*,*/build/*
+set wildignore+=*/tmp/*,*/node_modules/*,*/dist/*,*/build/*,*/.next/*,*/out/*
 set hid
 set autochdir
 set autowrite
 set autoread
-set background=dark
 set termguicolors
+set background=light
+
+colorscheme solarized8
+syntax enable
 
 let $FZF_DEFAULT_COMMAND = 'ag --hidden --ignore .git -g ""'
 let g:deoplete#enable_at_startup = 1
@@ -112,16 +110,16 @@ let g:neomake_javascript_enabled_makers = ['eslint']
 let g:neomake_typescript_enabled_makers = ['tsc', 'eslint']
 let g:rg_command = 'rg --vimgrep -S'
 let g:ctrlsf_default_root = 'project'
-let g:goyo_height=95
-let g:goyo_width=90
-let g:polyglot_disabled=['vue']
-let g:vue_pre_processors='detect_on_enter'
+let g:goyo_height = 95
+let g:goyo_width = 90
+let g:polyglot_disabled = ['vue']
+let g:vue_pre_processors = 'detect_on_enter'
 let g:paredit_mode = 1
 let dart_format_on_save = 1
 let dart_style_guide = 2
 let g:lsc_auto_map = v:true
 let g:lightline = {
-	\ 'colorscheme': 'palenight',
+	\ 'colorscheme': 'solarized',
 	\ 'active': {
 	\ 'left': [['mode', 'paste'],
 	\	   ['gitbranch', 'filename', 'modified']],
@@ -139,6 +137,20 @@ let g:lightline = {
       	\       'filename':'LightlineFilename',
 	\ }
 	\}
+let g:fzf_colors =
+	\ { "fg":    ["fg", "Normal"],
+ 	\ "bg":      ["bg", "Normal"],
+ 	\ "hl":      ["fg", "IncSearch"],
+        \ "fg+":     ["fg", "CursorLine", "CursorColumn", "Normal"],
+        \ "bg+":     ["bg", "CursorLine", "CursorColumn"],
+        \ "hl+":     ["fg", "IncSearch"],
+        \ "info":    ["fg", "IncSearch"],
+        \ "border":  ["fg", "Ignore"],
+        \ "prompt":  ["fg", "Comment"],
+        \ "pointer": ["fg", "IncSearch"],
+        \ "marker":  ["fg", "IncSearch"],
+        \ "spinner": ["fg", "IncSearch"],
+        \ "header":  ["fg", "WildMenu"] }
 let g:neomake_error_sign = {
 	\ 'text': 'e'
 	\ }
@@ -195,3 +207,5 @@ noremap <Leader>gf "hy:CtrlSF <C-r>h<CR>
 noremap <Leader>rf "hy:%s/<C-r>h//gc<left><left><left>
 inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
 inoremap <expr><S-tab> pumvisible() ? "\<c-p>" : "\<S-tab>"
+map  <Leader>w <Plug>(easymotion-bd-w)
+nmap <Leader>w <Plug>(easymotion-overwin-w)
