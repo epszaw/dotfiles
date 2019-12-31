@@ -19,24 +19,21 @@ fn get_home_dir_path() -> String {
 }
 
 fn copy_snippet(snippet_path: path::PathBuf) {
-    let new_path_parts: Vec<String> = Vec::new();
-    let mut new_path = path::PathBuf::from("/");
-    let mut snippet_name_parts: Vec<String> = Vec::new();
+    let snippet_name = snippet_path
+      .iter()
+      .map(|path_part| path_part.to_str().unwrap())
+      .filter(|path_part| !["sublime-text-3", "snippets"].contains(path_part))
+      .collect::<Vec<_>>()
+      .join("-");
+    let new_path = path::PathBuf::from("/")
+      .join(get_home_dir_path())
+      .join("Library/Application Support/Sublime Text 3/Packages/User")
+      .join(&snippet_name);
 
-    for path_part in snippet_path.iter() {
-        let path_part_str = path_part.to_string_lossy().to_string();
-
-        if path_part_str != "sublime-text-3" && path_part_str != "snippets" {
-            snippet_name_parts.push(path_part_str);
-        }
+    match fs::copy(snippet_path, new_path) {
+        Ok(_) => println!("✅  Snipped created: {:?}", snippet_name),
+        Err(err) => println!("❌  Snippet was not created: {:?}", err),
     }
-
-    new_path.push(new_path_parts.join("/"));
-    new_path.push(get_home_dir_path());
-    new_path.push("Library/Application Support/Sublime Text 3/Packages/User");
-    new_path.push(snippet_name_parts.join("-"));
-
-    fs::copy(snippet_path, new_path);
 }
 
 fn install_snippets() {
@@ -50,13 +47,17 @@ fn install_snippets() {
     }
 }
 
-fn install_nvim_config() {
-    let mut new_path = path::PathBuf::from("/");
+fn install_configs(configs: Vec<&str>) {
+    for config_path in configs {
+        let new_path = path::PathBuf::from("/")
+          .join(get_home_dir_path())
+          .join(config_path);
 
-    new_path.push(get_home_dir_path());
-    new_path.push(".config/nvim/init.vim");
-
-    fs::copy("./configs/init.vim", new_path);
+        match fs::copy(config_path, &new_path) {
+            Ok(_) => println!("✅  Config applyed: {:?} --> {:?}", config_path, new_path),
+            Err(err) => println!("❌  Config was not applyed: {:?}\n    Cause: {:?}", config_path, err),
+        }
+    }
 }
 
 fn main() {
@@ -66,6 +67,8 @@ fn main() {
     if command == "snippets" {
         install_snippets();
     } else if command == "nvim" {
-        install_nvim_config();
+        let nvim_configs = vec![".config/nvim/init.vim", ".config/nvim/coc-settings.json"];
+
+        install_configs(nvim_configs);
     }
 }

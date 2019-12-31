@@ -12,10 +12,8 @@ Plug 'terryma/vim-multiple-cursors'
 Plug 'vim-scripts/BufOnly.vim'
 Plug 'MattesGroeger/vim-bookmarks'
 Plug 'liuchengxu/vim-which-key', { 'on': ['WhichKey', 'WhichKey!'] }
-Plug 'neomake/neomake'
 Plug 'junegunn/vim-easy-align'
 Plug 'itchyny/lightline.vim'
-Plug 'sinetoami/lightline-neomake'
 Plug 'tpope/vim-fugitive'
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 Plug 'unkiwii/vim-nerdtree-sync'
@@ -26,17 +24,7 @@ Plug 'drewtempelmeyer/palenight.vim'
 Plug 'lamartire/vim-ascetic'
 Plug 'morhetz/gruvbox'
 Plug 'lifepillar/vim-solarized8'
-
-" Deoplete – autocomplete for evetethyng
-if has('nvim')
-  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-else
-  Plug 'Shougo/deoplete.nvim'
-  Plug 'roxma/nvim-yarp'
-  Plug 'roxma/vim-hug-neovim-rpc'
-endif
-
-" Plug 'tbodt/deoplete-tabnine', { 'do': './install.sh' }
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 " JS
 Plug 'leafgarland/typescript-vim'
@@ -77,8 +65,10 @@ Plug 'natebosch/vim-lsc-dart', { 'for': ['dart'] }
 " Other
 Plug 'digitaltoad/vim-jade', { 'for': ['jade', 'pug'] }
 
+" Nim
+Plug 'zah/nim.vim'
+
 call plug#end()
-call neomake#configure#automake('nw', 750)
 
 function! s:goyo_enter()
   set relativenumber
@@ -96,6 +86,7 @@ set autochdir
 set autowrite
 set autoread
 set termguicolors
+set cursorline
 set background=light
 
 colorscheme solarized8
@@ -106,8 +97,6 @@ let g:deoplete#enable_at_startup = 1
 let g:NERDSpaceDelims = 1
 let g:NERDTrimTrailingWhitespace = 1
 let g:nerdtree_sync_cursorline = 1
-let g:neomake_javascript_enabled_makers = ['eslint']
-let g:neomake_typescript_enabled_makers = ['tsc', 'eslint']
 let g:rg_command = 'rg --vimgrep -S'
 let g:ctrlsf_default_root = 'project'
 let g:goyo_height = 95
@@ -123,18 +112,12 @@ let g:lightline = {
 	\ 'active': {
 	\ 'left': [['mode', 'paste'],
 	\	   ['gitbranch', 'filename', 'modified']],
-        \ 'right': [['neomake_warnings', 'neomake_errors', 'neomake_ok'],
-	\	    ['fileencoding', 'filetype'],
-	\	    ['percent']]
-	\ },
-	\ 'component_expand': {
-  	\ 	'neomake_warnings': 'lightline#neomake#warnings',
-  	\ 	'neomake_errors': 'lightline#neomake#errors',
-  	\ 	'neomake_ok': 'lightline#neomake#ok',
+        \ 'right': [['percent'],
+	\	    ['fileencoding', 'filetype']]
 	\ },
 	\ 'component_function': {
 	\       'gitbranch': 'fugitive#head',
-      	\       'filename':'LightlineFilename',
+      	\       'filename':'LightlineFilename'
 	\ }
 	\}
 let g:fzf_colors =
@@ -151,12 +134,6 @@ let g:fzf_colors =
         \ "marker":  ["fg", "IncSearch"],
         \ "spinner": ["fg", "IncSearch"],
         \ "header":  ["fg", "WildMenu"] }
-let g:neomake_error_sign = {
-	\ 'text': 'e'
-	\ }
-let g:neomake_warning_sign = {
-	\ 'text': 'w'
-	\ }
 
 function! LightlineFilename()
   let filename = expand('%:p')
@@ -180,8 +157,18 @@ function! s:find_git_root()
   return system('git rev-parse --show-toplevel 2> /dev/null')[:-2]
 endfunction
 
+" Use K to show documentation in preview window
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
+endfunction
+
 command! ProjectFiles execute 'Files' s:find_git_root()
 
+nnoremap <silent> K :call <SID>show_documentation()<CR>
 map <Leader> <Plug>(easymotion-prefix)
 map <Up> <Nop>
 map <Down> <Nop>
@@ -203,9 +190,10 @@ noremap <S-f> b
 noremap <C-t> :Buffers<CR>
 noremap <C-Shift-F> :Goyo<CR>
 noremap <C-b> :NERDTreeToggle<CR>
-noremap <Leader>gf "hy:CtrlSF <C-r>h<CR>
-noremap <Leader>rf "hy:%s/<C-r>h//gc<left><left><left>
+noremap <C-f>g "hy:CtrlSF <C-r>h<CR>
+noremap <C-f>r "hy:%s@<C-r>h@<C-r>h@gc<left><left><left>
 inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
 inoremap <expr><S-tab> pumvisible() ? "\<c-p>" : "\<S-tab>"
 map  <Leader>w <Plug>(easymotion-bd-w)
 nmap <Leader>w <Plug>(easymotion-overwin-w)
+noremap <C-d> <C-d>
