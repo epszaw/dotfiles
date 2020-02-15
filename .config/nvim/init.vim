@@ -6,12 +6,9 @@ Plug 'jiangmiao/auto-pairs'
 Plug 'easymotion/vim-easymotion'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-abolish'
-Plug 'junegunn/goyo.vim'
 Plug 'dyng/ctrlsf.vim'
-Plug 'terryma/vim-multiple-cursors'
 Plug 'vim-scripts/BufOnly.vim'
 Plug 'MattesGroeger/vim-bookmarks'
-Plug 'liuchengxu/vim-which-key', { 'on': ['WhichKey', 'WhichKey!'] }
 Plug 'junegunn/vim-easy-align'
 Plug 'itchyny/lightline.vim'
 Plug 'tpope/vim-fugitive'
@@ -20,35 +17,33 @@ Plug 'unkiwii/vim-nerdtree-sync'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
-Plug 'drewtempelmeyer/palenight.vim'
-Plug 'lamartire/vim-ascetic'
-Plug 'morhetz/gruvbox'
+Plug 'neoclide/coc.nvim', { 'branch': 'release', 'do': ':CocInit' }
+Plug 'dense-analysis/ale'
+Plug 'maximbaz/lightline-ale'
+
+" Themes
+Plug 'arcticicestudio/nord-vim'
+Plug 'joshdick/onedark.vim'
 Plug 'lifepillar/vim-solarized8'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 " JS
-Plug 'leafgarland/typescript-vim'
-Plug 'prettier/vim-prettier'
+Plug 'leafgarland/typescript-vim', { 'for': ['typescript', 'typescriptreact'] }
 Plug 'mxw/vim-jsx'
+Plug 'peitalin/vim-jsx-typescript', { 'for': ['typescript', 'typescriptreact'] }
 Plug 'posva/vim-vue', { 'for': ['javascript', 'typescript'] }
 Plug 'othree/es.next.syntax.vim', { 'for': 'javascript' }
 Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
 Plug 'jelera/vim-javascript-syntax', { 'for': 'javascript' }
 
 " Clojure
-Plug 'tpope/vim-fireplace', { 'for': ['clojure', 'clojurescript'] }
-Plug 'guns/vim-clojure-static', { 'for': ['clojure', 'clojurescript'] }
 Plug 'guns/vim-clojure-highlight', { 'for': ['clojure', 'clojurescript'] }
-Plug 'venantius/vim-cljfmt', { 'for': ['clojure', 'clojurescript'] }
-Plug 'vim-scripts/paredit.vim', { 'for': ['clojure', 'clojurescript'] }
 
 " Go
-Plug 'fatih/vim-go', { 'for': ['go'] }
+Plug 'fatih/vim-go', { 'for': ['go'], 'do': ':GoInstallBinaries' }
 
 " HTML
 Plug 'gregsexton/MatchTag', { 'for': ['html', 'javascript'] }
 Plug 'mattn/emmet-vim', { 'for': ['html', 'javascript', 'vue', 'typescript'] }
-Plug 'othree/html5.vim', { 'for': ['html', 'javascript'] }
 
 " CSS
 Plug 'ap/vim-css-color', { 'for': ['css', 'scss', 'sass', 'less', 'stylus', 'sss'] }
@@ -57,24 +52,10 @@ Plug 'groenewege/vim-less', { 'for': 'less' }
 Plug 'hail2u/vim-css3-syntax', { 'for': ['css', 'scss'] }
 Plug 'wavded/vim-stylus', { 'for': 'stylus' }
 
-" Dart
-Plug 'dart-lang/dart-vim-plugin', { 'for': ['dart'] }
-Plug 'natebosch/vim-lsc', { 'for': ['dart'] }
-Plug 'natebosch/vim-lsc-dart', { 'for': ['dart'] }
-
 " Other
 Plug 'digitaltoad/vim-jade', { 'for': ['jade', 'pug'] }
 
-" Nim
-Plug 'zah/nim.vim'
-
 call plug#end()
-
-function! s:goyo_enter()
-  set relativenumber
-endfunction
-
-autocmd! User GoyoEnter nested call <SID>goyo_enter()
 
 set encoding=UTF-8
 set number
@@ -86,12 +67,13 @@ set autochdir
 set autowrite
 set autoread
 set termguicolors
-set cursorline
-set background=light
+set cul
+set background=dark
 
-colorscheme solarized8
+colorscheme onedark
 syntax enable
 
+" Definitions
 let $FZF_DEFAULT_COMMAND = 'ag --hidden --ignore .git -g ""'
 let g:deoplete#enable_at_startup = 1
 let g:NERDSpaceDelims = 1
@@ -108,33 +90,38 @@ let dart_format_on_save = 1
 let dart_style_guide = 2
 let g:lsc_auto_map = v:true
 let g:lightline = {
-	\ 'colorscheme': 'solarized',
+	\ 'colorscheme': 'onedark',
 	\ 'active': {
 	\ 'left': [['mode', 'paste'],
 	\	   ['gitbranch', 'filename', 'modified']],
         \ 'right': [['percent'],
-	\	    ['fileencoding', 'filetype']]
+	\	    ['linter_checking', 'linter_errors', 'linter_warnings', 'linter_ok', 'filetype']]
 	\ },
 	\ 'component_function': {
 	\       'gitbranch': 'fugitive#head',
       	\       'filename':'LightlineFilename'
 	\ }
 	\}
-let g:fzf_colors =
-	\ { "fg":    ["fg", "Normal"],
- 	\ "bg":      ["bg", "Normal"],
- 	\ "hl":      ["fg", "IncSearch"],
-        \ "fg+":     ["fg", "CursorLine", "CursorColumn", "Normal"],
-        \ "bg+":     ["bg", "CursorLine", "CursorColumn"],
-        \ "hl+":     ["fg", "IncSearch"],
-        \ "info":    ["fg", "IncSearch"],
-        \ "border":  ["fg", "Ignore"],
-        \ "prompt":  ["fg", "Comment"],
-        \ "pointer": ["fg", "IncSearch"],
-        \ "marker":  ["fg", "IncSearch"],
-        \ "spinner": ["fg", "IncSearch"],
-        \ "header":  ["fg", "WildMenu"] }
+let g:lightline.component_expand = {
+        \ 'linter_checking': 'lightline#ale#checking',
+        \ 'linter_warnings': 'lightline#ale#warnings',
+        \ 'linter_errors': 'lightline#ale#errors',
+        \ 'linter_ok': 'lightline#ale#ok',
+        \ }
+let g:ale_fixers = {
+	\ "*": 		   ["prettier", "remove_trailing_lines", "trim_whitespace"],
+	\ "javascript":    ["eslint"],
+	\ "typescript":    ["eslint"],
+	\ "sass": 	   ["stylelint"],
+	\ "scss": 	   ["stylelint"],
+	\ "css": 	   ["stylelint"],
+	\ "sss": 	   ["stylelint"],
+	\ "clojure": 	   ["clj-kondo", "joker"],
+	\ "clojurescript": ["clj-kondo", "joker"]
+	\}
+let g:ale_fix_on_save = 1
 
+" Functions
 function! LightlineFilename()
   let filename = expand('%:p')
 
@@ -143,14 +130,8 @@ function! LightlineFilename()
   endif
 
   let filenameSplit = split(filename, '/')
-	
-  if (len(filenameSplit) == 1)
-	return filename
-  endif
 
-  let reversedParts = reverse(filenameSplit)[:2]
-
-  return '~ ' . join(reverse(reversedParts), '/') 
+  return reverse(filenameSplit)[0]
 endfunction
 
 function! s:find_git_root()
@@ -166,8 +147,28 @@ function! s:show_documentation()
   endif
 endfunction
 
+function! InstallCocPlugins(plugins)
+  execute 'CocInstall ' . join(a:plugins, ' ')
+endfunction
+
+" Commands
+command! CocInit call InstallCocPlugins([
+	\ 'coc-rls',
+	\ 'coc-vetur',
+	\ 'coc-json',
+	\ 'coc-css',
+	\ 'coc-html',
+	\ 'coc-go',
+	\ 'coc-tsserver'])
 command! ProjectFiles execute 'Files' s:find_git_root()
 
+augroup BgHighlight
+  autocmd!
+  autocmd WinEnter * set cul
+  autocmd WinLeave * set nocul
+augroup END
+
+" Keymap
 nnoremap <silent> K :call <SID>show_documentation()<CR>
 map <Leader> <Plug>(easymotion-prefix)
 map <Up> <Nop>
@@ -184,11 +185,12 @@ nmap <silent> <S-k> :wincmd k<CR>
 nmap <silent> <S-j> :wincmd j<CR>
 nmap <silent> <S-h> :wincmd h<CR>
 nmap <silent> <S-l> :wincmd l<CR>
+nmap <C-h> :tabprevious<CR>
+nmap <C-l> :tabNext<CR>
 noremap <C-p> :ProjectFiles<CR>
 noremap f w
 noremap <S-f> b
 noremap <C-t> :Buffers<CR>
-noremap <C-Shift-F> :Goyo<CR>
 noremap <C-b> :NERDTreeToggle<CR>
 noremap <C-f>g "hy:CtrlSF <C-r>h<CR>
 noremap <C-f>r "hy:%s@<C-r>h@<C-r>h@gc<left><left><left>
