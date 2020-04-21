@@ -20,11 +20,17 @@ Plug 'junegunn/fzf.vim'
 Plug 'neoclide/coc.nvim', { 'branch': 'release', 'do': ':CocInit' }
 Plug 'dense-analysis/ale'
 Plug 'maximbaz/lightline-ale'
+Plug 'jpalardy/vim-slime'
 
 " Themes
 Plug 'arcticicestudio/nord-vim'
 Plug 'joshdick/onedark.vim'
+Plug 'rakr/vim-one'
 Plug 'lifepillar/vim-solarized8'
+Plug 'mhartington/oceanic-next'
+Plug 'agreco/vim-citylights'
+Plug 'haishanh/night-owl.vim'
+Plug 'morhetz/gruvbox'
 
 " JS
 Plug 'leafgarland/typescript-vim', { 'for': ['typescript', 'typescriptreact'] }
@@ -34,6 +40,8 @@ Plug 'posva/vim-vue', { 'for': ['javascript', 'typescript'] }
 Plug 'othree/es.next.syntax.vim', { 'for': 'javascript' }
 Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
 Plug 'jelera/vim-javascript-syntax', { 'for': 'javascript' }
+Plug 'evanleck/vim-svelte', { 'for': 'svelte' }
+Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
 
 " Clojure
 Plug 'guns/vim-clojure-highlight', { 'for': ['clojure', 'clojurescript'] }
@@ -52,8 +60,15 @@ Plug 'groenewege/vim-less', { 'for': 'less' }
 Plug 'hail2u/vim-css3-syntax', { 'for': ['css', 'scss'] }
 Plug 'wavded/vim-stylus', { 'for': 'stylus' }
 
-" Other
+" Elm
+Plug 'ElmCast/elm-vim'
+
+" Python
+Plug 'psf/black'
+
+" " Other
 Plug 'digitaltoad/vim-jade', { 'for': ['jade', 'pug'] }
+Plug 'cespare/vim-toml'
 
 call plug#end()
 
@@ -66,11 +81,13 @@ set hid
 set autochdir
 set autowrite
 set autoread
-set termguicolors
 set cul
 set background=dark
+colorscheme gruvbox
+set termguicolors
+set t_Co=256
 
-colorscheme onedark
+
 syntax enable
 
 " Definitions
@@ -81,8 +98,6 @@ let g:NERDTrimTrailingWhitespace = 1
 let g:nerdtree_sync_cursorline = 1
 let g:rg_command = 'rg --vimgrep -S'
 let g:ctrlsf_default_root = 'project'
-let g:goyo_height = 95
-let g:goyo_width = 90
 let g:polyglot_disabled = ['vue']
 let g:vue_pre_processors = 'detect_on_enter'
 let g:paredit_mode = 1
@@ -90,7 +105,7 @@ let dart_format_on_save = 1
 let dart_style_guide = 2
 let g:lsc_auto_map = v:true
 let g:lightline = {
-	\ 'colorscheme': 'onedark',
+	\ 'colorscheme': 'gruvbox',
 	\ 'active': {
 	\ 'left': [['mode', 'paste'],
 	\	   ['gitbranch', 'filename', 'modified']],
@@ -109,15 +124,15 @@ let g:lightline.component_expand = {
         \ 'linter_ok': 'lightline#ale#ok',
         \ }
 let g:ale_fixers = {
-	\ "*": 		   ["prettier", "remove_trailing_lines", "trim_whitespace"],
-	\ "javascript":    ["eslint"],
-	\ "typescript":    ["eslint"],
-	\ "sass": 	   ["stylelint"],
-	\ "scss": 	   ["stylelint"],
-	\ "css": 	   ["stylelint"],
-	\ "sss": 	   ["stylelint"],
-	\ "clojure": 	   ["clj-kondo", "joker"],
-	\ "clojurescript": ["clj-kondo", "joker"]
+	\ "*": 		   ["remove_trailing_lines", "trim_whitespace"],
+	\ "vue":    	   ["prettier", "eslint"],
+	\ "javascript":    ["prettier", "eslint"],
+	\ "typescript":    ["prettier", "eslint"],
+	\ "svelte":    	   ["prettier", "eslint"],
+	\ "sass": 	   ["prettier", "stylelint"],
+	\ "scss": 	   ["prettier", "stylelint"],
+	\ "css": 	   ["prettier", "stylelint"],
+	\ "sss": 	   ["prettier", "stylelint"]
 	\}
 let g:ale_fix_on_save = 1
 
@@ -151,6 +166,17 @@ function! InstallCocPlugins(plugins)
   execute 'CocInstall ' . join(a:plugins, ' ')
 endfunction
 
+" Themes quick switching
+function! SetDarkTheme(theme)
+	execute 'set background=dark'
+	execute 'colorscheme ' . a:theme
+endfunction
+
+function! SetLightTheme(theme)
+	execute 'set background=light'
+	execute 'colorscheme ' . a:theme
+endfunction
+
 " Commands
 command! CocInit call InstallCocPlugins([
 	\ 'coc-rls',
@@ -159,8 +185,15 @@ command! CocInit call InstallCocPlugins([
 	\ 'coc-css',
 	\ 'coc-html',
 	\ 'coc-go',
+	\ 'coc-svelte',
+	\ 'coc-python',
+	\ 'coc-prettier',
 	\ 'coc-tsserver'])
 command! ProjectFiles execute 'Files' s:find_git_root()
+
+command! SetLightTheme call SetLightTheme('gruvbox')
+
+command! SetDarkTheme call SetDarkTheme('gruvbox')
 
 augroup BgHighlight
   autocmd!
@@ -185,13 +218,13 @@ nmap <silent> <S-k> :wincmd k<CR>
 nmap <silent> <S-j> :wincmd j<CR>
 nmap <silent> <S-h> :wincmd h<CR>
 nmap <silent> <S-l> :wincmd l<CR>
-nmap <C-h> :tabprevious<CR>
-nmap <C-l> :tabNext<CR>
+nmap <C-h> gT
+nmap <C-l> gt
 noremap <C-p> :ProjectFiles<CR>
 noremap f w
 noremap <S-f> b
 noremap <C-t> :Buffers<CR>
-noremap <C-b> :NERDTreeToggle<CR>
+noremap <C-e> :NERDTreeToggle<CR>
 noremap <C-f>g "hy:CtrlSF <C-r>h<CR>
 noremap <C-f>r "hy:%s@<C-r>h@<C-r>h@gc<left><left><left>
 inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"

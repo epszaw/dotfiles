@@ -47,28 +47,13 @@ fn install_snippets() {
     }
 }
 
-fn install_configs(configs: Vec<&str>) {
-    for config_path in configs {
-        let new_path = path::PathBuf::from("/")
-          .join(get_home_dir_path())
-          .join(config_path);
-
-        match fs::copy(config_path, &new_path) {
-            Ok(_) => println!("✅  Config applyed: {:?} --> {:?}", config_path, new_path),
-            Err(err) => println!("❌  Config was not applyed: {:?}\n    Cause: {:?}", config_path, err),
-        }
-    }
-}
-
 fn main() {
     let args: Vec<String> = env::args().collect();
     let command = &args[1];
 
     if command == "snippets" {
         install_snippets();
-    } else if command == "nvim" {
-        let nvim_configs = vec![".config/nvim/init.vim", ".config/nvim/coc-settings.json"];
-
-        install_configs(nvim_configs);
+    } else {
+        println!("This command is not supported yet. Copy this config by yourself.")
     }
 }
