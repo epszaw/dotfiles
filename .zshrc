@@ -1,6 +1,17 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
+setxkbmap -layout "pl,ru"
+setxkbmap -option 'grp:alt_shift_toggle'
+
+function ext_d() {
+	xrandr --auto && xrandr --output eDP-1 --off
+}
+
+function int_d() {
+	xrandr --auto && xrandr --output DP-1 --off
+}
+
 # Path to your oh-my-zsh installation.
 export ZSH="/home/lamartire/.oh-my-zsh"
 
@@ -77,7 +88,8 @@ source $ZSH/oh-my-zsh.sh
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
-# export LANG=en_US.UTF-8
+export LANG=en_US.UTF-8
+export LANGUAGE=en_US:en
 
 # Preferred editor for local and remote sessions
 # if [[ -n $SSH_CONNECTION ]]; then
@@ -111,6 +123,17 @@ export PATH="$NPM_PACKAGES/bin/:~/.npm-global/bin:/usr/local/go/bin:$GOPATH/bin:
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# Aliases
+alias c=clear
+
+## Git aliases
+alias gc=git commit
+alias gl=git log
+alias gs=git status
+alias gr=git rebase
+alias gpl=git pull
+alias gps=git push
 
 # Starship initialization
 eval "$(starship init zsh)"

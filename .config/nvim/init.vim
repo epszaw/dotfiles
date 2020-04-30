@@ -232,3 +232,4 @@ inoremap <expr><S-tab> pumvisible() ? "\<c-p>" : "\<S-tab>"
 map  <Leader>w <Plug>(easymotion-bd-w)
 nmap <Leader>w <Plug>(easymotion-overwin-w)
 noremap <C-d> <C-d>
+nmap <Leader>sp4 :vs<CR>:sp<CR><S-l>:sp<CR>
