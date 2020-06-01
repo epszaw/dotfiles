@@ -3,13 +3,10 @@ call plug#begin('~/.local/share/nvim/plugged')
 Plug 'editorconfig/editorconfig-vim'
 Plug 'airblade/vim-gitgutter'
 Plug 'jiangmiao/auto-pairs'
-Plug 'easymotion/vim-easymotion'
 Plug 'tpope/vim-surround'
-Plug 'tpope/vim-abolish'
 Plug 'dyng/ctrlsf.vim'
 Plug 'vim-scripts/BufOnly.vim'
 Plug 'MattesGroeger/vim-bookmarks'
-Plug 'junegunn/vim-easy-align'
 Plug 'itchyny/lightline.vim'
 Plug 'tpope/vim-fugitive'
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
@@ -20,17 +17,16 @@ Plug 'junegunn/fzf.vim'
 Plug 'neoclide/coc.nvim', { 'branch': 'release', 'do': ':CocInit' }
 Plug 'dense-analysis/ale'
 Plug 'maximbaz/lightline-ale'
-Plug 'jpalardy/vim-slime'
+Plug 'vim-test/vim-test'
+Plug 'junegunn/goyo.vim'
 
 " Themes
-Plug 'arcticicestudio/nord-vim'
-Plug 'joshdick/onedark.vim'
-Plug 'rakr/vim-one'
-Plug 'lifepillar/vim-solarized8'
 Plug 'mhartington/oceanic-next'
-Plug 'agreco/vim-citylights'
-Plug 'haishanh/night-owl.vim'
 Plug 'morhetz/gruvbox'
+Plug 'haishanh/night-owl.vim'
+Plug 'joshdick/onedark.vim'
+Plug 'arcticicestudio/nord-vim'
+Plug 'dracula/vim'
 
 " JS
 Plug 'leafgarland/typescript-vim', { 'for': ['typescript', 'typescriptreact'] }
@@ -59,14 +55,9 @@ Plug 'cakebaker/scss-syntax.vim', { 'for': ['scss', 'sass'] }
 Plug 'groenewege/vim-less', { 'for': 'less' }
 Plug 'hail2u/vim-css3-syntax', { 'for': ['css', 'scss'] }
 Plug 'wavded/vim-stylus', { 'for': 'stylus' }
+Plug 'hhsnopek/vim-sugarss'
 
-" Elm
-Plug 'ElmCast/elm-vim'
-
-" Python
-Plug 'psf/black'
-
-" " Other
+" Other
 Plug 'digitaltoad/vim-jade', { 'for': ['jade', 'pug'] }
 Plug 'cespare/vim-toml'
 
@@ -83,10 +74,9 @@ set autowrite
 set autoread
 set cul
 set background=dark
-colorscheme gruvbox
+colorscheme dracula
 set termguicolors
 set t_Co=256
-
 
 syntax enable
 
@@ -105,7 +95,7 @@ let dart_format_on_save = 1
 let dart_style_guide = 2
 let g:lsc_auto_map = v:true
 let g:lightline = {
-	\ 'colorscheme': 'gruvbox',
+	\ 'colorscheme': 'dracula',
 	\ 'active': {
 	\ 'left': [['mode', 'paste'],
 	\	   ['gitbranch', 'filename', 'modified']],
@@ -124,7 +114,7 @@ let g:lightline.component_expand = {
         \ 'linter_ok': 'lightline#ale#ok',
         \ }
 let g:ale_fixers = {
-	\ "*": 		   ["remove_trailing_lines", "trim_whitespace"],
+	\ "*": 		   ["trim_whitespace"],
 	\ "vue":    	   ["prettier", "eslint"],
 	\ "javascript":    ["prettier", "eslint"],
 	\ "typescript":    ["prettier", "eslint"],
@@ -193,7 +183,7 @@ command! ProjectFiles execute 'Files' s:find_git_root()
 
 command! SetLightTheme call SetLightTheme('gruvbox')
 
-command! SetDarkTheme call SetDarkTheme('gruvbox')
+command! SetDarkTheme call SetDarkTheme('dracula')
 
 augroup BgHighlight
   autocmd!
