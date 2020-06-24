@@ -8,7 +8,6 @@ Plug 'tpope/vim-surround'
 Plug 'dyng/ctrlsf.vim'
 Plug 'vim-scripts/BufOnly.vim'
 Plug 'MattesGroeger/vim-bookmarks'
-Plug 'itchyny/lightline.vim'
 Plug 'tpope/vim-fugitive'
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 Plug 'unkiwii/vim-nerdtree-sync'
@@ -17,9 +16,11 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'neoclide/coc.nvim', { 'branch': 'release', 'do': ':CocInit' }
 Plug 'dense-analysis/ale'
-Plug 'maximbaz/lightline-ale'
 " Plug 'vim-test/vim-test'
-" Plug 'junegunn/goyo.vim'
+Plug 'junegunn/goyo.vim'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'vim-ruby/vim-ruby'
 
 " Themes
 Plug 'mhartington/oceanic-next'
@@ -100,6 +101,7 @@ command! CocInit call InstallCocPlugins([
 	\ 'coc-css',
 	\ 'coc-html',
 	\ 'coc-go',
+	\ 'coc-solarhraph',
 	\ 'coc-prettier',
 	\ 'coc-tsserver'])
 command! ProjectFiles execute 'Files' s:find_git_root()
@@ -142,25 +144,12 @@ let g:polyglot_disabled = ['vue']
 let g:vue_pre_processors = 'detect_on_enter'
 let g:paredit_mode = 1
 let g:lsc_auto_map = v:true
-let g:lightline = {
-	\ 'colorscheme': 'dracula',
-	\ 'active': {
-	\ 'left': [['mode', 'paste'],
-	\	   ['gitbranch', 'filename', 'modified']],
-        \ 'right': [['percent'],
-	\	    ['linter_checking', 'linter_errors', 'linter_warnings', 'linter_ok', 'filetype']]
-	\ },
-	\ 'component_function': {
-	\       'gitbranch': 'fugitive#head',
-      	\       'filename':'LightlineFilename'
-	\ }
+let g:ale_linters = {
+	\ "ruby": 	   ["standardrb", "rubocop"],
+	\ "vue":    	   ["eslint"],
+	\ "javascript":    ["eslint"],
+	\ "typescript":    ["eslint"],
 	\}
-let g:lightline.component_expand = {
-        \ 'linter_checking': 'lightline#ale#checking',
-        \ 'linter_warnings': 'lightline#ale#warnings',
-        \ 'linter_errors': 'lightline#ale#errors',
-        \ 'linter_ok': 'lightline#ale#ok',
-        \ }
 let g:ale_fixers = {
 	\ "*": 		   ["trim_whitespace"],
 	\ "vue":    	   ["prettier", "eslint"],
@@ -169,8 +158,10 @@ let g:ale_fixers = {
 	\ "sass": 	   ["prettier", "stylelint"],
 	\ "scss": 	   ["prettier", "stylelint"],
 	\ "css": 	   ["prettier", "stylelint"],
+	\ "ruby":	   ["standardrb"],
 	\}
 let g:ale_fix_on_save = 1
+let g:airline_theme = "dracula"
 
 
 " Keymap

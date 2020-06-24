@@ -1,7 +1,4 @@
 {
-	"prettier.semi": false,
-	"prettier.useTabs": false,
-	"prettier.singleQuote": true,
-	"prettier.trailingComma": "all",
-	"prettier.requireConfig": false
+	"python.jediEnabled": false,
+	"tsserver.enableJavascript": true,
 }

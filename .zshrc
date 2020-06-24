@@ -1,16 +1,17 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
-setxkbmap -layout "pl,ru"
-setxkbmap -option 'grp:alt_shift_toggle'
+# Need for i3 env
+# setxkbmap -layout "pl,ru"
+# setxkbmap -option 'grp:alt_shift_toggle'
 
-function ext_d() {
-	xrandr --auto && xrandr --output eDP-1 --off
-}
-
-function int_d() {
-	xrandr --auto && xrandr --output DP-1 --off
-}
+# function ext_d() {
+# 	xrandr --auto && xrandr --output eDP-1 --off
+# }
+#
+# function int_d() {
+# 	xrandr --auto && xrandr --output DP-1 --off
+# }
 
 # Path to your oh-my-zsh installation.
 export ZSH="/home/lamartire/.oh-my-zsh"
@@ -110,11 +111,17 @@ export LANGUAGE=en_US:en
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
+# Init fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# Init rvm
+source $HOME/.rvm/scripts/rvm
+# rvm use ruby-2.7.0
 
 # Exports
 export TERM="xterm-256color"
 export GOPATH=$HOME/go
+export GO111MODULE=on
 
 NPM_PACKAGES="${HOME}/.npm-packages"
 
@@ -137,3 +144,6 @@ alias gps=git push
 
 # Starship initialization
 eval "$(starship init zsh)"
+
+# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+export PATH="$PATH:$HOME/.rvm/bin"
