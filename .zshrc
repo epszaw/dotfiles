@@ -114,10 +114,6 @@ export LANGUAGE=en_US:en
 # Init fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-# Init rvm
-source $HOME/.rvm/scripts/rvm
-# rvm use ruby-2.7.0
-
 # Exports
 export TERM="xterm-256color"
 export GOPATH=$HOME/go
@@ -125,7 +121,7 @@ export GO111MODULE=on
 
 NPM_PACKAGES="${HOME}/.npm-packages"
 
-export PATH="$NPM_PACKAGES/bin/:~/.npm-global/bin:/usr/local/go/bin:$GOPATH/bin:~/bin/python:~/dart/depot_tools:~/.local/bin:/home/lamartire/.local/bin:$PATH"
+export PATH="$HOME/.rbenv/plugins/ruby-build/bin:$HOME/.rbenv/bin:$NPM_PACKAGES/bin/:~/.npm-global/bin:/usr/local/go/bin:$GOPATH/bin:~/bin/python:~/dart/depot_tools:~/.local/bin:/home/lamartire/.local/bin:$PATH"
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
@@ -145,5 +141,5 @@ alias gps=git push
 # Starship initialization
 eval "$(starship init zsh)"
 
-# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-export PATH="$PATH:$HOME/.rvm/bin"
+# Rbenv init
+eval "$(rbenv init -)"

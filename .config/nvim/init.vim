@@ -149,6 +149,9 @@ let g:ale_linters = {
 	\ "vue":    	   ["eslint"],
 	\ "javascript":    ["eslint"],
 	\ "typescript":    ["eslint"],
+	\ "sass": 	   ["stylelint"],
+	\ "scss": 	   ["stylelint"],
+	\ "css": 	   ["stylelint"],
 	\}
 let g:ale_fixers = {
 	\ "*": 		   ["trim_whitespace"],
@@ -160,7 +163,7 @@ let g:ale_fixers = {
 	\ "css": 	   ["prettier", "stylelint"],
 	\ "ruby":	   ["standardrb"],
 	\}
-let g:ale_fix_on_save = 1
+let g:ale_fix_on_save = 0
 let g:airline_theme = "dracula"
 
 
@@ -192,7 +195,6 @@ noremap <C-f>g "hy:CtrlSF <C-r>h<CR>
 noremap <C-f>r "hy:%s@<C-r>h@<C-r>h@gc<left><left><left>
 inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
 inoremap <expr><S-tab> pumvisible() ? "\<c-p>" : "\<S-tab>"
-map  <Leader>w <Plug>(easymotion-bd-w)
-nmap <Leader>w <Plug>(easymotion-overwin-w)
+nmap <Leader>p :ALEFix<CR>
 noremap <C-d> <C-d>
 nmap <Leader>sp4 :vs<CR>:sp<CR><S-l>:sp<CR>
