@@ -1,5 +1,5 @@
 # Install required packages
-apt install -y vim neovim firefox zsh git make build-essential cmake pkg-config python3.7 python3-pip software-properties-common apt-transport-https ca-certificates pkg-config ffmpeg tmux openvpn silversearcher-ag chromium-browser
+apt install -y curl vim neovim firefox zsh git make build-essential cmake pkg-config python3 python3-pip software-properties-common apt-transport-https ca-certificates pkg-config ffmpeg tmux openvpn silversearcher-ag chromium-browser libssl-dev libreadline-dev libpq-dev
 
 # ZSH
 sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
