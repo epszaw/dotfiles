@@ -16,16 +16,19 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'neoclide/coc.nvim', { 'branch': 'release', 'do': ':CocInit' }
 Plug 'dense-analysis/ale'
-" Plug 'vim-test/vim-test'
+Plug 'vim-test/vim-test'
 Plug 'junegunn/goyo.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'vim-ruby/vim-ruby'
+Plug 'rhysd/conflict-marker.vim'
+Plug 'ryanoasis/vim-devicons'
 
 " Themes
 Plug 'mhartington/oceanic-next'
 Plug 'joshdick/onedark.vim'
 Plug 'dracula/vim'
+Plug 'morhetz/gruvbox'
 
 " JS
 Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
@@ -97,18 +100,19 @@ endfunction
 
 " Commands
 command! CocInit call InstallCocPlugins([
-	\ 'coc-vetur',
 	\ 'coc-css',
 	\ 'coc-html',
 	\ 'coc-go',
-	\ 'coc-solarhraph',
+	\ 'coc-solargraph',
 	\ 'coc-prettier',
 	\ 'coc-tsserver'])
 command! ProjectFiles execute 'Files' s:find_git_root()
 
 command! SetLightTheme call SetLightTheme('gruvbox')
 
-command! SetDarkTheme call SetDarkTheme('dracula')
+command! SetDarkTheme call SetDarkTheme('gruvbox')
+
+command! Zen execute 'Goyo 80x95%'
 
 augroup BgHighlight
   autocmd!
@@ -131,7 +135,7 @@ set cul
 set termguicolors
 set t_Co=256
 set background=dark
-colorscheme dracula
+colorscheme onedark
 
 let $FZF_DEFAULT_COMMAND = 'ag --hidden --ignore .git -g ""'
 let g:deoplete#enable_at_startup = 1
@@ -164,8 +168,10 @@ let g:ale_fixers = {
 	\ "ruby":	   ["standardrb"],
 	\}
 let g:ale_fix_on_save = 0
-let g:airline_theme = "dracula"
-
+let g:airline_theme = 'onedark'
+let g:airline#extensions#tabline#enabled = 1
+let g:goyo_linenr = 1
+let g:notes_directories = ['~/Documents/Notes']
 
 " Keymap
 nnoremap <silent> K :call <SID>show_documentation()<CR>
