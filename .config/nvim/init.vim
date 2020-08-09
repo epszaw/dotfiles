@@ -12,8 +12,8 @@ Plug 'tpope/vim-fugitive'
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 Plug 'unkiwii/vim-nerdtree-sync'
 Plug 'Xuyuanp/nerdtree-git-plugin'
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plug 'junegunn/fzf.vim'
+" Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+" Plug 'junegunn/fzf.vim'
 Plug 'neoclide/coc.nvim', { 'branch': 'release', 'do': ':CocInit' }
 Plug 'dense-analysis/ale'
 Plug 'vim-test/vim-test'
@@ -21,14 +21,16 @@ Plug 'junegunn/goyo.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'vim-ruby/vim-ruby'
-Plug 'rhysd/conflict-marker.vim'
 Plug 'ryanoasis/vim-devicons'
+Plug 'kien/ctrlp.vim'
 
 " Themes
 Plug 'mhartington/oceanic-next'
 Plug 'joshdick/onedark.vim'
 Plug 'dracula/vim'
 Plug 'morhetz/gruvbox'
+Plug 'lifepillar/vim-solarized8'
+Plug 'ayu-theme/ayu-vim'
 
 " JS
 Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
@@ -108,7 +110,7 @@ command! CocInit call InstallCocPlugins([
 	\ 'coc-tsserver'])
 command! ProjectFiles execute 'Files' s:find_git_root()
 
-command! SetLightTheme call SetLightTheme('gruvbox')
+command! SetLightTheme call SetLightTheme('solarized8')
 
 command! SetDarkTheme call SetDarkTheme('gruvbox')
 
@@ -134,8 +136,8 @@ set autoread
 set cul
 set termguicolors
 set t_Co=256
-set background=dark
-colorscheme onedark
+set background=light
+colorscheme solarized8
 
 let $FZF_DEFAULT_COMMAND = 'ag --hidden --ignore .git -g ""'
 let g:deoplete#enable_at_startup = 1
@@ -168,7 +170,7 @@ let g:ale_fixers = {
 	\ "ruby":	   ["standardrb"],
 	\}
 let g:ale_fix_on_save = 0
-let g:airline_theme = 'onedark'
+let g:airline_theme = 'solarized'
 let g:airline#extensions#tabline#enabled = 1
 let g:goyo_linenr = 1
 let g:notes_directories = ['~/Documents/Notes']
@@ -192,10 +194,8 @@ nmap <silent> <S-h> :wincmd h<CR>
 nmap <silent> <S-l> :wincmd l<CR>
 nmap <C-h> gT
 nmap <C-l> gt
-noremap <C-p> :ProjectFiles<CR>
-noremap f w
-noremap <S-f> b
-noremap <C-t> :Buffers<CR>
+noremap <C-p> :CtrlP<CR>
+noremap <C-t> :CtrlPBuffer<CR>
 noremap <C-e> :NERDTreeToggle<CR>
 noremap <C-f>g "hy:CtrlSF <C-r>h<CR>
 noremap <C-f>r "hy:%s@<C-r>h@<C-r>h@gc<left><left><left>

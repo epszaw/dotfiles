@@ -82,6 +82,8 @@ ZSH_THEME="lambda"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(git zsh-syntax-highlighting zsh-autosuggestions)
 
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#93a1a1,underline"
+
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
@@ -121,7 +123,7 @@ export GO111MODULE=on
 
 NPM_PACKAGES="${HOME}/.npm-packages"
 
-export PATH="$HOME/.rbenv/plugins/ruby-build/bin:$HOME/.rbenv/bin:$NPM_PACKAGES/bin/:~/.npm-global/bin:/usr/local/go/bin:$GOPATH/bin:~/bin/python:~/dart/depot_tools:~/.local/bin:/home/lamartire/.local/bin:$PATH"
+export PATH="/usr/lib/dart/bin:$HOME/.rbenv/plugins/ruby-build/bin:$HOME/.rbenv/bin:$NPM_PACKAGES/bin/:~/.npm-global/bin:/usr/local/go/bin:$GOPATH/bin:~/bin/python:~/dart/depot_tools:~/.local/bin:/home/lamartire/.local/bin:$PATH"
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
