@@ -12,8 +12,8 @@ Plug 'tpope/vim-fugitive'
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 Plug 'unkiwii/vim-nerdtree-sync'
 Plug 'Xuyuanp/nerdtree-git-plugin'
-" Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-" Plug 'junegunn/fzf.vim'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
 Plug 'neoclide/coc.nvim', { 'branch': 'release', 'do': ':CocInit' }
 Plug 'dense-analysis/ale'
 Plug 'vim-test/vim-test'
@@ -22,7 +22,6 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'vim-ruby/vim-ruby'
 Plug 'ryanoasis/vim-devicons'
-Plug 'kien/ctrlp.vim'
 
 " Themes
 Plug 'mhartington/oceanic-next'
@@ -139,7 +138,7 @@ set t_Co=256
 set background=light
 colorscheme solarized8
 
-let $FZF_DEFAULT_COMMAND = 'ag --hidden --ignore .git -g ""'
+let $FZF_DEFAULT_COMMAND = 'rg --files --hidden'
 let g:deoplete#enable_at_startup = 1
 let g:NERDSpaceDelims = 1
 let g:NERDTrimTrailingWhitespace = 1
@@ -174,6 +173,20 @@ let g:airline_theme = 'solarized'
 let g:airline#extensions#tabline#enabled = 1
 let g:goyo_linenr = 1
 let g:notes_directories = ['~/Documents/Notes']
+let g:fzf_colors =
+  \ { "fg":      ["fg", "Normal"],
+  \ "bg":        ["bg", "Normal"],
+  \ "hl":        ["fg", "IncSearch"],
+  \ "fg+":       ["fg", "CursorLine", "CursorColumn", "Normal"],
+  \ "bg+":       ["bg", "CursorLine", "CursorColumn"],
+  \ "hl+":       ["fg", "IncSearch"],
+  \ "info":      ["fg", "IncSearch"],
+  \ "border":    ["fg", "Ignore"],
+  \ "prompt":    ["fg", "Comment"],
+  \ "pointer":   ["fg", "IncSearch"],
+  \ "marker":    ["fg", "IncSearch"],
+  \ "spinner":   ["fg", "IncSearch"],
+  \ "header":    ["fg", "WildMenu"] }
 
 " Keymap
 nnoremap <silent> K :call <SID>show_documentation()<CR>
@@ -194,8 +207,8 @@ nmap <silent> <S-h> :wincmd h<CR>
 nmap <silent> <S-l> :wincmd l<CR>
 nmap <C-h> gT
 nmap <C-l> gt
-noremap <C-p> :CtrlP<CR>
-noremap <C-t> :CtrlPBuffer<CR>
+noremap <C-p> :ProjectFiles<CR>
+noremap <C-t> :Buffers<CR>
 noremap <C-e> :NERDTreeToggle<CR>
 noremap <C-f>g "hy:CtrlSF <C-r>h<CR>
 noremap <C-f>r "hy:%s@<C-r>h@<C-r>h@gc<left><left><left>
