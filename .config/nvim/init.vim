@@ -20,8 +20,8 @@ Plug 'vim-test/vim-test'
 Plug 'junegunn/goyo.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'vim-ruby/vim-ruby'
 Plug 'ryanoasis/vim-devicons'
+Plug 'tpope/vim-endwise'
 
 " Themes
 Plug 'mhartington/oceanic-next'
@@ -30,6 +30,9 @@ Plug 'dracula/vim'
 Plug 'morhetz/gruvbox'
 Plug 'lifepillar/vim-solarized8'
 Plug 'ayu-theme/ayu-vim'
+Plug 'drewtempelmeyer/palenight.vim'
+Plug 'Rigellute/rigel'
+Plug 'cocopon/iceberg.vim'
 
 " JS
 Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
@@ -42,8 +45,18 @@ Plug 'posva/vim-vue', { 'for': ['javascript', 'typescript'] }
 Plug 'evanleck/vim-svelte', { 'for': 'svelte' }
 Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
 
+" Haskell
+Plug 'neovimhaskell/haskell-vim'
+
+" Lisp
+Plug 'wlangstroth/vim-racket'
+
 " Go
 Plug 'fatih/vim-go', { 'for': ['go'], 'do': ':GoInstallBinaries' }
+
+" Ruby
+Plug 'vim-ruby/vim-ruby'
+Plug 'tpope/vim-rails'
 
 " HTML
 Plug 'gregsexton/MatchTag', { 'for': ['html', 'javascript'] }
@@ -59,18 +72,6 @@ Plug 'digitaltoad/vim-jade', { 'for': ['jade', 'pug'] }
 call plug#end()
 
 " Functions
-function! LightlineFilename()
-  let filename = expand('%:p')
-
-  if (filename == '')
-  	return '[No Name]'
-  endif
-
-  let filenameSplit = split(filename, '/')
-
-  return reverse(filenameSplit)[0]
-endfunction
-
 function! s:find_git_root()
   return system('git rev-parse --show-toplevel 2> /dev/null')[:-2]
 endfunction
@@ -107,13 +108,17 @@ command! CocInit call InstallCocPlugins([
 	\ 'coc-solargraph',
 	\ 'coc-prettier',
 	\ 'coc-tsserver'])
+
 command! ProjectFiles execute 'Files' s:find_git_root()
 
-command! SetLightTheme call SetLightTheme('solarized8')
+command! LightMode call SetLightTheme('iceberg')
 
-command! SetDarkTheme call SetDarkTheme('gruvbox')
+command! DarkMode call SetDarkTheme('iceberg')
 
-command! Zen execute 'Goyo 80x95%'
+command! ZenMode execute 'Goyo 80x95%'
+
+" command! -bang -nargs=* NRg
+"   \ call fzf#vim#grep("rg --column --line-number --no-heading --color=always --smart-case ".shellescape(<q-args>), 1, {'dir': system('git rev-parse --show-toplevel 2> /dev/null')[:-2]}, <bang>0)
 
 augroup BgHighlight
   autocmd!
@@ -135,13 +140,16 @@ set autoread
 set cul
 set termguicolors
 set t_Co=256
-set background=light
-colorscheme solarized8
+set background=dark
+colorscheme iceberg
 
 let $FZF_DEFAULT_COMMAND = 'rg --files --hidden'
 let g:deoplete#enable_at_startup = 1
 let g:NERDSpaceDelims = 1
 let g:NERDTrimTrailingWhitespace = 1
+let g:ctrlsf_auto_preview = 0
+let g:ctrlsf_confirm_save = 0
+let g:ctrlsf_ackprg = 'rg'
 let g:nerdtree_sync_cursorline = 1
 let g:rg_command = 'rg --vimgrep -S'
 let g:ctrlsf_default_root = 'project'
@@ -157,10 +165,13 @@ let g:ale_linters = {
 	\ "sass": 	   ["stylelint"],
 	\ "scss": 	   ["stylelint"],
 	\ "css": 	   ["stylelint"],
+	\ "markdown":	   ["yaspeller"],
 	\}
 let g:ale_fixers = {
 	\ "*": 		   ["trim_whitespace"],
-	\ "vue":    	   ["prettier", "eslint"],
+	\ "markdown":	   ["prettier"],
+	\ "json":	   ["prettier"],
+	\ "vue":    	   ["prettier", "eslint", "stylelint"],
 	\ "javascript":    ["prettier", "eslint"],
 	\ "typescript":    ["prettier", "eslint"],
 	\ "sass": 	   ["prettier", "stylelint"],
@@ -169,24 +180,23 @@ let g:ale_fixers = {
 	\ "ruby":	   ["standardrb"],
 	\}
 let g:ale_fix_on_save = 0
-let g:airline_theme = 'solarized'
+let g:airline_theme = 'iceberg'
 let g:airline#extensions#tabline#enabled = 1
-let g:goyo_linenr = 1
 let g:notes_directories = ['~/Documents/Notes']
 let g:fzf_colors =
-  \ { "fg":      ["fg", "Normal"],
-  \ "bg":        ["bg", "Normal"],
-  \ "hl":        ["fg", "IncSearch"],
-  \ "fg+":       ["fg", "CursorLine", "CursorColumn", "Normal"],
-  \ "bg+":       ["bg", "CursorLine", "CursorColumn"],
-  \ "hl+":       ["fg", "IncSearch"],
-  \ "info":      ["fg", "IncSearch"],
-  \ "border":    ["fg", "Ignore"],
-  \ "prompt":    ["fg", "Comment"],
-  \ "pointer":   ["fg", "IncSearch"],
-  \ "marker":    ["fg", "IncSearch"],
-  \ "spinner":   ["fg", "IncSearch"],
-  \ "header":    ["fg", "WildMenu"] }
+\ { 'fg':      ['fg', 'Normal'],
+  \ 'bg':      ['bg', 'Normal'],
+  \ 'hl':      ['fg', 'String'],
+  \ 'hl+':     ['fg', 'Statement'],
+  \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
+  \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
+  \ 'info':    ['fg', 'Keyword'],
+  \ 'border':  ['fg', 'Ignore'],
+  \ 'prompt':  ['fg', 'Statement'],
+  \ 'pointer': ['fg', 'Statement'],
+  \ 'marker':  ['fg', 'Keyword'],
+  \ 'spinner': ['fg', 'Label'],
+  \ 'header':  ['fg', 'Comment'] }
 
 " Keymap
 nnoremap <silent> K :call <SID>show_documentation()<CR>
@@ -211,6 +221,7 @@ noremap <C-p> :ProjectFiles<CR>
 noremap <C-t> :Buffers<CR>
 noremap <C-e> :NERDTreeToggle<CR>
 noremap <C-f>g "hy:CtrlSF <C-r>h<CR>
+" noremap <C-f>rg "hy:NRg <C-r>h<CR>
 noremap <C-f>r "hy:%s@<C-r>h@<C-r>h@gc<left><left><left>
 inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
 inoremap <expr><S-tab> pumvisible() ? "\<c-p>" : "\<S-tab>"
