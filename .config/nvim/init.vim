@@ -22,6 +22,7 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'ryanoasis/vim-devicons'
 Plug 'tpope/vim-endwise'
+Plug 'easymotion/vim-easymotion'
 
 " Themes
 Plug 'mhartington/oceanic-next'
@@ -140,7 +141,7 @@ set autoread
 set cul
 set termguicolors
 set t_Co=256
-set background=dark
+set background=light
 colorscheme iceberg
 
 let $FZF_DEFAULT_COMMAND = 'rg --files --hidden'

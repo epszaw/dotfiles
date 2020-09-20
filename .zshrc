@@ -82,8 +82,6 @@ ZSH_THEME="lambda"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(git zsh-syntax-highlighting zsh-autosuggestions)
 
-ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#93a1a1,underline"
-
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
