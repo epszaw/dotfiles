@@ -34,6 +34,7 @@ Plug 'ayu-theme/ayu-vim'
 Plug 'drewtempelmeyer/palenight.vim'
 Plug 'Rigellute/rigel'
 Plug 'cocopon/iceberg.vim'
+Plug 'arcticicestudio/nord-vim'
 
 " JS
 Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
@@ -141,8 +142,8 @@ set autoread
 set cul
 set termguicolors
 set t_Co=256
-set background=light
-colorscheme iceberg
+set background=dark
+colorscheme nord
 
 let $FZF_DEFAULT_COMMAND = 'rg --files --hidden'
 let g:deoplete#enable_at_startup = 1
@@ -181,7 +182,7 @@ let g:ale_fixers = {
 	\ "ruby":	   ["standardrb"],
 	\}
 let g:ale_fix_on_save = 0
-let g:airline_theme = 'iceberg'
+let g:airline_theme = 'nord'
 let g:airline#extensions#tabline#enabled = 1
 let g:notes_directories = ['~/Documents/Notes']
 let g:fzf_colors =
