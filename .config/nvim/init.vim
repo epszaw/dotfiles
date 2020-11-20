@@ -20,21 +20,14 @@ Plug 'vim-test/vim-test'
 Plug 'junegunn/goyo.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'ryanoasis/vim-devicons'
 Plug 'tpope/vim-endwise'
 Plug 'easymotion/vim-easymotion'
 
 " Themes
-Plug 'mhartington/oceanic-next'
-Plug 'joshdick/onedark.vim'
-Plug 'dracula/vim'
 Plug 'morhetz/gruvbox'
 Plug 'lifepillar/vim-solarized8'
-Plug 'ayu-theme/ayu-vim'
-Plug 'drewtempelmeyer/palenight.vim'
-Plug 'Rigellute/rigel'
 Plug 'cocopon/iceberg.vim'
-Plug 'arcticicestudio/nord-vim'
+Plug 'rakr/vim-one'
 
 " JS
 Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
@@ -113,9 +106,9 @@ command! CocInit call InstallCocPlugins([
 
 command! ProjectFiles execute 'Files' s:find_git_root()
 
-command! LightMode call SetLightTheme('iceberg')
+command! LightMode call SetLightTheme('one')
 
-command! DarkMode call SetDarkTheme('iceberg')
+command! DarkMode call SetDarkTheme('one')
 
 command! ZenMode execute 'Goyo 80x95%'
 
@@ -142,8 +135,8 @@ set autoread
 set cul
 set termguicolors
 set t_Co=256
-set background=dark
-colorscheme nord
+set background=light
+colorscheme solarized8_flat
 
 let $FZF_DEFAULT_COMMAND = 'rg --files --hidden'
 let g:deoplete#enable_at_startup = 1
@@ -172,6 +165,8 @@ let g:ale_linters = {
 let g:ale_fixers = {
 	\ "*": 		   ["trim_whitespace"],
 	\ "markdown":	   ["prettier"],
+	\ "svg":	   ["prettier"],
+	\ "html":	   ["prettier"],
 	\ "json":	   ["prettier"],
 	\ "vue":    	   ["prettier", "eslint", "stylelint"],
 	\ "javascript":    ["prettier", "eslint"],
@@ -182,11 +177,11 @@ let g:ale_fixers = {
 	\ "ruby":	   ["standardrb"],
 	\}
 let g:ale_fix_on_save = 0
-let g:airline_theme = 'nord'
+let g:airline_theme = 'solarized'
 let g:airline#extensions#tabline#enabled = 1
 let g:notes_directories = ['~/Documents/Notes']
 let g:fzf_colors =
-\ { 'fg':      ['fg', 'Normal'],
+  \ { 'fg':      ['fg', 'Normal'],
   \ 'bg':      ['bg', 'Normal'],
   \ 'hl':      ['fg', 'String'],
   \ 'hl+':     ['fg', 'Statement'],
@@ -199,6 +194,8 @@ let g:fzf_colors =
   \ 'marker':  ['fg', 'Keyword'],
   \ 'spinner': ['fg', 'Label'],
   \ 'header':  ['fg', 'Comment'] }
+let g:svelte_indent_script = 0
+let g:svelte_indent_style = 0
 
 " Keymap
 nnoremap <silent> K :call <SID>show_documentation()<CR>
