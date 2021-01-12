@@ -25,7 +25,6 @@
 ;; If you'd like to disable a package included with Doom, you can do so here
 ;; with the `:disable' property:
 ;(package! builtin-package :disable t)
-(package! vue-mode)
 
 ;; You can override the recipe of a built in package without having to specify
 ;; all the properties for `:recipe'. These will inherit the rest of its recipe
@@ -37,6 +36,7 @@
 ;; This is required for some packages whose default branch isn't 'master' (which
 ;; our package manager can't deal with; see raxod502/straight.el#279)
 ;(package! builtin-package :recipe (:branch "develop"))
+(package! vue-mode)
 
 ;; Use `:pin' to specify a particular commit to install.
 ;(package! builtin-package :pin "1a2b3c4d5e")
