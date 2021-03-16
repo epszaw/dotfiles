@@ -18,12 +18,12 @@ Plug 'neoclide/coc.nvim', { 'branch': 'release', 'do': ':CocInit' }
 Plug 'dense-analysis/ale'
 Plug 'tpope/vim-endwise'
 Plug 'easymotion/vim-easymotion'
-Plug 'ryanoasis/vim-devicons'
 Plug 'liuchengxu/vim-which-key'
 Plug 'itchyny/lightline.vim'
 Plug 'maximbaz/lightline-ale'
 Plug 'vim-test/vim-test'
 Plug 'arthurxavierx/vim-caser'
+Plug 'ryanoasis/vim-devicons'
 
 " Themes
 Plug 'morhetz/gruvbox'
@@ -32,6 +32,7 @@ Plug 'mhartington/oceanic-next'
 Plug 'arcticicestudio/nord-vim'
 Plug 'pineapplegiant/spaceduck'
 Plug 'dracula/vim'
+Plug 'lifepillar/vim-solarized8'
 
 " JS
 Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
