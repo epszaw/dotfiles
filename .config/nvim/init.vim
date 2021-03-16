@@ -16,18 +16,22 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'neoclide/coc.nvim', { 'branch': 'release', 'do': ':CocInit' }
 Plug 'dense-analysis/ale'
-Plug 'vim-test/vim-test'
-Plug 'junegunn/goyo.vim'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
 Plug 'tpope/vim-endwise'
 Plug 'easymotion/vim-easymotion'
+Plug 'ryanoasis/vim-devicons'
+Plug 'liuchengxu/vim-which-key'
+Plug 'itchyny/lightline.vim'
+Plug 'maximbaz/lightline-ale'
+Plug 'vim-test/vim-test'
+Plug 'arthurxavierx/vim-caser'
 
 " Themes
 Plug 'morhetz/gruvbox'
-Plug 'lifepillar/vim-solarized8'
 Plug 'cocopon/iceberg.vim'
-Plug 'rakr/vim-one'
+Plug 'mhartington/oceanic-next'
+Plug 'arcticicestudio/nord-vim'
+Plug 'pineapplegiant/spaceduck'
+Plug 'dracula/vim'
 
 " JS
 Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
@@ -40,18 +44,18 @@ Plug 'posva/vim-vue', { 'for': ['javascript', 'typescript'] }
 Plug 'evanleck/vim-svelte', { 'for': 'svelte' }
 Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
 
-" Haskell
-Plug 'neovimhaskell/haskell-vim'
-
-" Lisp
-Plug 'wlangstroth/vim-racket'
-
 " Go
 Plug 'fatih/vim-go', { 'for': ['go'], 'do': ':GoInstallBinaries' }
 
 " Ruby
 Plug 'vim-ruby/vim-ruby'
 Plug 'tpope/vim-rails'
+
+" Elixir
+Plug 'elixir-editors/vim-elixir'
+
+" Clojure
+Plug 'tpope/vim-fireplace'
 
 " HTML
 Plug 'gregsexton/MatchTag', { 'for': ['html', 'javascript'] }
@@ -63,8 +67,11 @@ Plug 'hail2u/vim-css3-syntax', { 'for': ['css', 'scss'] }
 
 " Other
 Plug 'digitaltoad/vim-jade', { 'for': ['jade', 'pug'] }
+Plug 'zah/nim.vim'
 
 call plug#end()
+
+call which_key#register('<Space>', "g:which_key_map")
 
 " Functions
 function! s:find_git_root()
@@ -84,15 +91,24 @@ function! InstallCocPlugins(plugins)
   execute 'CocInstall ' . join(a:plugins, ' ')
 endfunction
 
-" Themes quick switching
-function! SetDarkTheme(theme)
-	execute 'set background=dark'
-	execute 'colorscheme ' . a:theme
+function! LightLineGitBranch()
+  let l:branch = FugitiveHead()
+
+  if (l:branch == '')
+    return ''
+  endif
+
+  return '⑁ ' . FugitiveHead()
 endfunction
 
-function! SetLightTheme(theme)
-	execute 'set background=light'
-	execute 'colorscheme ' . a:theme
+function! LightLineWebDevIcons(n)
+  let l:bufnr = tabpagebuflist(a:n)[tabpagewinnr(a:n) - 1]
+  return WebDevIconsGetFileTypeSymbol(bufname(l:bufnr))
+endfunction
+
+function! LightLineFilename()
+  let l:filename = expand('%:t')
+  return WebDevIconsGetFileTypeSymbol(l:filename) . ' ' . expand('%:t')
 endfunction
 
 " Commands
@@ -102,18 +118,13 @@ command! CocInit call InstallCocPlugins([
 	\ 'coc-go',
 	\ 'coc-solargraph',
 	\ 'coc-prettier',
-	\ 'coc-tsserver'])
+	\ 'coc-tsserver',
+	\ 'coc-rls',
+	\ 'coc-sourcekit',
+	\ 'coc-elixir',
+	\ 'coc-pyright'])
 
 command! ProjectFiles execute 'Files' s:find_git_root()
-
-command! LightMode call SetLightTheme('one')
-
-command! DarkMode call SetDarkTheme('one')
-
-command! ZenMode execute 'Goyo 80x95%'
-
-" command! -bang -nargs=* NRg
-"   \ call fzf#vim#grep("rg --column --line-number --no-heading --color=always --smart-case ".shellescape(<q-args>), 1, {'dir': system('git rev-parse --show-toplevel 2> /dev/null')[:-2]}, <bang>0)
 
 augroup BgHighlight
   autocmd!
@@ -127,7 +138,7 @@ set encoding=UTF-8
 set number
 set relativenumber
 set incsearch
-set wildignore+=*/tmp/*,*/node_modules/*,*/dist/*,*/build/*,*/.next/*,*/out/*
+set wildignore+=*/tmp/*,*/node_modules/*,*/dist/*,*/build/*,*/.next/*,*/out/*,*/.DS_Store/*
 set hid
 set autochdir
 set autowrite
@@ -135,9 +146,11 @@ set autoread
 set cul
 set termguicolors
 set t_Co=256
-set background=light
-colorscheme solarized8_flat
+set background=dark
+set mouse=n
+colorscheme dracula
 
+let mapleader=' '
 let $FZF_DEFAULT_COMMAND = 'rg --files --hidden'
 let g:deoplete#enable_at_startup = 1
 let g:NERDSpaceDelims = 1
@@ -168,17 +181,43 @@ let g:ale_fixers = {
 	\ "svg":	   ["prettier"],
 	\ "html":	   ["prettier"],
 	\ "json":	   ["prettier"],
-	\ "vue":    	   ["prettier", "eslint", "stylelint"],
-	\ "javascript":    ["prettier", "eslint"],
-	\ "typescript":    ["prettier", "eslint"],
+	\ "vue":    	   ["eslint", "stylelint"],
+	\ "svelte":    	   ["eslint", "stylelint"],
+	\ "javascript":    ["eslint"],
+	\ "typescript":    ["eslint"],
 	\ "sass": 	   ["prettier", "stylelint"],
 	\ "scss": 	   ["prettier", "stylelint"],
 	\ "css": 	   ["prettier", "stylelint"],
 	\ "ruby":	   ["standardrb"],
 	\}
-let g:ale_fix_on_save = 0
-let g:airline_theme = 'solarized'
-let g:airline#extensions#tabline#enabled = 1
+let g:ale_fix_on_save = 1
+let g:lightline = {
+      \ 'colorscheme': 'dracula',
+      \ 'active': {
+      \   'left': [
+      \		['mode'],
+      \         ['gitbranch', 'readonly', 'icon_filename', 'modified']],
+      \   'right': [
+      \		['percent'],
+      \         ['lineinfo'],
+      \		['linter_checking', 'linter_errors', 'linter_warnings', 'linter_infos', 'linter_ok'],
+      \   	['filetype']],
+      \ },
+      \ 'tab_component_function': {
+      \   'tabnum': 'LightLineWebDevIcons',
+      \ },
+      \ 'component_function': {
+      \   'gitbranch': 'LightLineGitBranch',
+      \   'icon_filename': 'LightLineFilename',
+      \ },
+      \ }
+let g:lightline.component_expand = {
+      \  'linter_checking': 'lightline#ale#checking',
+      \  'linter_infos': 'lightline#ale#infos',
+      \  'linter_warnings': 'lightline#ale#warnings',
+      \  'linter_errors': 'lightline#ale#errors',
+      \  'linter_ok': 'lightline#ale#ok',
+      \ }
 let g:notes_directories = ['~/Documents/Notes']
 let g:fzf_colors =
   \ { 'fg':      ['fg', 'Normal'],
@@ -196,6 +235,7 @@ let g:fzf_colors =
   \ 'header':  ['fg', 'Comment'] }
 let g:svelte_indent_script = 0
 let g:svelte_indent_style = 0
+let g:which_key_map =  {}
 
 " Keymap
 nnoremap <silent> K :call <SID>show_documentation()<CR>
@@ -208,22 +248,120 @@ imap <Up> <Nop>
 imap <Down> <Nop>
 imap <Left> <Nop>
 imap <Right> <Nop>
-imap jj <Esc>
 nmap <Esc> :noh<CR>
 nmap <silent> <S-k> :wincmd k<CR>
 nmap <silent> <S-j> :wincmd j<CR>
 nmap <silent> <S-h> :wincmd h<CR>
 nmap <silent> <S-l> :wincmd l<CR>
-nmap <C-h> gT
-nmap <C-l> gt
-noremap <C-p> :ProjectFiles<CR>
-noremap <C-t> :Buffers<CR>
-noremap <C-e> :NERDTreeToggle<CR>
-noremap <C-f>g "hy:CtrlSF <C-r>h<CR>
-" noremap <C-f>rg "hy:NRg <C-r>h<CR>
-noremap <C-f>r "hy:%s@<C-r>h@<C-r>h@gc<left><left><left>
+noremap <C-d> <C-d>
+
 inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
 inoremap <expr><S-tab> pumvisible() ? "\<c-p>" : "\<S-tab>"
-nmap <Leader>p :ALEFix<CR>
-noremap <C-d> <C-d>
-nmap <Leader>sp4 :vs<CR>:sp<CR><S-l>:sp<CR>
+
+nmap <SPACE> <Nop>
+noremap <Leader><SPACE> :ProjectFiles<CR>
+let g:which_key_map['SPACE'] = 'project-files'
+
+noremap <Leader>e :NERDTreeToggle<CR>
+let g:which_key_map.e = 'nerd-tree-toggle'
+
+" Windows navigation
+let g:which_key_map.w = { 'name': '+window' }
+noremap <Leader>wh :wincmd h<CR>
+noremap H :wincmd h<CR>
+let g:which_key_map.w.l = 'focus-right-window'
+noremap <Leader>wl :wincmd l<CR>
+noremap L :wincmd l<CR>
+let g:which_key_map.w.h = 'focus-left-window'
+noremap <Leader>wj :wincmd j<CR>
+noremap J :wincmd j<CR>
+let g:which_key_map.w.k = 'focus-top-window'
+noremap <Leader>wk :wincmd k<CR>
+noremap K :wincmd k<CR>
+let g:which_key_map.w.j = 'focus-bottom-window'
+noremap <Leader>wsv :vs<CR>
+let g:which_key_map.w.s = { 'name': '+split' }
+let g:which_key_map.w.s.v = 'split-window-horizontally'
+noremap <leader>wsh :sp<CR>
+let g:which_key_map.w.s.h = 'split-window-vertically'
+noremap <leader>wL <C-w>10>
+let g:which_key_map.w.L = 'increase-window-size'
+noremap <leader>wH <C-w>10<
+let g:which_key_map.w.H = 'decrease-window-size'
+
+" Tabs
+let g:which_key_map.t = { 'name': '+tabs' }
+noremap <Leader>th gT
+noremap <C-h> gT
+let g:which_key_map.t.h = 'prev-tab'
+noremap <Leader>tl gt
+noremap <C-l> gt
+let g:which_key_map.t.b = 'next-tab'
+noremap <Leader>tn :tabnew<CR>
+let g:which_key_map.t.n = 'new-tab'
+noremap <Leader>tq :tabclose<CR>
+let g:which_key_map.t.c = 'close-tab'
+
+" Buffers
+let g:which_key_map.b = { 'name': '+buffer' }
+noremap <Leader>bb :Buffers<CR>
+let g:which_key_map.b.b = 'current-buffers'
+noremap <Leader>bn :bnext<CR>
+let g:which_key_map.b.n = 'next-buffer'
+noremap <Leader>bp :bprevious<CR>
+let g:which_key_map.b.p = 'previous-buffer'
+noremap <Leader>bo :BufOnly<CR>
+let g:which_key_map.b.o = 'close-other-buffers'
+noremap <Leader>bO :BufOnly!<CR>
+let g:which_key_map.b.o = 'close-other-buffers-forced'
+
+" Search
+let g:which_key_map.f = { 'name': '+search' }
+noremap <Leader>fR "hy:CtrlSF <C-r>h<CR>
+let g:which_key_map.f.R = 'global-find-and-replace'
+noremap <Leader>fg "hy:Rg <C-r>h<CR>
+let g:which_key_map.f.g = 'global-find'
+noremap <Leader>fr "hy:%s@<C-r>h@<C-r>h@gc<left><left><left>
+let g:which_key_map.f.r = 'find-and-replace'
+
+" Git
+let g:which_key_map.g = { 'name': '+git' }
+noremap <Leader>gs :G<CR>
+let g:which_key_map.g.s = 'git-status'
+noremap <Leader>gc :Gcommit<CR>
+let g:which_key_map.g.c = 'git-commit'
+noremap <Leader>gd :Gdiffsplit!<CR>
+let g:which_key_map.g.d = 'git-diff-split'
+noremap <Leader>gb :Gblame<CR>
+let g:which_key_map.g.b = 'git-blame'
+noremap <Leader>gl :Glog<CR>
+let g:which_key_map.g.l = 'git-log'
+noremap <Leader>gP :Gpush<CR>
+let g:which_key_map.g.P = 'git-push'
+noremap <Leader>gp :Gpull<CR>
+let g:which_key_map.g.p = 'git-pull'
+
+" Linters/fixers
+let g:which_key_map.l = { 'name': '+linters' }
+let g:which_key_map.l.a = { 'name': '+ale' }
+noremap <Leader>laf :ALEFix<CR>
+let g:which_key_map.l.a.f = 'ale-fix'
+
+" Bookmarks
+let g:which_key_map.m = { 'name': '+bookmarks' }
+noremap <Leader>mm :BookmarkToggle<CR>
+let g:which_key_map.m.m = 'toggle-bookmark'
+noremap <Leader>mp :BookmarkPrev<CR>
+let g:which_key_map.m.p = 'previous-bookmark'
+noremap <Leader>mn :BookmarkNext<CR>
+let g:which_key_map.m.n = 'next-bookmark'
+noremap <Leader>mC :BookmarkClearAll<CR>
+let g:which_key_map.m.C = 'clear-all-bookmarks'
+
+" Test
+let g:which_key_map.T = { 'name': '+tests' }
+noremap <Leader>Tf :TestFile<CR>
+let g:which_key_map.T.f = 'test-file'
+
+" Help
+nnoremap <silent> <leader>      :<c-u>WhichKey '<Space>'<CR>

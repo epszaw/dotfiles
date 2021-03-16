@@ -1,4 +1,3 @@
 {
-	"python.jediEnabled": false,
-	"tsserver.enableJavascript": true,
+	"solargraph.useBundler": true
 }
