@@ -1,7 +1,0 @@
-<snippet>
-  <content><![CDATA[
-/* eslint-disable-next-line $1 */
-]]></content>
-  <tabTrigger>esdnl</tabTrigger>
-  <scope>source.js</scope>
-</snippet>

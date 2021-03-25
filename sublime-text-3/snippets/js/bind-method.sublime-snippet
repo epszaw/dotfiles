@@ -1,8 +1,0 @@
-<snippet>
-  <content><![CDATA[
-this.${1:method} = this.${1:method}.bind(this)
-]]></content>
-  <tabTrigger>bm</tabTrigger>
-  <description>Bind class method to class prototype</description>
-  <scope>source.js</scope>
-</snippet>

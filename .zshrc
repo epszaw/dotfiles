@@ -1,30 +1,19 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
-# Need for i3 env
-# setxkbmap -layout "pl,ru"
-# setxkbmap -option 'grp:alt_shift_toggle'
-
-# function ext_d() {
-# 	xrandr --auto && xrandr --output eDP-1 --off
-# }
-#
-# function int_d() {
-# 	xrandr --auto && xrandr --output DP-1 --off
-# }
-
 # Path to your oh-my-zsh installation.
-export ZSH="/home/lamartire/.oh-my-zsh"
+export ZSH="/Users/lamartire/.oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="lambda"
+ZSH_THEME="robbyrussell"
+# ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=11'
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
-# a theme from this variable instead of looking in ~/.oh-my-zsh/themes/
+# a theme from this variable instead of looking in $ZSH/themes/
 # If set to an empty array, this variable will have no effect.
 # ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
 
@@ -45,7 +34,7 @@ ZSH_THEME="lambda"
 # export UPDATE_ZSH_DAYS=13
 
 # Uncomment the following line if pasting URLs and other text is messed up.
-# DISABLE_MAGIC_FUNCTIONS=true
+# DISABLE_MAGIC_FUNCTIONS="true"
 
 # Uncomment the following line to disable colors in ls.
 # DISABLE_LS_COLORS="true"
@@ -76,8 +65,8 @@ ZSH_THEME="lambda"
 # ZSH_CUSTOM=/path/to/new-custom-folder
 
 # Which plugins would you like to load?
-# Standard plugins can be found in ~/.oh-my-zsh/plugins/*
-# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
+# Standard plugins can be found in $ZSH/plugins/
+# Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(git zsh-syntax-highlighting zsh-autosuggestions)
@@ -89,8 +78,8 @@ source $ZSH/oh-my-zsh.sh
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
-export LANG=en_US.UTF-8
-export LANGUAGE=en_US:en
+# export LANG=en_US.UTF-8
+# export LANGUAGE=en_US:en
 
 # Preferred editor for local and remote sessions
 # if [[ -n $SSH_CONNECTION ]]; then
@@ -110,36 +99,17 @@ export LANGUAGE=en_US:en
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-
-# Init fzf
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
-# Exports
+export NPM_PACKAGES="${HOME}/.npm-packages"
+export N_PRESERVE_NPM=1
 export TERM="xterm-256color"
-export GOPATH=$HOME/go
-export GO111MODULE=on
+export GOPATH="${HOME}/go"
+export GO111MODULE="on"
+export GEM_HOME="${HOME}/.gem"
+export DENO_INSTALL="/Users/lamartire/.deno"
+export TIZEN_STUDIO="${HOME}/tizen-studio"
+export PATH=$HOME/.nimble/bin:$HOME/.rbenv/bin:/$HOME/.rbenv/shims/ruby:$GEM_HOME/bin:/usr/local/opt/ruby/bin:/usr/local/go/bin:$GOPATH:$NPM_PACKAGES/bin:$TIZEN_STUDIO/tools/ide/bin:$DENO_INSTALL/bin:$HOME/Library/Python/3.9/bin:$PATH
 
-NPM_PACKAGES="${HOME}/.npm-packages"
-
-export PATH="/usr/lib/dart/bin:$HOME/.rbenv/plugins/ruby-build/bin:$HOME/.rbenv/bin:$NPM_PACKAGES/bin/:~/.npm-global/bin:/usr/local/go/bin:$GOPATH/bin:~/bin/python:~/dart/depot_tools:~/.local/bin:/home/lamartire/.local/bin:$PATH"
-
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
-# Aliases
-alias c=clear
-
-## Git aliases
-alias gc=git commit
-alias gl=git log
-alias gs=git status
-alias gr=git rebase
-alias gpl=git pull
-alias gps=git push
-
-# Starship initialization
+eval "$(rbenv init -)"
 eval "$(starship init zsh)"
 
-# Rbenv init
-eval "$(rbenv init -)"
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

@@ -1,7 +1,0 @@
-<snippet>
-  <content><![CDATA[
-this.${1:methodName} = this.${1:methodName}.bind(this)
-]]></content>
-  <tabTrigger>bm</tabTrigger>
-  <scope>source.js</scope>
-</snippet>
