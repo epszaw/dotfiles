@@ -107,7 +107,7 @@ export GO111MODULE="on"
 export GEM_HOME="${HOME}/.gem"
 export DENO_INSTALL="/Users/lamartire/.deno"
 export TIZEN_STUDIO="${HOME}/tizen-studio"
-export PATH=$HOME/.nimble/bin:$HOME/.rbenv/bin:/$HOME/.rbenv/shims/ruby:$GEM_HOME/bin:/usr/local/opt/ruby/bin:/usr/local/go/bin:$GOPATH:$NPM_PACKAGES/bin:$TIZEN_STUDIO/tools/ide/bin:$DENO_INSTALL/bin:$HOME/Library/Python/3.9/bin:$PATH
+export PATH=$HOME/flutter/bin:$HOME/.nimble/bin:$HOME/.rbenv/bin:/$HOME/.rbenv/shims/ruby:$GEM_HOME/bin:/usr/local/opt/ruby/bin:/usr/local/go/bin:$GOPATH:$NPM_PACKAGES/bin:$TIZEN_STUDIO/tools/ide/bin:$DENO_INSTALL/bin:$HOME/Library/Python/3.9/bin:$PATH
 
 eval "$(rbenv init -)"
 eval "$(starship init zsh)"

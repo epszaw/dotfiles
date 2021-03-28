@@ -1,0 +1,59 @@
+#!/usr/bin/env ruby
+
+require 'fileutils'
+
+class InvalidInputException < RuntimeError
+end
+
+class Servant
+  @configs = [
+    '.config/nvim',
+    '.config/alacritty',
+    '.config/dunst',
+    '.config/i3',
+    '.config/kitty',
+    '.config/polybar',
+    '.config/rofi',
+    '.config/starship.toml',
+    '.tmux.conf',
+    '.zshrc'
+  ]
+
+  def self.move(from, to)
+    @configs.each do |config|
+      splitted_config = config.split('/')
+      from_path = File.join(from, config)
+      target_path = File.join(to, splitted_config.slice(0, splitted_config.length - 1))
+
+      begin
+        if File.directory? config
+          FileUtils.cp_r(from_path, target_path) 
+        else
+          FileUtils.cp(from_path, target_path)
+        end
+      rescue Errno::ENOENT
+      end
+    end
+  end
+  
+  def self.backup
+    Servant.move(Dir.home, Dir.pwd)
+    puts '📥 Backuped!'
+  end
+  
+  def self.apply
+    Servant.move(Dir.pwd, Dir.home)
+    puts '📤 All configs were applied!'
+  end
+
+  def self.run(command)
+    if command != 'backup' && command != 'apply'
+      raise InvalidInputException, "#{command} is not allowed. Use `backup` or `apply` instead!"
+    end
+
+    Servant.backup if command == 'backup'
+    Servant.apply if command == 'apply'
+  end
+end
+
+Servant.run ARGV.first

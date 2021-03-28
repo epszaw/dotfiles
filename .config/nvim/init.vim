@@ -24,15 +24,13 @@ Plug 'maximbaz/lightline-ale'
 Plug 'vim-test/vim-test'
 Plug 'arthurxavierx/vim-caser'
 Plug 'ryanoasis/vim-devicons'
+Plug 'jpalardy/vim-slime'
+Plug 'christoomey/vim-tmux-navigator'
+Plug 'AndrewRadev/splitjoin.vim'
 
 " Themes
-Plug 'morhetz/gruvbox'
 Plug 'cocopon/iceberg.vim'
-Plug 'mhartington/oceanic-next'
-Plug 'arcticicestudio/nord-vim'
-Plug 'pineapplegiant/spaceduck'
 Plug 'dracula/vim'
-Plug 'lifepillar/vim-solarized8'
 
 " JS
 Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
@@ -99,7 +97,7 @@ function! LightLineGitBranch()
     return ''
   endif
 
-  return '⑁ ' . FugitiveHead()
+  return '♃ ' . FugitiveHead()
 endfunction
 
 function! LightLineWebDevIcons(n)
@@ -237,6 +235,8 @@ let g:fzf_colors =
 let g:svelte_indent_script = 0
 let g:svelte_indent_style = 0
 let g:which_key_map =  {}
+let g:slime_target = 'tmux'
+let g:slime_default_config = { 'socket_name': 'default', 'target_pane': '{last}' }
 
 " Keymap
 nnoremap <silent> K :call <SID>show_documentation()<CR>
@@ -269,16 +269,16 @@ let g:which_key_map.e = 'nerd-tree-toggle'
 " Windows navigation
 let g:which_key_map.w = { 'name': '+window' }
 noremap <Leader>wh :wincmd h<CR>
-noremap H :wincmd h<CR>
+noremap <C-h> :wincmd h<CR>
 let g:which_key_map.w.l = 'focus-right-window'
 noremap <Leader>wl :wincmd l<CR>
-noremap L :wincmd l<CR>
+noremap <C-l> :wincmd l<CR>
 let g:which_key_map.w.h = 'focus-left-window'
 noremap <Leader>wj :wincmd j<CR>
-noremap J :wincmd j<CR>
+noremap <C-j> :wincmd j<CR>
 let g:which_key_map.w.k = 'focus-top-window'
 noremap <Leader>wk :wincmd k<CR>
-noremap K :wincmd k<CR>
+noremap <C-k> :wincmd k<CR>
 let g:which_key_map.w.j = 'focus-bottom-window'
 noremap <Leader>wsv :vs<CR>
 let g:which_key_map.w.s = { 'name': '+split' }
@@ -293,10 +293,10 @@ let g:which_key_map.w.H = 'decrease-window-size'
 " Tabs
 let g:which_key_map.t = { 'name': '+tabs' }
 noremap <Leader>th gT
-noremap <C-h> gT
+noremap H gT
 let g:which_key_map.t.h = 'prev-tab'
 noremap <Leader>tl gt
-noremap <C-l> gt
+noremap L gt
 let g:which_key_map.t.b = 'next-tab'
 noremap <Leader>tn :tabnew<CR>
 let g:which_key_map.t.n = 'new-tab'

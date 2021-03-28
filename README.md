@@ -1,13 +1,7 @@
-# `dotfiles` manager
+# `.dotfiles`
 
-**⚠️ This is a just experemental way to manage os-layer configs, use it only if you are really sure! ⚠️**
+To manage required configs edit `servant` file.
 
-## Requirements
+To backup all the configs use `./servant backup` command.
 
-### nvim
-
-After installation run `CocInit` command for installing all required `coc` plugins.
-
-Other requirements:
-
-- `go >= 1.12` - for correct work of `gopls`, autocompletion and other useful features
+To apply all the configs use `./servant apply` command.
