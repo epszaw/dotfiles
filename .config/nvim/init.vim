@@ -31,6 +31,9 @@ Plug 'AndrewRadev/splitjoin.vim'
 " Themes
 Plug 'cocopon/iceberg.vim'
 Plug 'dracula/vim'
+Plug 'morhetz/gruvbox'
+Plug 'arcticicestudio/nord-vim'
+Plug 'joshdick/onedark.vim'
 
 " JS
 Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
@@ -147,7 +150,7 @@ set termguicolors
 set t_Co=256
 set background=dark
 set mouse=n
-colorscheme dracula
+colorscheme nord
 
 let mapleader=' '
 let $FZF_DEFAULT_COMMAND = 'rg --files --hidden'
@@ -191,7 +194,7 @@ let g:ale_fixers = {
 	\}
 let g:ale_fix_on_save = 1
 let g:lightline = {
-      \ 'colorscheme': 'dracula',
+      \ 'colorscheme': 'nord',
       \ 'active': {
       \   'left': [
       \		['mode'],
