@@ -30,10 +30,8 @@ Plug 'AndrewRadev/splitjoin.vim'
 
 " Themes
 Plug 'cocopon/iceberg.vim'
-Plug 'dracula/vim'
-Plug 'morhetz/gruvbox'
 Plug 'arcticicestudio/nord-vim'
-Plug 'joshdick/onedark.vim'
+Plug 'sonph/onehalf', { 'rtp': 'vim' }
 
 " JS
 Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
@@ -148,9 +146,9 @@ set autoread
 set cul
 set termguicolors
 set t_Co=256
-set background=dark
+set background=light
 set mouse=n
-colorscheme nord
+colorscheme iceberg
 
 let mapleader=' '
 let $FZF_DEFAULT_COMMAND = 'rg --files --hidden'
@@ -194,7 +192,7 @@ let g:ale_fixers = {
 	\}
 let g:ale_fix_on_save = 1
 let g:lightline = {
-      \ 'colorscheme': 'nord',
+      \ 'colorscheme': 'iceberg',
       \ 'active': {
       \   'left': [
       \		['mode'],

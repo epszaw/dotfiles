@@ -1,5 +1,6 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhistcnt =7
+let g:netrw_dirhistcnt =8
+let g:netrw_dirhist_8='/Users/lamartire/Github/epishev.me'
 let g:netrw_dirhist_7='/Users/lamartire/.config/alacritty'
 let g:netrw_dirhist_6='/Users/lamartire/.config/nvim'
 let g:netrw_dirhist_5='/Users/lamartire/Github/dotfiles'
@@ -9,4 +10,3 @@ let g:netrw_dirhist_2='/Users/lamartire/Work/noname_linkedin_project/frontend/_t
 let g:netrw_dirhist_1='/Users/lamartire/Work/noname_linkedin_project/frontend'
 let g:netrw_dirhist_0='/Users/lamartire/.config/nvim'
 let g:netrw_dirhist_9='/Users/lamartire/.config/alacritty'
-let g:netrw_dirhist_8='/Users/lamartire/.config'
