@@ -31,7 +31,7 @@ Plug 'AndrewRadev/splitjoin.vim'
 " Themes
 Plug 'cocopon/iceberg.vim'
 Plug 'arcticicestudio/nord-vim'
-Plug 'sonph/onehalf', { 'rtp': 'vim' }
+Plug 'morhetz/gruvbox'
 
 " JS
 Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
@@ -148,7 +148,7 @@ set termguicolors
 set t_Co=256
 set background=light
 set mouse=n
-colorscheme iceberg
+colorscheme gruvbox
 
 let mapleader=' '
 let $FZF_DEFAULT_COMMAND = 'rg --files --hidden'
@@ -192,7 +192,7 @@ let g:ale_fixers = {
 	\}
 let g:ale_fix_on_save = 1
 let g:lightline = {
-      \ 'colorscheme': 'iceberg',
+      \ 'colorscheme': 'gruvbox',
       \ 'active': {
       \   'left': [
       \		['mode'],
