@@ -23,15 +23,17 @@ Plug 'itchyny/lightline.vim'
 Plug 'maximbaz/lightline-ale'
 Plug 'vim-test/vim-test'
 Plug 'arthurxavierx/vim-caser'
-Plug 'ryanoasis/vim-devicons'
 Plug 'jpalardy/vim-slime'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'AndrewRadev/splitjoin.vim'
+Plug 'ryanoasis/vim-devicons'
 
 " Themes
 Plug 'cocopon/iceberg.vim'
 Plug 'arcticicestudio/nord-vim'
 Plug 'morhetz/gruvbox'
+Plug 'sonph/onehalf', {'rtp': 'vim/'}
+Plug 'ayu-theme/ayu-vim'
 
 " JS
 Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
@@ -148,7 +150,7 @@ set termguicolors
 set t_Co=256
 set background=light
 set mouse=n
-colorscheme gruvbox
+colorscheme onehalflight
 
 let mapleader=' '
 let $FZF_DEFAULT_COMMAND = 'rg --files --hidden'
@@ -166,7 +168,7 @@ let g:vue_pre_processors = 'detect_on_enter'
 let g:paredit_mode = 1
 let g:lsc_auto_map = v:true
 let g:ale_linters = {
-	\ "ruby": 	   ["standardrb", "rubocop"],
+	\ "ruby": 	   ["rubocop"],
 	\ "vue":    	   ["eslint"],
 	\ "javascript":    ["eslint"],
 	\ "typescript":    ["eslint"],
@@ -174,10 +176,11 @@ let g:ale_linters = {
 	\ "scss": 	   ["stylelint"],
 	\ "css": 	   ["stylelint"],
 	\ "markdown":	   ["yaspeller"],
+	\ "clojure":	   ["clj-kondo"],
 	\}
 let g:ale_fixers = {
 	\ "*": 		   ["trim_whitespace"],
-	\ "markdown":	   ["prettier"],
+	\ "markdown":	   ["prettier", "trim_whitespace"],
 	\ "svg":	   ["prettier"],
 	\ "html":	   ["prettier"],
 	\ "json":	   ["prettier"],
@@ -185,14 +188,15 @@ let g:ale_fixers = {
 	\ "svelte":    	   ["eslint", "stylelint"],
 	\ "javascript":    ["eslint"],
 	\ "typescript":    ["eslint"],
+	\ "clojure":	   ["clj-kondo"],
 	\ "sass": 	   ["prettier", "stylelint"],
 	\ "scss": 	   ["prettier", "stylelint"],
 	\ "css": 	   ["prettier", "stylelint"],
-	\ "ruby":	   ["standardrb"],
+	\ "ruby":	   ["rubocop"],
 	\}
 let g:ale_fix_on_save = 1
 let g:lightline = {
-      \ 'colorscheme': 'gruvbox',
+      \ 'colorscheme': 'one',
       \ 'active': {
       \   'left': [
       \		['mode'],
