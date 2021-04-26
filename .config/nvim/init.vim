@@ -27,6 +27,7 @@ Plug 'jpalardy/vim-slime'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'ryanoasis/vim-devicons'
+Plug 'vim-scripts/paredit.vim'
 
 " Themes
 Plug 'cocopon/iceberg.vim'
@@ -150,7 +151,7 @@ set termguicolors
 set t_Co=256
 set background=light
 set mouse=n
-colorscheme onehalflight
+colorscheme iceberg
 
 let mapleader=' '
 let $FZF_DEFAULT_COMMAND = 'rg --files --hidden'
@@ -196,7 +197,7 @@ let g:ale_fixers = {
 	\}
 let g:ale_fix_on_save = 1
 let g:lightline = {
-      \ 'colorscheme': 'one',
+      \ 'colorscheme': 'iceberg',
       \ 'active': {
       \   'left': [
       \		['mode'],
