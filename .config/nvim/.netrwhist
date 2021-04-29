@@ -1,6 +1,6 @@
 let g:netrw_dirhistmax  =10
 let g:netrw_dirhistcnt =1
-let g:netrw_dirhist_1='/Users/lamartire/Github/clojure-koans/src/koans'
+let g:netrw_dirhist_1='/Users/lamartire/Work/uscreen/uppy-manager/src/components/ProgressBar'
 let g:netrw_dirhist_0='/Users/lamartire/Work/leadedin/frontend/src/view/pages/ChatPage'
 let g:netrw_dirhist_9='/Users/lamartire/.config/nvim'
 let g:netrw_dirhist_8='/Users/lamartire/Github/epishev.me'

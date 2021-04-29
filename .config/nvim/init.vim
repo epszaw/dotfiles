@@ -114,6 +114,9 @@ function! LightLineFilename()
   return WebDevIconsGetFileTypeSymbol(l:filename) . ' ' . expand('%:t')
 endfunction
 
+command! -bang -nargs=* PRg
+  \ call fzf#vim#grep("rg --column --line-number --no-heading --color=always --smart-case ".shellescape(<q-args>), 1, {'dir': system('git -C '.expand('%:p:h').' rev-parse --show-toplevel 2> /dev/null')[:-2]}, <bang>0)
+
 " Commands
 command! CocInit call InstallCocPlugins([
 	\ 'coc-css',
@@ -326,7 +329,7 @@ let g:which_key_map.b.o = 'close-other-buffers-forced'
 let g:which_key_map.f = { 'name': '+search' }
 noremap <Leader>fR "hy:CtrlSF <C-r>h<CR>
 let g:which_key_map.f.R = 'global-find-and-replace'
-noremap <Leader>fg "hy:Rg <C-r>h<CR>
+noremap <Leader>fg "hy:PRg <C-r>h<CR>
 let g:which_key_map.f.g = 'global-find'
 noremap <Leader>fr "hy:%s@<C-r>h@<C-r>h@gc<left><left><left>
 let g:which_key_map.f.r = 'find-and-replace'
