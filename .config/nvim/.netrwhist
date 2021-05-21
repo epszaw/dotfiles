@@ -1,5 +1,7 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhistcnt =1
+let g:netrw_dirhistcnt =3
+let g:netrw_dirhist_3='/Users/lamartire/Learn/py/rest-test/tutorial/quickstart'
+let g:netrw_dirhist_2='/Users/lamartire/Work/uscreen/uscreen_2'
 let g:netrw_dirhist_1='/Users/lamartire/Work/uscreen/uppy-manager/src/components/ProgressBar'
 let g:netrw_dirhist_0='/Users/lamartire/Work/leadedin/frontend/src/view/pages/ChatPage'
 let g:netrw_dirhist_9='/Users/lamartire/.config/nvim'
@@ -8,5 +10,3 @@ let g:netrw_dirhist_7='/Users/lamartire/.config/alacritty'
 let g:netrw_dirhist_6='/Users/lamartire/.config/nvim'
 let g:netrw_dirhist_5='/Users/lamartire/Github/dotfiles'
 let g:netrw_dirhist_4='/Users/lamartire/Work/uscreen/uscreen_2/.git'
-let g:netrw_dirhist_3='/Users/lamartire/Work/noname_linkedin_project/frontend'
-let g:netrw_dirhist_2='/Users/lamartire/Work/noname_linkedin_project/frontend/_templates'

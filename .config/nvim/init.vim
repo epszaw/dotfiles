@@ -17,7 +17,7 @@ Plug 'junegunn/fzf.vim'
 Plug 'neoclide/coc.nvim', { 'branch': 'release', 'do': ':CocInit' }
 Plug 'dense-analysis/ale'
 Plug 'tpope/vim-endwise'
-Plug 'easymotion/vim-easymotion'
+" Plug 'easymotion/vim-easymotion'
 Plug 'liuchengxu/vim-which-key'
 Plug 'itchyny/lightline.vim'
 Plug 'maximbaz/lightline-ale'
@@ -26,15 +26,12 @@ Plug 'arthurxavierx/vim-caser'
 Plug 'jpalardy/vim-slime'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'AndrewRadev/splitjoin.vim'
-Plug 'ryanoasis/vim-devicons'
 Plug 'vim-scripts/paredit.vim'
 
 " Themes
 Plug 'cocopon/iceberg.vim'
-Plug 'arcticicestudio/nord-vim'
 Plug 'morhetz/gruvbox'
 Plug 'sonph/onehalf', {'rtp': 'vim/'}
-Plug 'ayu-theme/ayu-vim'
 
 " JS
 Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
@@ -204,15 +201,12 @@ let g:lightline = {
       \ 'active': {
       \   'left': [
       \		['mode'],
-      \         ['gitbranch', 'readonly', 'icon_filename', 'modified']],
+      \         ['gitbranch', 'readonly',  'filename', 'modified']],
       \   'right': [
       \		['percent'],
       \         ['lineinfo'],
       \		['linter_checking', 'linter_errors', 'linter_warnings', 'linter_infos', 'linter_ok'],
       \   	['filetype']],
-      \ },
-      \ 'tab_component_function': {
-      \   'tabnum': 'LightLineWebDevIcons',
       \ },
       \ 'component_function': {
       \   'gitbranch': 'LightLineGitBranch',
@@ -228,7 +222,7 @@ let g:lightline.component_expand = {
       \ }
 let g:notes_directories = ['~/Documents/Notes']
 let g:fzf_colors =
-  \ { 'fg':      ['fg', 'Normal'],
+  \ { 'fg':    ['fg', 'Normal'],
   \ 'bg':      ['bg', 'Normal'],
   \ 'hl':      ['fg', 'String'],
   \ 'hl+':     ['fg', 'Statement'],
@@ -249,7 +243,6 @@ let g:slime_default_config = { 'socket_name': 'default', 'target_pane': '{last}'
 
 " Keymap
 nnoremap <silent> K :call <SID>show_documentation()<CR>
-map <Leader> <Plug>(easymotion-prefix)
 map <Up> <Nop>
 map <Down> <Nop>
 map <Left> <Nop>
@@ -356,17 +349,6 @@ let g:which_key_map.l = { 'name': '+linters' }
 let g:which_key_map.l.a = { 'name': '+ale' }
 noremap <Leader>laf :ALEFix<CR>
 let g:which_key_map.l.a.f = 'ale-fix'
-
-" Bookmarks
-let g:which_key_map.m = { 'name': '+bookmarks' }
-noremap <Leader>mm :BookmarkToggle<CR>
-let g:which_key_map.m.m = 'toggle-bookmark'
-noremap <Leader>mp :BookmarkPrev<CR>
-let g:which_key_map.m.p = 'previous-bookmark'
-noremap <Leader>mn :BookmarkNext<CR>
-let g:which_key_map.m.n = 'next-bookmark'
-noremap <Leader>mC :BookmarkClearAll<CR>
-let g:which_key_map.m.C = 'clear-all-bookmarks'
 
 " Test
 let g:which_key_map.T = { 'name': '+tests' }

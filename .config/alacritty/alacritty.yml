@@ -5,12 +5,13 @@ selection:
 
 font:
   normal:
-    family: PragmataProMonoLiga Nerd Font
+    family: PragmataPro Mono Liga
   size: 15
   offset:
     x: 0
     y: 3
 
+# Colors (Iceberg Light)
 colors:
   # Default colors
   primary:
