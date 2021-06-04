@@ -30,8 +30,7 @@ Plug 'vim-scripts/paredit.vim'
 
 " Themes
 Plug 'cocopon/iceberg.vim'
-Plug 'morhetz/gruvbox'
-Plug 'sonph/onehalf', {'rtp': 'vim/'}
+Plug 'haishanh/night-owl.vim'
 
 " JS
 Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
@@ -98,7 +97,7 @@ function! LightLineGitBranch()
     return ''
   endif
 
-  return '♃ ' . FugitiveHead()
+  return 'ᛘ ' . FugitiveHead()
 endfunction
 
 function! LightLineWebDevIcons(n)
@@ -149,7 +148,7 @@ set autoread
 set cul
 set termguicolors
 set t_Co=256
-set background=light
+set background=dark
 set mouse=n
 colorscheme iceberg
 
@@ -171,6 +170,7 @@ let g:lsc_auto_map = v:true
 let g:ale_linters = {
 	\ "ruby": 	   ["rubocop"],
 	\ "vue":    	   ["eslint"],
+	\ "svelte":    	   ["eslint"],
 	\ "javascript":    ["eslint"],
 	\ "typescript":    ["eslint"],
 	\ "sass": 	   ["stylelint"],
@@ -195,7 +195,7 @@ let g:ale_fixers = {
 	\ "css": 	   ["prettier", "stylelint"],
 	\ "ruby":	   ["rubocop"],
 	\}
-let g:ale_fix_on_save = 1
+let g:ale_fix_on_save = 0
 let g:lightline = {
       \ 'colorscheme': 'iceberg',
       \ 'active': {
@@ -331,17 +331,17 @@ let g:which_key_map.f.r = 'find-and-replace'
 let g:which_key_map.g = { 'name': '+git' }
 noremap <Leader>gs :G<CR>
 let g:which_key_map.g.s = 'git-status'
-noremap <Leader>gc :Gcommit<CR>
+noremap <Leader>gc :Git commit<CR>
 let g:which_key_map.g.c = 'git-commit'
-noremap <Leader>gd :Gdiffsplit!<CR>
+noremap <Leader>gd :Git diffsplit!<CR>
 let g:which_key_map.g.d = 'git-diff-split'
-noremap <Leader>gb :Gblame<CR>
+noremap <Leader>gb :Git blame<CR>
 let g:which_key_map.g.b = 'git-blame'
-noremap <Leader>gl :Glog<CR>
+noremap <Leader>gl :Git log<CR>
 let g:which_key_map.g.l = 'git-log'
-noremap <Leader>gP :Gpush<CR>
+noremap <Leader>gP :Git push<CR>
 let g:which_key_map.g.P = 'git-push'
-noremap <Leader>gp :Gpull<CR>
+noremap <Leader>gp :Git pull<CR>
 let g:which_key_map.g.p = 'git-pull'
 
 " Linters/fixers
