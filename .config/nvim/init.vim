@@ -31,6 +31,7 @@ Plug 'vim-scripts/paredit.vim'
 " Themes
 Plug 'cocopon/iceberg.vim'
 Plug 'haishanh/night-owl.vim'
+Plug 'NLKNguyen/papercolor-theme'
 
 " JS
 Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
@@ -148,9 +149,9 @@ set autoread
 set cul
 set termguicolors
 set t_Co=256
-set background=dark
+set background=light
 set mouse=n
-colorscheme iceberg
+colorscheme PaperColor
 
 let mapleader=' '
 let $FZF_DEFAULT_COMMAND = 'rg --files --hidden'
@@ -197,7 +198,7 @@ let g:ale_fixers = {
 	\}
 let g:ale_fix_on_save = 0
 let g:lightline = {
-      \ 'colorscheme': 'iceberg',
+      \ 'colorscheme': 'PaperColor',
       \ 'active': {
       \   'left': [
       \		['mode'],
@@ -329,8 +330,8 @@ let g:which_key_map.f.r = 'find-and-replace'
 
 " Git
 let g:which_key_map.g = { 'name': '+git' }
-noremap <Leader>gs :G<CR>
-let g:which_key_map.g.s = 'git-status'
+noremap <Leader>gg :G<CR>
+let g:which_key_map.g.g = 'git-status'
 noremap <Leader>gc :Git commit<CR>
 let g:which_key_map.g.c = 'git-commit'
 noremap <Leader>gd :Git diffsplit!<CR>
