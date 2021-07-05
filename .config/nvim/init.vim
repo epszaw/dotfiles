@@ -98,7 +98,7 @@ function! LightLineGitBranch()
     return ''
   endif
 
-  return 'ᛘ ' . FugitiveHead()
+  return ' ' . FugitiveHead()
 endfunction
 
 function! LightLineWebDevIcons(n)
