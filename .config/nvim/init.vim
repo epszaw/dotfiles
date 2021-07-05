@@ -17,7 +17,7 @@ Plug 'junegunn/fzf.vim'
 Plug 'neoclide/coc.nvim', { 'branch': 'release', 'do': ':CocInit' }
 Plug 'dense-analysis/ale'
 Plug 'tpope/vim-endwise'
-" Plug 'easymotion/vim-easymotion'
+Plug 'easymotion/vim-easymotion'
 Plug 'liuchengxu/vim-which-key'
 Plug 'itchyny/lightline.vim'
 Plug 'maximbaz/lightline-ale'
@@ -158,7 +158,7 @@ let $FZF_DEFAULT_COMMAND = 'rg --files --hidden'
 let g:deoplete#enable_at_startup = 1
 let g:NERDSpaceDelims = 1
 let g:NERDTrimTrailingWhitespace = 1
-let g:ctrlsf_auto_preview = 0
+let g:ctrlsf_auto_preview = 1
 let g:ctrlsf_confirm_save = 0
 let g:ctrlsf_ackprg = 'rg'
 let g:nerdtree_sync_cursorline = 1
@@ -241,6 +241,7 @@ let g:svelte_indent_style = 0
 let g:which_key_map =  {}
 let g:slime_target = 'tmux'
 let g:slime_default_config = { 'socket_name': 'default', 'target_pane': '{last}' }
+let g:EasyMotion_leader_key = 'f'
 
 " Keymap
 nnoremap <silent> K :call <SID>show_documentation()<CR>
@@ -262,9 +263,14 @@ noremap <C-d> <C-d>
 inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
 inoremap <expr><S-tab> pumvisible() ? "\<c-p>" : "\<S-tab>"
 
+" map  / <Plug>(easymotion-sn)
+" omap / <Plug>(easymotion-tn)
+
 nmap <SPACE> <Nop>
-noremap <Leader><SPACE> :ProjectFiles<CR>
-let g:which_key_map['SPACE'] = 'project-files'
+noremap <Leader><Space> :ProjectFiles<CR>
+noremap <Leader>p :ProjectFiles<CR>
+let g:which_key_map["Space"] = 'project-files'
+let g:which_key_map.p = 'project-files'
 
 noremap <Leader>e :NERDTreeToggle<CR>
 let g:which_key_map.e = 'nerd-tree-toggle'
@@ -320,13 +326,15 @@ noremap <Leader>bO :BufOnly!<CR>
 let g:which_key_map.b.o = 'close-other-buffers-forced'
 
 " Search
+noremap <Leader>/ "hy:PRg <C-r>h<CR>
+let g:which_key_map["/"] = 'global-find'
 let g:which_key_map.f = { 'name': '+search' }
 noremap <Leader>fR "hy:CtrlSF <C-r>h<CR>
 let g:which_key_map.f.R = 'global-find-and-replace'
-noremap <Leader>fg "hy:PRg <C-r>h<CR>
-let g:which_key_map.f.g = 'global-find'
 noremap <Leader>fr "hy:%s@<C-r>h@<C-r>h@gc<left><left><left>
 let g:which_key_map.f.r = 'find-and-replace'
+noremap <Leader>fg "hy:PRg <C-r>h<CR>
+let g:which_key_map.f.g = 'global-find'
 
 " Git
 let g:which_key_map.g = { 'name': '+git' }

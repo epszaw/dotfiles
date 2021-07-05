@@ -4,14 +4,14 @@ selection:
   save_to_clipboard: true
 
 font:
-  size: 15
+  size: 16
   offset:
     x: 0
     y: 3
   normal:
-    #family: PragmataPro Mono
+    family: PragmataPro Mono
     #family: Monolisa
-    family: Fira Code
+    #family: Fira Code
   bold:
     style: regular
 
