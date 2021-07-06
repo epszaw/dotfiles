@@ -241,7 +241,7 @@ let g:svelte_indent_style = 0
 let g:which_key_map =  {}
 let g:slime_target = 'tmux'
 let g:slime_default_config = { 'socket_name': 'default', 'target_pane': '{last}' }
-let g:EasyMotion_leader_key = 'f'
+let g:EasyMotion_leader_key = ''
 
 " Keymap
 nnoremap <silent> K :call <SID>show_documentation()<CR>
@@ -263,6 +263,8 @@ noremap <C-d> <C-d>
 inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
 inoremap <expr><S-tab> pumvisible() ? "\<c-p>" : "\<S-tab>"
 
+map  f <Plug>(easymotion-bd-f)
+nmap f <Plug>(easymotion-overwin-f)
 " map  / <Plug>(easymotion-sn)
 " omap / <Plug>(easymotion-tn)
 
