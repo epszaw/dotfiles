@@ -1,22 +1,4 @@
-live_config_reload: true
-
-selection:
-  save_to_clipboard: true
-
-font:
-  size: 14
-  offset:
-    x: 0
-    y: 6
-  normal:
-    #family: PragmataPro Mono
-    family: Monolisa
-    #family: Fira Code
-    #family: JetBrains Mono
-  bold:
-    style: regular
-
-# Colors (Gruvbox light)
+# Colors (Gruvbox light Soft)
 colors:
   # Default colors
   primary:
