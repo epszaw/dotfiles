@@ -8,6 +8,7 @@ end
 class Servant
   @configs = [
     '.config/nvim',
+    '.config/nvim.legacy',
     '.config/alacritty',
     '.config/dunst',
     '.config/i3',
