@@ -8,7 +8,7 @@ end
 class Servant
   @configs = [
     '.config/nvim',
-    '.config/nvim.legacy',
+    '.config/nvim_legacy',
     '.config/alacritty',
     '.config/dunst',
     '.config/i3',
@@ -25,6 +25,8 @@ class Servant
       splitted_config = config.split('/')
       from_path = File.join(from, config)
       target_path = File.join(to, splitted_config.slice(0, splitted_config.length - 1))
+
+      puts config
 
       begin
         if File.directory? config

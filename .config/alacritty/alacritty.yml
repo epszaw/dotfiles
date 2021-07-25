@@ -10,7 +10,8 @@ font:
     y: 6
   normal:
     #family: PragmataPro Mono
-    family: Monolisa
+    family: FiraCode Nerd Font
+    #family: Monolisa
     #family: Fira Code
     #family: JetBrains Mono
   bold:
