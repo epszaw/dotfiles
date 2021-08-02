@@ -4,16 +4,14 @@ selection:
   save_to_clipboard: true
 
 font:
-  size: 14
+  size: 16
   offset:
     x: 0
     y: 6
   normal:
-    #family: PragmataPro Mono
-    family: FiraCode Nerd Font
-    #family: Monolisa
-    #family: Fira Code
-    #family: JetBrains Mono
+    #family: FiraCode Nerd Font
+    #family: Monolisa Nerd Font
+    family: PragmataProMonoLiga Nerd Font
   bold:
     style: regular
 
@@ -21,9 +19,7 @@ font:
 colors:
   # Default colors
   primary:
-    # hard contrast: background = '0xf9f5d7'
-    background: '0xf2e4be'
-    # soft contrast: background = '0xf2e5bc'
+    background: '0xf2e5bc'
     foreground: '0x3c3836'
 
   # Normal colors

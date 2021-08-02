@@ -15,7 +15,8 @@ return require("packer").startup(function()
   use { "editorconfig/editorconfig-vim" }
   use { "christoomey/vim-tmux-navigator" }
   use { "tpope/vim-surround" }
-  use { "windwp/nvim-autopairs" }
+  use { "tpope/vim-endwise" }
+  use { "jiangmiao/auto-pairs" }
   use { "easymotion/vim-easymotion" }
   use { "dyng/ctrlsf.vim" }
   use { "airblade/vim-gitgutter" }
@@ -23,6 +24,7 @@ return require("packer").startup(function()
   use { "dense-analysis/ale" }
   use { "jpalardy/vim-slime" }
   use { "MattesGroeger/vim-bookmarks" }
+  use { "posva/vim-vue" }
 
   -- New things
   -- TODO: replace fugitive by neogit + diffview
@@ -30,24 +32,15 @@ return require("packer").startup(function()
   -- use { 
   --   "TimUntersberger/neogit", 
   --   requires = 'nvim-lua/plenary.nvim',
-  --   config = require("neogit").setup({
-  --     integrations = {
-  --       diffview = true;   
-  --     },
-  --   }),
   -- }
   -- use { 
   --   "sindrets/diffview.nvim",
-  --   config = require("diffview").setup(),
   -- }  
   use { "hrsh7th/vim-vsnip" }
-  use { "kyazdani42/nvim-web-devicons" }
+  use { "akinsho/nvim-bufferline.lua" }
   use { "kyazdani42/nvim-tree.lua" }
   use { "neovim/nvim-lspconfig" }
-  use { 
-    "hoob3rt/lualine.nvim",
-    requires = {'kyazdani42/nvim-web-devicons', opt = true},
-  }
+  use { "hoob3rt/lualine.nvim" }
   use { "kabouzeid/nvim-lspinstall" }
   use { "hrsh7th/nvim-compe" }
   use { "onsails/lspkind-nvim" }
@@ -55,27 +48,32 @@ return require("packer").startup(function()
     "nvim-telescope/telescope.nvim",
     requires = {{'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'}}
   }
+  use { "folke/which-key.nvim" }
 
   -- Themes
   use { "morhetz/gruvbox" }
   use { "cocopon/iceberg.vim" }
   use { "rakr/vim-one" }
   use { "arcticicestudio/nord-vim" }
+  use { "pineapplegiant/spaceduck" }
+  use { "dracula/vim" }
+
+
+  -- Plugins configuration
+
 
   local lspconfig = require("lspconfig")
   local lspinstall = require("lspinstall")
-  local compe = require("compe")
-  local lspkind = require("lspkind")
-  local lualine = require("lualine")
 
   lspinstall.setup()
+
   local servers = lspinstall.installed_servers()
   
   for _, server in pairs(servers) do
     lspconfig[server].setup{}
   end
 
-  compe.setup({
+  require("compe").setup({
     enabled = true;
     autocomplete = true;
     debug = false;
@@ -109,15 +107,32 @@ return require("packer").startup(function()
     }
   })
 
-  lspkind.init({
+  require("lspkind").init({
     with_text = false;
   })
 
-  lualine.setup({
+  require("lualine").setup({
     options = {
       theme = "gruvbox";
     };
   })
 
-  require("nvim-autopairs").setup()
+  -- require("nvim-autopairs").setup()
+
+  require("bufferline").setup({
+    options = {
+      show_buffer_icons = false;
+      show_buffer_close_icons = false;
+      show_close_icon = false;
+      enforce_regular_tabs = true;
+    };
+  })
+
+  -- require("neogit").setup({
+  --   integrations = {
+  --     diffview = true;   
+  --   },
+  -- })
+
+  -- require("diffview").setup()
 end)

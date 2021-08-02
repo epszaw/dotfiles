@@ -63,3 +63,17 @@ vim.g.ale_fixers = {
   ruby = { "rubocop" };
 }
 vim.g.ale_fix_on_save = 0
+
+vim.g.nvim_tree_width = 50
+vim.g.nvim_tree_auto_resize = 1
+vim.g.nvim_tree_follow = 1
+vim.g.nvim_tree_gitignore = 1
+vim.g.nvim_tree_ignore = { ".git", "node_modules", ".idea", ".vscode", ".DS_Store" }
+vim.g.nvim_tree_show_icons = {
+  folders = 0;
+  files = 0;
+  git = 0;
+  folder_arrows = 0;
+}
+
+vim.g.vue_pre_processors = "detect_on_enter"
