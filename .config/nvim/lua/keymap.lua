@@ -2,19 +2,41 @@ local wk = require("which-key")
 
 wk.register({
   n = "New tab",
-  p = "Fuzzy find",
+  p = "Find folder file",
+  ["<space>"] = "Find project file",
   r = "Replace",
+  ["/"] = "Find globally",
   q = "Close",
   b = "Buffers",
   e = "Explorer",
+  g = {
+    name = "Git",
+    g = "Status",
+    c = "Commit",
+    p = "Pull",
+    P = "Push",
+    d = "Diff",
+    b = "Blame"
+  },
+  w = {
+    name = "Window",
+    s = "Split horizontally",
+    v = "Split vertically",
+    h = "Focus left window",
+    j = "Focus bottom window",
+    k = "Focus top window",
+    l = "Focus right window",
+    H = "Increase window width",
+    L = "Decrease window width",
+  }
 }, { prefix = "<Leader>" })
 
 vim.cmd "map  f <Plug>(easymotion-bd-f)"
 vim.cmd "nmap f <Plug>(easymotion-overwin-f)"
 vim.cmd "nmap <SPACE> <Nop>"
-vim.cmd "noremap <Leader><Space> :Telescope find_files<CR>"
-vim.cmd "noremap <Leader>p :Telescope git_files<CR>"
-vim.cmd "noremap <C-p> :Telescope git_files<CR>"
+vim.cmd "noremap <Leader><Space> :Telescope git_files<CR>"
+vim.cmd "noremap <Leader>p :Telescope find_files<CR>"
+vim.cmd "noremap <C-p> :Telescope find_files<CR>"
 vim.cmd "noremap <Leader>b :Telescope buffers<CR>"
 vim.cmd "noremap <C-b> :Telescope buffers<CR>"
 

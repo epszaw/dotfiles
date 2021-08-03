@@ -104,10 +104,7 @@ export N_PRESERVE_NPM=1
 export TERM="xterm-256color"
 export GOPATH="${HOME}/go"
 export GO111MODULE="on"
-export GEM_HOME="${HOME}/.gem"
-export DENO_INSTALL="/Users/lamartire/.deno"
-export TIZEN_STUDIO="${HOME}/tizen-studio"
-export PATH=$HOME/flutter/bin:$HOME/.nimble/bin:$HOME/.rbenv/bin:/usr/local/go/bin:$GOPATH:$NPM_PACKAGES/bin:$TIZEN_STUDIO/tools/ide/bin:$DENO_INSTALL/bin:$HOME/Library/Python/3.9/bin:$PATH
+export PATH=$HOME/.rbenv/bin:/usr/local/go/bin:$GOPATH:$NPM_PACKAGES/bin:$PATH
 
 eval "$(rbenv init -)"
 eval "$(starship init zsh)"
