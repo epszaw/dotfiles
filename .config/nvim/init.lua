@@ -17,11 +17,21 @@ vim.cmd "set autochdir"
 vim.cmd "set autowrite"
 vim.cmd "set autoread"
 vim.cmd "set cul"
+vim.cmd "set wrap"
 vim.cmd "set termguicolors"
 vim.cmd "set t_Co=256"
-vim.cmd "set background=light"
+vim.cmd "set background=dark"
 vim.cmd "set mouse=n"
-vim.cmd "colorscheme gruvbox"
+vim.cmd "colorscheme nord"
+vim.cmd "let $FZF_DEFAULT_COMMAND = 'rg --files --hidden'"
+vim.cmd "let g:rg_command = 'rg --vimgrep -S'"
+
+vim.cmd([[
+function! FindGitRoot()
+  return system('git rev-parse --show-toplevel 2> /dev/null')[:-2]
+endfunction
+]])
+vim.cmd "command! ProjectFiles execute 'Files' FindGitRoot()"
 
 vim.g.slime_target = "tmux"
 vim.g.slime_default_config = { 
@@ -45,6 +55,7 @@ vim.g.ale_linters = {
   css = { "stylelint" };
   markdown = { "yaspeller" };
   clojure = { "clj-kondo" };
+  json = {};
 }
 vim.g.ale_fixers = {
   ["*"] = { "trim_whitespace" };
@@ -63,17 +74,5 @@ vim.g.ale_fixers = {
   ruby = { "rubocop" };
 }
 vim.g.ale_fix_on_save = 0
-
-vim.g.nvim_tree_width = 50
-vim.g.nvim_tree_auto_resize = 1
-vim.g.nvim_tree_follow = 1
-vim.g.nvim_tree_gitignore = 1
-vim.g.nvim_tree_ignore = { ".git", "node_modules", ".idea", ".vscode", ".DS_Store" }
-vim.g.nvim_tree_show_icons = {
-  folders = 0;
-  files = 0;
-  git = 0;
-  folder_arrows = 0;
-}
 
 vim.g.vue_pre_processors = "detect_on_enter"

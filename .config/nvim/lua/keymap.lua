@@ -5,8 +5,10 @@ wk.register({
   p = "Find folder file",
   ["<space>"] = "Find project file",
   r = "Replace",
-  ["/"] = "Find globally",
+  R = "Find globally",
+  F = "Fix autofixable",
   q = "Close",
+  Q = "Close other buffers",
   b = "Buffers",
   e = "Explorer",
   g = {
@@ -34,13 +36,17 @@ wk.register({
 vim.cmd "map  f <Plug>(easymotion-bd-f)"
 vim.cmd "nmap f <Plug>(easymotion-overwin-f)"
 vim.cmd "nmap <SPACE> <Nop>"
-vim.cmd "noremap <Leader><Space> :Telescope git_files<CR>"
-vim.cmd "noremap <Leader>p :Telescope find_files<CR>"
-vim.cmd "noremap <C-p> :Telescope find_files<CR>"
-vim.cmd "noremap <Leader>b :Telescope buffers<CR>"
-vim.cmd "noremap <C-b> :Telescope buffers<CR>"
+-- vim.cmd "noremap <Leader><Space> :Telescope git_files<CR>"
+-- vim.cmd "noremap <Leader>p :Telescope find_files<CR>"
+-- vim.cmd "noremap <C-p> :Telescope find_files<CR>"
+-- vim.cmd "noremap <Leader>b :Telescope buffers<CR>"
+-- vim.cmd "noremap <C-b> :Telescope buffers<CR>"
+vim.cmd "noremap <Leader><Space> :ProjectFiles<CR>"
+vim.cmd "noremap <Leader>b :Buffers<CR>"
 
 vim.cmd "nmap <Esc> :noh<CR>"
+
+vim.cmd "noremap <Leader>F :ALEFix<CR>"
 
 vim.cmd "nmap <silent> <S-k> :wincmd k<CR>"
 vim.cmd "nmap <silent> <S-j> :wincmd j<CR>"
@@ -65,10 +71,11 @@ vim.cmd "noremap H gT"
 vim.cmd "noremap L gt"
 vim.cmd "noremap <Leader>n :tabnew<CR>"
 vim.cmd "noremap <Leader>q :q<CR>"
+vim.cmd "noremap <Leader>Q :BufOnly<CR>"
 
 vim.cmd "noremap <Leader>e :NvimTreeToggle<CR>"
 
-vim.cmd 'noremap <Leader>/ "hy:CtrlSF <C-r>h<CR>'
+vim.cmd 'noremap <Leader>R "hy:CtrlSF <C-r>h<CR>'
 vim.cmd 'noremap <Leader>r "hy:%s@<C-r>h@<C-r>h@gc<left><left><left>'
 
 vim.cmd "noremap <Leader>gg :G<CR>"

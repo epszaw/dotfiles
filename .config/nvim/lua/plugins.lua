@@ -1,9 +1,9 @@
 local execute = vim.api.nvim_command
-local install_path = vim.fn.stdpath('data')..'/site/pack/packer/opt/packer.nvim'
+local install_path = vim.fn.stdpath("data").."/site/pack/packer/opt/packer.nvim"
 
 if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
-    execute('!git clone https://github.com/wbthomason/packer.nvim '..install_path)
-    execute 'packadd packer.nvim'
+    execute("!git clone https://github.com/wbthomason/packer.nvim "..install_path)
+    execute "packadd packer.nvim"
 end
 
 vim.cmd [[packadd packer.nvim]]
@@ -25,13 +25,15 @@ return require("packer").startup(function()
   use { "jpalardy/vim-slime" }
   use { "MattesGroeger/vim-bookmarks" }
   use { "posva/vim-vue" }
+  use { "junegunn/fzf", dir = "~/.fzf", run = "./install --all" }
+  use { "junegunn/fzf.vim" }
 
   -- New things
-  -- TODO: replace fugitive by neogit + diffview
+  -- TODO: replace fugitive by neogit + diffview, probably no need to do that
   use { "tpope/vim-fugitive" }
   -- use { 
   --   "TimUntersberger/neogit", 
-  --   requires = 'nvim-lua/plenary.nvim',
+  --   requires = "nvim-lua/plenary.nvim",
   -- }
   -- use { 
   --   "sindrets/diffview.nvim",
@@ -43,20 +45,23 @@ return require("packer").startup(function()
   use { "hoob3rt/lualine.nvim" }
   use { "kabouzeid/nvim-lspinstall" }
   use { "hrsh7th/nvim-compe" }
-  use { "onsails/lspkind-nvim" }
-  use {
-    "nvim-telescope/telescope.nvim",
-    requires = {{'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'}}
-  }
+  -- use {
+  --   "nvim-telescope/telescope.nvim",
+  --   requires = {{"nvim-lua/popup.nvim"}, {"nvim-lua/plenary.nvim"}}
+  -- }
   use { "folke/which-key.nvim" }
+  use{ "gregsexton/MatchTag" }
 
   -- Themes
+ 
   use { "morhetz/gruvbox" }
   use { "cocopon/iceberg.vim" }
   use { "rakr/vim-one" }
   use { "arcticicestudio/nord-vim" }
   use { "pineapplegiant/spaceduck" }
+  use { "tomasiser/vim-code-dark" }
   use { "dracula/vim" }
+  use { "crusoexia/vim-monokai" }
 
 
   -- Plugins configuration
@@ -78,7 +83,7 @@ return require("packer").startup(function()
     autocomplete = true;
     debug = false;
     min_length = 1;
-    preselect = 'enable';
+    preselect = "enable";
     throttle_time = 80;
     source_timeout = 200;
     resolve_timeout = 800;
@@ -87,7 +92,7 @@ return require("packer").startup(function()
     max_kind_width = 100;
     max_menu_width = 100;
     documentation = {
-      border = { '', '' ,'', ' ', '', '', '', ' ' }, -- the border option is the same as `|help nvim_open_win|`
+      border = { "", "" ,"", " ", "", "", "", " " }, -- the border option is the same as `|help nvim_open_win|`
       winhighlight = "NormalFloat:CompeDocumentation,FloatBorder:CompeDocumentationBorder",
       max_width = 120,
       min_width = 60,
@@ -98,7 +103,7 @@ return require("packer").startup(function()
     source = {
       path = true;
       buffer = true;
-      calc = true;
+      calc = false;
       nvim_lsp = true;
       nvim_lua = true;
       vsnip = true;
@@ -107,13 +112,31 @@ return require("packer").startup(function()
     }
   })
 
-  require("lspkind").init({
-    with_text = false;
+  vim.g.nvim_tree_gitignore = 1
+  vim.g.nvim_tree_ignore = { ".git", "node_modules", ".idea", ".vscode", ".DS_Store" }
+  vim.g.nvim_tree_icons = {
+    default = '',
+  }
+  vim.g.nvim_tree_show_icons = {
+    folders = 0,
+    files = 0,
+    git = 0,
+    folder_arrows = 0,
+  }
+
+  require("nvim-tree").setup({
+    update_focused_file = {
+      enable = 1,
+    },
+    view = {
+      width = 50,
+      auto_resize = 1,
+    },
   })
 
   require("lualine").setup({
     options = {
-      theme = "gruvbox";
+      theme = "nord";
     };
   })
 
@@ -135,4 +158,9 @@ return require("packer").startup(function()
   -- })
 
   -- require("diffview").setup()
+  -- vim.cmd [[
+  --   function! s:find_git_root()
+  --     return system('git rev-parse --show-toplevel 2> /dev/null')[:-2]
+  --   endfunction
+  -- ]]
 end)

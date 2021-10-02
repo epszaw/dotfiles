@@ -104,9 +104,16 @@ export N_PRESERVE_NPM=1
 export TERM="xterm-256color"
 export GOPATH="${HOME}/go"
 export GO111MODULE="on"
-export PATH=$HOME/.rbenv/bin:/usr/local/go/bin:$GOPATH:$NPM_PACKAGES/bin:$PATH
+export PATH=$HOME/.rbenv/bin:$HOME/.rbenv/shims:/usr/local/go/bin:/usr/local/opt/openjdk/bin:$GOPATH:$NPM_PACKAGES/bin:$PATH
+
+alias gA="git add ."
+alias gs="git status"
+alias gc="git commit"
+alias gp="git pull"
+alias gP="git push"
 
 eval "$(rbenv init -)"
+eval "$(rbenv shell --unset)"
 eval "$(starship init zsh)"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
