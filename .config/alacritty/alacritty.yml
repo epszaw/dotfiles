@@ -4,16 +4,17 @@ selection:
   save_to_clipboard: true
 
 font:
-  size: 16
+  size: 15
   offset:
     x: 0
     y: 6
   normal:
+    family: iA Writer Mono S
     #family: FiraCode Nerd Font
     #family: Monolisa Nerd Font
-    family: PragmataProMonoLiga Nerd Font
-  bold:
-    style: regular
+    #family: PragmataProMonoLiga Nerd Font
+    # bold:
+    #   style: regular
 
 colors:
   primary:

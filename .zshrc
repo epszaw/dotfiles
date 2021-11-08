@@ -105,6 +105,7 @@ export TERM="xterm-256color"
 export GOPATH="${HOME}/go"
 export GO111MODULE="on"
 export PATH=$HOME/.rbenv/bin:$HOME/.rbenv/shims:/usr/local/go/bin:/usr/local/opt/openjdk/bin:$GOPATH:$NPM_PACKAGES/bin:$PATH
+export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk-16.jdk/Contents/Home
 
 alias gA="git add ."
 alias gs="git status"

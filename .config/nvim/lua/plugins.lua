@@ -27,6 +27,7 @@ return require("packer").startup(function()
   use { "posva/vim-vue" }
   use { "junegunn/fzf", dir = "~/.fzf", run = "./install --all" }
   use { "junegunn/fzf.vim" }
+  use { "junegunn/goyo.vim" }
 
   -- New things
   -- TODO: replace fugitive by neogit + diffview, probably no need to do that
@@ -50,7 +51,9 @@ return require("packer").startup(function()
   --   requires = {{"nvim-lua/popup.nvim"}, {"nvim-lua/plenary.nvim"}}
   -- }
   use { "folke/which-key.nvim" }
-  use{ "gregsexton/MatchTag" }
+  use { "gregsexton/MatchTag" }
+  use { "cakebaker/scss-syntax.vim" }
+  use { "hail2u/vim-css3-syntax" }
 
   -- Themes
  
@@ -62,7 +65,8 @@ return require("packer").startup(function()
   use { "tomasiser/vim-code-dark" }
   use { "dracula/vim" }
   use { "crusoexia/vim-monokai" }
-
+  use { "lifepillar/vim-solarized8" }
+  use { "alexanderjeurissen/lumiere.vim" }
 
   -- Plugins configuration
 
@@ -113,7 +117,6 @@ return require("packer").startup(function()
   })
 
   vim.g.nvim_tree_gitignore = 1
-  vim.g.nvim_tree_ignore = { ".git", "node_modules", ".idea", ".vscode", ".DS_Store" }
   vim.g.nvim_tree_icons = {
     default = '',
   }
@@ -125,6 +128,7 @@ return require("packer").startup(function()
   }
 
   require("nvim-tree").setup({
+    ignore = { ".git", "node_modules", ".idea", ".vscode", ".DS_Store" },
     update_focused_file = {
       enable = 1,
     },
@@ -137,6 +141,24 @@ return require("packer").startup(function()
   require("lualine").setup({
     options = {
       theme = "nord";
+      section_separators = { left = '', right = ''},
+      component_separators = { left = '', right = ''},
+    },
+    sections = {
+      lualine_a = {'mode'},
+      lualine_b = {{'branch', icon = nil, icons_enabled = false}, {'diff', icon = nil, icons_enabled = false}},
+      lualine_c = {'filename'},
+      lualine_x = {'filetype'},
+      lualine_y = {'progress'},
+      lualine_z = {'location'}
+    },
+    inactive_sections = {
+      lualine_a = {},
+      lualine_b = {},
+      lualine_c = {'filename'},
+      lualine_x = {'location'},
+      lualine_y = {},
+      lualine_z = {}
     };
   })
 

@@ -26,6 +26,9 @@ vim.cmd "colorscheme nord"
 vim.cmd "let $FZF_DEFAULT_COMMAND = 'rg --files --hidden'"
 vim.cmd "let g:rg_command = 'rg --vimgrep -S'"
 
+vim.cmd "let g:goyo_height = '100%'"
+vim.cmd "let g:goyo_width = 100"
+
 vim.cmd([[
 function! FindGitRoot()
   return system('git rev-parse --show-toplevel 2> /dev/null')[:-2]
