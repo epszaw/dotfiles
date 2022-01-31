@@ -9,7 +9,12 @@ wk.register({
   F = "Fix autofixable",
   q = "Close",
   Q = "Close other buffers",
-  b = "Buffers",
+  b = {
+    name = "Buffers",
+    b = "Find buffer",
+    n = "Next",
+    p = "Previous",
+  },
   e = "Explorer",
   g = {
     name = "Git",
@@ -18,7 +23,7 @@ wk.register({
     p = "Pull",
     P = "Push",
     d = "Diff",
-    b = "Blame"
+    b = "Blame",
   },
   w = {
     name = "Window",
@@ -30,7 +35,18 @@ wk.register({
     l = "Focus right window",
     H = "Increase window width",
     L = "Decrease window width",
-  }
+  },
+  t = {
+    name = "Test",
+    t = "Run nearest test",
+    f = "Run file tests",
+    s = "Run test suite",
+    l = "Run last test",
+  },
+  l = {
+    name = "LSP",
+    h = "Hover (show docs)",
+  },
 }, { prefix = "<Leader>" })
 
 vim.cmd "map  f <Plug>(easymotion-bd-f)"
@@ -42,7 +58,10 @@ vim.cmd "nmap <SPACE> <Nop>"
 -- vim.cmd "noremap <Leader>b :Telescope buffers<CR>"
 -- vim.cmd "noremap <C-b> :Telescope buffers<CR>"
 vim.cmd "noremap <Leader><Space> :ProjectFiles<CR>"
-vim.cmd "noremap <Leader>b :Buffers<CR>"
+
+vim.cmd "noremap <Leader>bb :Buffers<CR>"
+vim.cmd "noremap <Leader>bn :bnext<CR>"
+vim.cmd "noremap <Leader>bp :bprevious<CR>"
 
 vim.cmd "nmap <Esc> :noh<CR>"
 
@@ -84,6 +103,13 @@ vim.cmd "noremap <Leader>gp :Git pull<CR>"
 vim.cmd "noremap <Leader>gP :Git push<CR>"
 vim.cmd "noremap <Leader>gb :Git blame<CR>"
 vim.cmd "noremap <Leader>gd :Gdiffsplit!<CR>"
+
+vim.cmd "noremap <Leader>tt :TestNearest<CR>"
+vim.cmd "noremap <Leader>tf :TestFile<CR>"
+vim.cmd "noremap <Leader>ts :TestSuite<CR>"
+vim.cmd "noremap <Leader>tl :TestLast<CR>"
+
+vim.cmd "noremap <Leader>lh <cmd>lua vim.lsp.buf.hover()<CR>"
 
 -- TODO: move to another lua file
 local t = function(str)

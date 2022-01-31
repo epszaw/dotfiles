@@ -25,9 +25,15 @@ return require("packer").startup(function()
   use { "jpalardy/vim-slime" }
   use { "MattesGroeger/vim-bookmarks" }
   use { "posva/vim-vue" }
+  use { "evanleck/vim-svelte" }
   use { "junegunn/fzf", dir = "~/.fzf", run = "./install --all" }
   use { "junegunn/fzf.vim" }
   use { "junegunn/goyo.vim" }
+  use { "vim-test/vim-test" }
+  use { "cocopon/colorswatch.vim" }
+  use { "lilydjwg/colorizer" }
+  use { "cocopon/inspecthi.vim" }
+  use { "williamboman/nvim-lsp-installer" }
 
   -- New things
   -- TODO: replace fugitive by neogit + diffview, probably no need to do that
@@ -40,11 +46,10 @@ return require("packer").startup(function()
   --   "sindrets/diffview.nvim",
   -- }  
   use { "hrsh7th/vim-vsnip" }
-  use { "akinsho/nvim-bufferline.lua" }
+  -- use { "akinsho/nvim-bufferline.lua" }
   use { "kyazdani42/nvim-tree.lua" }
   use { "neovim/nvim-lspconfig" }
-  use { "hoob3rt/lualine.nvim" }
-  use { "kabouzeid/nvim-lspinstall" }
+  use { "nvim-lualine/lualine.nvim" }
   use { "hrsh7th/nvim-compe" }
   -- use {
   --   "nvim-telescope/telescope.nvim",
@@ -54,6 +59,7 @@ return require("packer").startup(function()
   use { "gregsexton/MatchTag" }
   use { "cakebaker/scss-syntax.vim" }
   use { "hail2u/vim-css3-syntax" }
+  use { "tomlion/vim-solidity" }
 
   -- Themes
  
@@ -67,20 +73,19 @@ return require("packer").startup(function()
   use { "crusoexia/vim-monokai" }
   use { "lifepillar/vim-solarized8" }
   use { "alexanderjeurissen/lumiere.vim" }
+  use { "lamartire/hg.vim" }
+  use { "chriskempson/vim-tomorrow-theme" }
 
   -- Plugins configuration
 
-
   local lspconfig = require("lspconfig")
-  local lspinstall = require("lspinstall")
+  local lspinstall = require("nvim-lsp-installer")
 
-  lspinstall.setup()
+  lspinstall.on_server_ready(function(server)
+    local opts = {}
 
-  local servers = lspinstall.installed_servers()
-  
-  for _, server in pairs(servers) do
-    lspconfig[server].setup{}
-  end
+    server:setup(opts)
+  end)
 
   require("compe").setup({
     enabled = true;
@@ -116,7 +121,6 @@ return require("packer").startup(function()
     }
   })
 
-  vim.g.nvim_tree_gitignore = 1
   vim.g.nvim_tree_icons = {
     default = '',
   }
@@ -135,12 +139,13 @@ return require("packer").startup(function()
     view = {
       width = 50,
       auto_resize = 1,
+      side = 'right',
     },
   })
 
   require("lualine").setup({
     options = {
-      theme = "nord";
+      theme = "auto";
       section_separators = { left = '', right = ''},
       component_separators = { left = '', right = ''},
     },
@@ -164,14 +169,14 @@ return require("packer").startup(function()
 
   -- require("nvim-autopairs").setup()
 
-  require("bufferline").setup({
-    options = {
-      show_buffer_icons = false;
-      show_buffer_close_icons = false;
-      show_close_icon = false;
-      enforce_regular_tabs = true;
-    };
-  })
+  -- require("bufferline").setup({
+  --   options = {
+  --     show_buffer_icons = false;
+  --     show_buffer_close_icons = false;
+  --     show_close_icon = false;
+  --     enforce_regular_tabs = true;
+  --   };
+  -- })
 
   -- require("neogit").setup({
   --   integrations = {

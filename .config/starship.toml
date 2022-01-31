@@ -1,2 +1,5 @@
 [character]
 symbol = "λ"
+
+[git_branch]
+symbol = ""
