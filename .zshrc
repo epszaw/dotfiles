@@ -107,7 +107,7 @@ export GO111MODULE="on"
 export PATH=$HOME/.rbenv/bin:$HOME/.rbenv/shims:/usr/local/go/bin:/usr/local/opt/openjdk/bin:$GOPATH:$NPM_PACKAGES/bin:$PATH
 export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk-16.jdk/Contents/Home
 
-export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#767676"
+export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#586E75"
 
 alias gA="git add ."
 alias gs="git status"

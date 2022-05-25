@@ -34,6 +34,7 @@ return require("packer").startup(function()
   use { "lilydjwg/colorizer" }
   use { "cocopon/inspecthi.vim" }
   use { "williamboman/nvim-lsp-installer" }
+  use { "jremmen/vim-ripgrep" }
 
   -- New things
   -- TODO: replace fugitive by neogit + diffview, probably no need to do that
@@ -60,6 +61,7 @@ return require("packer").startup(function()
   use { "cakebaker/scss-syntax.vim" }
   use { "hail2u/vim-css3-syntax" }
   use { "tomlion/vim-solidity" }
+  use { "digitaltoad/vim-pug" }
 
   -- Themes
  
@@ -72,9 +74,14 @@ return require("packer").startup(function()
   use { "dracula/vim" }
   use { "crusoexia/vim-monokai" }
   use { "lifepillar/vim-solarized8" }
-  use { "alexanderjeurissen/lumiere.vim" }
   use { "lamartire/hg.vim" }
-  use { "chriskempson/vim-tomorrow-theme" }
+  use { "drewtempelmeyer/palenight.vim" }
+  use { "mhartington/oceanic-next" }
+  use { "haishanh/night-owl.vim" }
+  use { "NLKNguyen/papercolor-theme" }
+  use { "sainnhe/everforest" }
+  use { "projekt0n/github-nvim-theme" }
+  use { "junegunn/seoul256.vim" }
 
   -- Plugins configuration
 
@@ -139,7 +146,7 @@ return require("packer").startup(function()
     view = {
       width = 50,
       auto_resize = 1,
-      side = 'right',
+      side = 'left',
     },
   })
 
