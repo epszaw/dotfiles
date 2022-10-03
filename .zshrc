@@ -2,7 +2,7 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH="/Users/lamartire/.oh-my-zsh"
+export ZSH="/Users/epszaw/.oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -104,10 +104,10 @@ export N_PRESERVE_NPM=1
 export TERM="xterm-256color"
 export GOPATH="${HOME}/go"
 export GO111MODULE="on"
-export PATH=$HOME/.rbenv/bin:$HOME/.rbenv/shims:/usr/local/go/bin:/usr/local/opt/openjdk/bin:$GOPATH:$NPM_PACKAGES/bin:$PATH
-export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk-16.jdk/Contents/Home
+export PATH=/usr/local/go/bin:/usr/local/opt/openjdk/bin:$GOPATH:$NPM_PACKAGES/bin:$PATH
+export JAVA_HOME=/Library/Java/JavaVirtualMachines/liberica-jdk-17.jdk/Contents/Home/
 
-export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#586E75"
+export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#948171"
 
 alias gA="git add ."
 alias gs="git status"
@@ -115,8 +115,11 @@ alias gc="git commit"
 alias gp="git pull"
 alias gP="git push"
 
-eval "$(rbenv init -)"
-eval "$(rbenv shell --unset)"
 eval "$(starship init zsh)"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# pnpm
+export PNPM_HOME="/Users/lamartire/Library/pnpm"
+export PATH="$PNPM_HOME:$PATH"
+# pnpm end

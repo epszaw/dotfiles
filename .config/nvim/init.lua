@@ -24,69 +24,73 @@ vim.cmd "set termguicolors"
 vim.cmd "set t_Co=256"
 vim.cmd "set background=dark"
 vim.cmd "set mouse=n"
-vim.cmd "colorscheme solarized8_flat"
-vim.cmd "let $FZF_DEFAULT_COMMAND='rg --files --hidden'"
-vim.cmd "let g:rg_command='rg --vimgrep -S'"
-vim.cmd "let g:rg_derive_root=1"
-vim.cmd "let g:rg_highlight=1"
+vim.cmd "colorscheme gruvbox"
 
-vim.cmd "let g:goyo_height='100%'"
-vim.cmd "let g:goyo_width=100"
-vim.cmd "let g:solarized_termcolors=16"
+if not (vim.g.vscode) then
+  vim.cmd "let $FZF_DEFAULT_COMMAND='rg --files --hidden'"
+  vim.cmd "let g:rg_command='rg --vimgrep -S'"
+  vim.cmd "let g:rg_derive_root=1"
+  vim.cmd "let g:rg_highlight=1"
+  
+  vim.cmd "let g:goyo_height='100%'"
+  vim.cmd "let g:goyo_width=100"
+  vim.cmd "let g:solarized_termcolors=16"
+  
+  vim.cmd([[
+  function! FindGitRoot()
+    return system('git rev-parse --show-toplevel 2> /dev/null')[:-2]
+  endfunction
+  ]])
+  vim.cmd "command! ProjectFiles execute 'Files' FindGitRoot()"
+  
+  vim.g.slime_target = "tmux"
+  vim.g.slime_default_config = { 
+    socket_name = 'default'; 
+    target_pane = '{last}';
+  }
+  
+  vim.g.ctrlsf_auto_preview = 0
+  vim.g.ctrlsf_confirm_save = 0
+  vim.g.ctrlsf_ackprg = 'rg'
+  vim.g.ctrlsf_default_root = 'project'
+  
+  vim.g.ale_linters = {
+    ruby = { "rubocop" };
+    vue = { "eslint" };
+    svelte = { "eslint" };
+    javascript = { "eslint" };
+    javascriptreact = { "eslint" };
+    typescript = { "eslint" };
+    typescriptreact = { "eslint" };
+    sass = { "stylelint" };
+    scss = { "stylelint" };
+    css = { "stylelint" };
+    markdown = { "yaspeller" };
+    clojure = { "clj-kondo" };
+    json = {};
+    rust = { "rustc" };
+  }
+  vim.g.ale_fixers = {
+    ["*"] = { "trim_whitespace" };
+    markdown = { "prettier", "trim_whitespace" };
+    svg = { "prettier" };
+    html = { "prettier" };
+    json = { "prettier" };
+    vue = { "eslint", "stylelint" };
+    svelte = { "eslint", "stylelint" };
+    javascript = { "eslint" };
+    javascriptreact = { "eslint" };
+    typescript = { "eslint" };
+    typescriptreact = { "eslint" };
+    clojure = { "clj-kondo" };
+    sass = { "prettier", "stylelint" };
+    scss = { "prettier", "stylelint" };
+    css = { "prettier", "stylelint" };
+    ruby = { "rubocop" };
+    rust = { "rustc" };
+  }
+  vim.g.ale_fix_on_save = 0
+  
+  -- vim.g.vue_pre_processors = "detect_on_enter"
+end
 
-vim.cmd([[
-function! FindGitRoot()
-  return system('git rev-parse --show-toplevel 2> /dev/null')[:-2]
-endfunction
-]])
-vim.cmd "command! ProjectFiles execute 'Files' FindGitRoot()"
-
-vim.g.slime_target = "tmux"
-vim.g.slime_default_config = { 
-  socket_name = 'default'; 
-  target_pane = '{last}';
-}
-
-vim.g.ctrlsf_auto_preview = 0
-vim.g.ctrlsf_confirm_save = 0
-vim.g.ctrlsf_ackprg = 'rg'
-vim.g.ctrlsf_default_root = 'project'
-
-vim.g.ale_linters = {
-  ruby = { "rubocop" };
-  vue = { "eslint" };
-  svelte = { "eslint" };
-  javascript = { "eslint" };
-  javascriptreact = { "eslint" };
-  typescript = { "eslint" };
-  typescriptreact = { "eslint" };
-  sass = { "stylelint" };
-  scss = { "stylelint" };
-  css = { "stylelint" };
-  markdown = { "yaspeller" };
-  clojure = { "clj-kondo" };
-  json = {};
-  rust = { "rustc" };
-}
-vim.g.ale_fixers = {
-  ["*"] = { "trim_whitespace" };
-  markdown = { "prettier", "trim_whitespace" };
-  svg = { "prettier" };
-  html = { "prettier" };
-  json = { "prettier" };
-  vue = { "eslint", "stylelint" };
-  svelte = { "eslint", "stylelint" };
-  javascript = { "eslint" };
-  javascriptreact = { "eslint" };
-  typescript = { "eslint" };
-  typescriptreact = { "eslint" };
-  clojure = { "clj-kondo" };
-  sass = { "prettier", "stylelint" };
-  scss = { "prettier", "stylelint" };
-  css = { "prettier", "stylelint" };
-  ruby = { "rubocop" };
-  rust = { "rustc" };
-}
-vim.g.ale_fix_on_save = 0
-
--- vim.g.vue_pre_processors = "detect_on_enter"
