@@ -107,7 +107,7 @@ export GO111MODULE="on"
 export PATH=/usr/local/go/bin:/usr/local/opt/openjdk/bin:$GOPATH:$NPM_PACKAGES/bin:$PATH
 export JAVA_HOME=/Library/Java/JavaVirtualMachines/liberica-jdk-17.jdk/Contents/Home/
 
-export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#948171"
+export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#68737E"
 
 alias gA="git add ."
 alias gs="git status"
@@ -120,6 +120,7 @@ eval "$(starship init zsh)"
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # pnpm
-export PNPM_HOME="/Users/lamartire/Library/pnpm"
+export PNPM_HOME="/Users/epszaw/Library/pnpm"
 export PATH="$PNPM_HOME:$PATH"
 # pnpm end
+[ -f ~/.private.zsh ] && source ~/.private.zsh

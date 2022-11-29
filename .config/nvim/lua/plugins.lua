@@ -134,24 +134,29 @@ return require("packer").startup(function()
       }
     })
 
-    vim.g.nvim_tree_icons = {
-      default = '',
-    }
-    vim.g.nvim_tree_show_icons = {
-      folders = 0,
-      files = 0,
-      git = 0,
-      folder_arrows = 0,
-    }
+    vim.g.loaded_netrw = 1
+    vim.g.loaded_netrwPlugin = 1
 
     require("nvim-tree").setup({
-      ignore = { ".git", "node_modules", ".idea", ".vscode", ".DS_Store" },
+      view = {
+        renderer = {
+          icons = {
+            show = {
+              folders = false,
+              files = false,
+              git = false,
+              folder_arrows = false,
+            }
+          }        
+        }
+      },
+
       update_focused_file = {
-        enable = 1,
+        enable = true,
       },
       view = {
         width = 50,
-        auto_resize = 1,
+        -- auto_resize = 1,
         side = 'left',
       },
     })

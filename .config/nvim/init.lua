@@ -4,9 +4,9 @@ vim.g.EasyMotion_leader_key = ""
 require("plugins")
 require("keymap")
 
-vim.g.gruvbox_contrast_light = "medium"
-vim.g.gruvbox_contrast_dark = "medium"
-vim.g.everforest_background = "medium"
+vim.g.gruvbox_contrast_light = "soft"
+vim.g.gruvbox_contrast_dark = "soft"
+vim.g.everforest_background = "soft"
 
 vim.cmd "syntax enable"
 vim.cmd "set encoding=UTF-8"
@@ -24,7 +24,7 @@ vim.cmd "set termguicolors"
 vim.cmd "set t_Co=256"
 vim.cmd "set background=dark"
 vim.cmd "set mouse=n"
-vim.cmd "colorscheme gruvbox"
+vim.cmd "colorscheme nord"
 
 if not (vim.g.vscode) then
   vim.cmd "let $FZF_DEFAULT_COMMAND='rg --files --hidden'"
