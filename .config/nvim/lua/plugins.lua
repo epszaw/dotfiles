@@ -16,7 +16,7 @@ return require("packer").startup(function()
   use { "tpope/vim-endwise" }
   use { "jiangmiao/auto-pairs" }
   use { "easymotion/vim-easymotion" }
-  
+
   if not (vim.g.vscode) then
     use { "editorconfig/editorconfig-vim" }
     use { "christoomey/vim-tmux-navigator" }
@@ -39,55 +39,32 @@ return require("packer").startup(function()
     use { "jremmen/vim-ripgrep" }
     use { "jxnblk/vim-mdx-js" }
     use { "slim-template/vim-slim" }
-
-    -- New things
-    -- TODO: replace fugitive by neogit + diffview, probably no need to do that
+    use { "Olical/conjure" }
     use { "tpope/vim-fugitive" }
-    -- use { 
-    --   "TimUntersberger/neogit", 
-    --   requires = "nvim-lua/plenary.nvim",
-    -- }
-    -- use { 
-    --   "sindrets/diffview.nvim",
-    -- }  
-    use { "hrsh7th/vim-vsnip" }
-    -- use { "akinsho/nvim-bufferline.lua" }
+    use { "sindrets/diffview.nvim" }
     use { "kyazdani42/nvim-tree.lua" }
     use { "neovim/nvim-lspconfig" }
     use { "nvim-lualine/lualine.nvim" }
     use { "hrsh7th/nvim-compe" }
-    -- use {
-    --   "nvim-telescope/telescope.nvim",
-    --   requires = {{"nvim-lua/popup.nvim"}, {"nvim-lua/plenary.nvim"}}
-    -- }
     use { "folke/which-key.nvim" }
     use { "gregsexton/MatchTag" }
     use { "cakebaker/scss-syntax.vim" }
     use { "hail2u/vim-css3-syntax" }
     use { "tomlion/vim-solidity" }
     use { "digitaltoad/vim-pug" }
-
     -- Themes
- 
-    use { "morhetz/gruvbox" }
     use { "cocopon/iceberg.vim" }
     use { "rakr/vim-one" }
     use { "arcticicestudio/nord-vim" }
-    use { "pineapplegiant/spaceduck" }
     use { "tomasiser/vim-code-dark" }
     use { "dracula/vim" }
     use { "crusoexia/vim-monokai" }
     use { "lifepillar/vim-solarized8" }
-    use { "lamartire/hg.vim" }
-    use { "drewtempelmeyer/palenight.vim" }
     use { "mhartington/oceanic-next" }
-    use { "haishanh/night-owl.vim" }
     use { "NLKNguyen/papercolor-theme" }
     use { "sainnhe/everforest" }
     use { "projekt0n/github-nvim-theme" }
-    use { "junegunn/seoul256.vim" }
     use { "lifepillar/vim-gruvbox8" }
-    use { "Rigellute/rigel" }
     use { "tomasr/molokai" }
     use { "saltdotac/citylights.vim" }
 
@@ -138,7 +115,7 @@ return require("packer").startup(function()
     vim.g.loaded_netrwPlugin = 1
 
     require("nvim-tree").setup({
-      disable_netrw = false,
+      disable_netrw = true,
       view = {
         width = 50,
         side = 'left',
@@ -151,13 +128,13 @@ return require("packer").startup(function()
             git = false,
             folder_arrow = true,
           },
-	  glyphs = {
+	        glyphs = {
             folder = {
               arrow_closed = "+",
               arrow_open = "-"
             }
-	  }
-        }        
+	        }
+        }
       },
       update_focused_file = {
         enable = true,
@@ -176,7 +153,7 @@ return require("packer").startup(function()
         lualine_c = {'filename'},
         lualine_x = {'filetype'},
         lualine_y = {'progress'},
-        lualine_z = {'location'}
+        lualine_z = {'location'},
       },
       inactive_sections = {
         lualine_a = {},
@@ -184,32 +161,61 @@ return require("packer").startup(function()
         lualine_c = {'filename'},
         lualine_x = {'location'},
         lualine_y = {},
-        lualine_z = {}
-      };
+        lualine_z = {},
+      },
     })
 
-    -- require("nvim-autopairs").setup()
-
-    -- require("bufferline").setup({
-    --   options = {
-    --     show_buffer_icons = false;
-    --     show_buffer_close_icons = false;
-    --     show_close_icon = false;
-    --     enforce_regular_tabs = true;
-    --   };
-    -- })
-
-    -- require("neogit").setup({
-    --   integrations = {
-    --     diffview = true;   
-    --   },
-    -- })
-
     -- require("diffview").setup()
-    -- vim.cmd [[
-    --   function! s:find_git_root()
-    --     return system('git rev-parse --show-toplevel 2> /dev/null')[:-2]
-    --   endfunction
-    -- ]]
+
+    -- slime
+    vim.g.slime_target = "tmux"
+    vim.g.slime_default_config = {
+      socket_name = 'default';
+      target_pane = '{last}';
+    }
+
+    -- ctrlsf
+    vim.g.ctrlsf_auto_preview = 0
+    vim.g.ctrlsf_confirm_save = 0
+    vim.g.ctrlsf_ackprg = 'rg'
+    vim.g.ctrlsf_default_root = 'project'
+
+    -- ALE
+    vim.g.ale_linters = {
+      ruby = { "rubocop" };
+      vue = { "eslint" };
+      svelte = { "eslint" };
+      javascript = { "eslint" };
+      javascriptreact = { "eslint" };
+      typescript = { "eslint" };
+      typescriptreact = { "eslint" };
+      sass = { "stylelint" };
+      scss = { "stylelint" };
+      css = { "stylelint" };
+      markdown = { "yaspeller" };
+      clojure = { "clj-kondo" };
+      json = {};
+      rust = { "rustc" };
+    }
+    vim.g.ale_fixers = {
+      ["*"] = { "trim_whitespace" };
+      markdown = { "prettier", "trim_whitespace" };
+      svg = { "prettier" };
+      html = { "prettier" };
+      json = { "prettier" };
+      vue = { "eslint", "stylelint" };
+      svelte = { "eslint", "stylelint" };
+      javascript = { "eslint", "prettier" };
+      javascriptreact = { "eslint", "prettier" };
+      typescript = { "eslint", "prettier" };
+      typescriptreact = { "eslint", "prettier" };
+      clojure = { "clj-kondo" };
+      sass = { "prettier", "stylelint" };
+      scss = { "prettier", "stylelint" };
+      css = { "prettier", "stylelint" };
+      ruby = { "rubocop" };
+      rust = { "rustc" };
+    }
+    vim.g.ale_fix_on_save = 0
   end
 end)

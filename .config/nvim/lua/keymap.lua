@@ -33,6 +33,7 @@ if not (vim.g.vscode) then
     },
     w = {
       name = "Window",
+      q = "Close window",
       s = "Split horizontally",
       v = "Split vertically",
       h = "Focus left window",
@@ -49,12 +50,22 @@ if not (vim.g.vscode) then
       s = "Run test suite",
       l = "Run last test",
     },
-    l = {
-      name = "LSP",
-      l = "Show docs",
+    c = {
+      name = "Code",
+      i = "Show docs",
+      I = "Open diagnostics",
       d = "Go to definition",
-      r = "References",
+      D = "References",
       R = "Rename",
+    },
+    m = {
+      name = "Bookmarks",
+      m = "Toggle",
+      n = "Next",
+      p = "Previous",
+      a = "Show all",
+      c = "Clear in current buffer",
+      x = "Clear all",
     },
   }, { prefix = "<Leader>" })
 
@@ -64,19 +75,19 @@ if not (vim.g.vscode) then
   -- vim.cmd "noremap <Leader>b :Telescope buffers<CR>"
   -- vim.cmd "noremap <C-b> :Telescope buffers<CR>"
   vim.cmd "noremap <Leader><Space> :ProjectFiles<CR>"
-  
+
   vim.cmd "noremap <Leader>bb :Buffers<CR>"
   vim.cmd "noremap <Leader>bn :bnext<CR>"
   vim.cmd "noremap <Leader>bp :bprevious<CR>"
 
   vim.cmd "noremap <Leader>F :ALEFix<CR>"
-  
+
   vim.cmd "nmap <silent> <S-k> :wincmd k<CR>"
   vim.cmd "nmap <silent> <S-j> :wincmd j<CR>"
   vim.cmd "nmap <silent> <S-h> :wincmd h<CR>"
   vim.cmd "nmap <silent> <S-l> :wincmd l<CR>"
   vim.cmd "noremap <C-d> <C-d>"
-  
+
   vim.cmd "noremap <Leader>wh :wincmd h<CR>"
   vim.cmd "noremap <C-h> :wincmd h<CR>"
   vim.cmd "noremap <Leader>wl :wincmd l<CR>"
@@ -85,39 +96,41 @@ if not (vim.g.vscode) then
   vim.cmd "noremap <C-j> :wincmd j<CR>"
   vim.cmd "noremap <Leader>wk :wincmd k<CR>"
   vim.cmd "noremap <C-k> :wincmd k<CR>"
+  vim.cmd "noremap <Leader>wq :q<CR>"
   vim.cmd "noremap <Leader>wv :vs<CR>"
   vim.cmd "noremap <Leader>ws :sp<CR>"
   vim.cmd "noremap <Leader>wL <C-w>10>"
   vim.cmd "noremap <Leader>wH <C-w>10<"
-  
+
   vim.cmd "noremap H gT"
   vim.cmd "noremap L gt"
   vim.cmd "noremap <Leader>n :tabnew<CR>"
   vim.cmd "noremap <Leader>q :q<CR>"
   vim.cmd "noremap <Leader>Q :BufOnly<CR>"
-  
+
   vim.cmd "noremap <Leader>e :NvimTreeToggle<CR>"
-  
+
   vim.cmd 'noremap <Leader>R "hy:CtrlSF <C-r>h<CR>'
   vim.cmd 'noremap <Leader>r "hy:%s@<C-r>h@<C-r>h@gc<left><left><left>'
-  
+
   vim.cmd "noremap <Leader>gg :G<CR>"
   vim.cmd "noremap <Leader>gc :Git commit<CR>"
   vim.cmd "noremap <Leader>gp :Git pull<CR>"
   vim.cmd "noremap <Leader>gP :Git push<CR>"
   vim.cmd "noremap <Leader>gb :Git blame<CR>"
   vim.cmd "noremap <Leader>gd :Gdiffsplit!<CR>"
-  
+
   vim.cmd "noremap <Leader>tt :TestNearest<CR>"
   vim.cmd "noremap <Leader>tf :TestFile<CR>"
   vim.cmd "noremap <Leader>ts :TestSuite<CR>"
   vim.cmd "noremap <Leader>tl :TestLast<CR>"
-  
-  vim.cmd "noremap <Leader>ll <cmd>lua vim.lsp.buf.hover()<CR>"
-  vim.cmd "noremap <Leader>ld <cmd>lua vim.lsp.buf.definition()<CR>"
-  vim.cmd "noremap <Leader>lr <cmd>lua vim.lsp.buf.references()<CR>"
-  vim.cmd "noremap <Leader>lR <cmd>lua vim.lsp.buf.rename()<CR>"
-  
+
+  vim.cmd "noremap <Leader>ci <cmd>lua vim.lsp.buf.hover()<CR>"
+  vim.cmd "noremap <Leader>cd <cmd>lua vim.lsp.buf.definition()<CR>"
+  vim.cmd "noremap <Leader>cD <cmd>lua vim.lsp.buf.references()<CR>"
+  vim.cmd "noremap <Leader>cR <cmd>lua vim.lsp.buf.rename()<CR>"
+  vim.cmd "noremap <Leader>cI <cmd>lua vim.diagnostic.open_float()<CR>"
+
   -- -- Mappings.
   -- -- See `:help vim.lsp.*` for documentation on any of the below functions
   -- vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
@@ -133,17 +146,17 @@ if not (vim.g.vscode) then
   -- vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
   -- vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
   -- vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
-  
+
   -- TODO: move to another lua file
   local t = function(str)
     return vim.api.nvim_replace_termcodes(str, true, true, true)
   end
-  
+
   local check_back_space = function()
       local col = vim.fn.col('.') - 1
       return col == 0 or vim.fn.getline('.'):sub(col, col):match('%s') ~= nil
   end
-  
+
   -- Use (s-)tab to:
   --- move to prev/next item in completion menuone
   --- jump to prev/next snippet's placeholder
@@ -168,7 +181,7 @@ if not (vim.g.vscode) then
       return t "<S-Tab>"
     end
   end
-  
+
   vim.api.nvim_set_keymap("i", "<Tab>", "v:lua.tab_complete()", {expr = true})
   vim.api.nvim_set_keymap("s", "<Tab>", "v:lua.tab_complete()", {expr = true})
   vim.api.nvim_set_keymap("i", "<S-Tab>", "v:lua.s_tab_complete()", {expr = true})
