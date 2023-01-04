@@ -24,7 +24,7 @@ vim.cmd "set termguicolors"
 vim.cmd "set t_Co=256"
 vim.cmd "set background=dark"
 vim.cmd "set mouse=n"
-vim.cmd "colorscheme nord"
+vim.cmd "colorscheme citylights"
 
 if not (vim.g.vscode) then
   vim.cmd "let $FZF_DEFAULT_COMMAND='rg --files --hidden'"

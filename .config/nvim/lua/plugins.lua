@@ -138,26 +138,29 @@ return require("packer").startup(function()
     vim.g.loaded_netrwPlugin = 1
 
     require("nvim-tree").setup({
-      view = {
-        renderer = {
-          icons = {
-            show = {
-              folders = false,
-              files = false,
-              git = false,
-              folder_arrows = false,
-            }
-          }        
-        }
-      },
-
-      update_focused_file = {
-        enable = true,
-      },
+      disable_netrw = false,
       view = {
         width = 50,
-        -- auto_resize = 1,
         side = 'left',
+      },
+      renderer = {
+        icons = {
+          show = {
+            folder = false,
+            file = false,
+            git = false,
+            folder_arrow = true,
+          },
+	  glyphs = {
+            folder = {
+              arrow_closed = "+",
+              arrow_open = "-"
+            }
+	  }
+        }        
+      },
+      update_focused_file = {
+        enable = true,
       },
     })
 

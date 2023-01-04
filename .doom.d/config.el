@@ -21,8 +21,8 @@
 ;; See 'C-h v doom-font' for documentation and more examples of what they
 ;; accept. For example:
 ;;
-(setq doom-font (font-spec :family "Fira Code" :size 16)
-      doom-variable-pitch-font (font-spec :family "Fira Code" :size 12))
+(setq doom-font (font-spec :family "PragmataPro Mono Liga" :size 16)
+      doom-variable-pitch-font (font-spec :family "PragmataPro Mono Liga" :size 12))
 ;;
 ;; If you or Emacs can't find your font, use 'M-x describe-font' to look them
 ;; up, `M-x eval-region' to execute elisp code, and 'M-x doom/reload-font' to
@@ -38,10 +38,11 @@
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
 (setq display-line-numbers-type 'relative)
 
+(setq )
+
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
 (setq org-directory "~/org/")
-
 
 ;; Whenever you reconfigure a package, make sure to wrap your config in an
 ;; `after!' block, otherwise Doom's defaults may override your settings. E.g.
@@ -78,26 +79,14 @@
 (after! flycheck
         (global-flycheck-mode))
 
+(after! treemacs
+        (treemacs-follow-mode))
+
 ;; Keybindings
-;; (map! :leader
-;;       :desc "Toggle treemacs"
-;;       "e" #'treemacs)
+(map! :leader
+      :desc "Toggle project drawer"
+      "e" #'treemacs)
 
 (map! :leader
       :desc "Open terminal"
       "t t" #'vterm)
-
-(map! :leader
-      :desc "Replace selection"
-      "r" "hy:%s@<C-r>h@<C-r>h@gc<left><left><left>")
-
-;; (define-key evil-normal-state-map (kbd "C-w") "SPC w C-l")
-
-;; (map! :desc "Focus right window"
-;;       "C-l" "SPC w C-l")
-
-;; (map! :desc "Focus left window")
-;;
-;; (map! :desc "Focus window above")
-;;
-;; (map! :desc "Focus window below")
