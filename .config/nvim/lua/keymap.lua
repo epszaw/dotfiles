@@ -21,7 +21,7 @@ if not (vim.g.vscode) then
       n = "Next",
       p = "Previous",
     },
-    e = "Explorer",
+    t = "Toggle project tree",
     g = {
       name = "Git",
       g = "Status",
@@ -57,7 +57,9 @@ if not (vim.g.vscode) then
       d = "Go to definition",
       D = "References",
       R = "Rename",
+      C = "Connect REPL",
     },
+    e = "Eval",
     m = {
       name = "Bookmarks",
       m = "Toggle",
@@ -130,6 +132,8 @@ if not (vim.g.vscode) then
   vim.cmd "noremap <Leader>cD <cmd>lua vim.lsp.buf.references()<CR>"
   vim.cmd "noremap <Leader>cR <cmd>lua vim.lsp.buf.rename()<CR>"
   vim.cmd "noremap <Leader>cI <cmd>lua vim.diagnostic.open_float()<CR>"
+  vim.cmd "noremap <Leader>cC :ConjureConnect<CR>"
+  vim.cmd "noremap <Leader>e :ConjureEval<CR>"
 
   -- -- Mappings.
   -- -- See `:help vim.lsp.*` for documentation on any of the below functions
