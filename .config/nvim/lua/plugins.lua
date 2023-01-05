@@ -43,6 +43,7 @@ return require("packer").startup(function()
     use { "tpope/vim-fugitive" }
     use { "sindrets/diffview.nvim" }
     use { "kyazdani42/nvim-tree.lua" }
+    use { "nvim-treesitter/nvim-treesitter" }
     use { "neovim/nvim-lspconfig" }
     use { "nvim-lualine/lualine.nvim" }
     use { "hrsh7th/nvim-compe" }
@@ -163,6 +164,10 @@ return require("packer").startup(function()
         lualine_y = {},
         lualine_z = {},
       },
+    })
+
+    require("nvim-treesitter.configs").setup({
+      auto_install = true,
     })
 
     -- require("diffview").setup()
