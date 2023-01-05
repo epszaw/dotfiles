@@ -7,13 +7,12 @@ vim.cmd "nmap <Esc> :noh<CR>"
 
 if not (vim.g.vscode) then
   wk.register({
+    ["<space>"] = "Find project file",
     n = "New tab",
     p = "Find folder file",
-    ["<space>"] = "Find project file",
-    r = "Replace",
-    R = "Find globally",
-    F = "Fix autofixable",
-    q = "Close",
+    r = "Find and replace",
+    R = "Find and replace globally",
+    q = "Close buffer",
     Q = "Close other buffers",
     b = {
       name = "Buffers",
@@ -48,6 +47,7 @@ if not (vim.g.vscode) then
     },
     c = {
       name = "Code",
+      F = "Fix autofixable",
       i = "Show docs",
       I = "Open diagnostics",
       d = "Go to definition",
@@ -84,8 +84,6 @@ if not (vim.g.vscode) then
   vim.cmd "noremap <Leader>bb :Buffers<CR>"
   vim.cmd "noremap <Leader>bn :bnext<CR>"
   vim.cmd "noremap <Leader>bp :bprevious<CR>"
-
-  vim.cmd "noremap <Leader>F :ALEFix<CR>"
 
   vim.cmd "nmap <silent> <S-k> :wincmd k<CR>"
   vim.cmd "nmap <silent> <S-j> :wincmd j<CR>"
@@ -136,6 +134,7 @@ if not (vim.g.vscode) then
   vim.cmd "noremap <Leader>ctf :TestFile<CR>"
   vim.cmd "noremap <Leader>cts :TestSuite<CR>"
   vim.cmd "noremap <Leader>ctl :TestLast<CR>"
+  vim.cmd "noremap <Leader>cF :ALEFix<CR>"
 
   -- -- Mappings.
   -- -- See `:help vim.lsp.*` for documentation on any of the below functions
@@ -169,8 +168,6 @@ if not (vim.g.vscode) then
   _G.tab_complete = function()
     if vim.fn.pumvisible() == 1 then
       return t "<C-n>"
-    elseif vim.fn['vsnip#available'](1) == 1 then
-      return t "<Plug>(vsnip-expand-or-jump)"
     elseif check_back_space() then
       return t "<Tab>"
     else
@@ -180,8 +177,6 @@ if not (vim.g.vscode) then
   _G.s_tab_complete = function()
     if vim.fn.pumvisible() == 1 then
       return t "<C-p>"
-    elseif vim.fn['vsnip#jumpable'](-1) == 1 then
-      return t "<Plug>(vsnip-jump-prev)"
     else
       -- If <S-Tab> is not working in your terminal, change it to <C-h>
       return t "<S-Tab>"
