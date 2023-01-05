@@ -21,7 +21,10 @@ if not (vim.g.vscode) then
       n = "Next",
       p = "Previous",
     },
-    t = "Toggle project tree",
+    t = {
+      name = "Toggle",
+      e = "Toggle project tree",
+    },
     g = {
       name = "Git",
       g = "Status",
@@ -43,13 +46,6 @@ if not (vim.g.vscode) then
       H = "Increase window width",
       L = "Decrease window width",
     },
-    t = {
-      name = "Test",
-      t = "Run nearest test",
-      f = "Run file tests",
-      s = "Run test suite",
-      l = "Run last test",
-    },
     c = {
       name = "Code",
       i = "Show docs",
@@ -58,8 +54,15 @@ if not (vim.g.vscode) then
       D = "References",
       R = "Rename",
       C = "Connect REPL",
+      e = "Eval",
+      t = {
+	name = "Test",
+        t = "Run nearest test",
+        f = "Run file tests",
+        s = "Run test suite",
+        l = "Run last test",
+      }
     },
-    e = "Eval",
     m = {
       name = "Bookmarks",
       m = "Toggle",
@@ -110,7 +113,7 @@ if not (vim.g.vscode) then
   vim.cmd "noremap <Leader>q :q<CR>"
   vim.cmd "noremap <Leader>Q :BufOnly<CR>"
 
-  vim.cmd "noremap <Leader>e :NvimTreeToggle<CR>"
+  vim.cmd "noremap <Leader>te :NvimTreeToggle<CR>"
 
   vim.cmd 'noremap <Leader>R "hy:CtrlSF <C-r>h<CR>'
   vim.cmd 'noremap <Leader>r "hy:%s@<C-r>h@<C-r>h@gc<left><left><left>'
@@ -122,18 +125,17 @@ if not (vim.g.vscode) then
   vim.cmd "noremap <Leader>gb :Git blame<CR>"
   vim.cmd "noremap <Leader>gd :Gdiffsplit!<CR>"
 
-  vim.cmd "noremap <Leader>tt :TestNearest<CR>"
-  vim.cmd "noremap <Leader>tf :TestFile<CR>"
-  vim.cmd "noremap <Leader>ts :TestSuite<CR>"
-  vim.cmd "noremap <Leader>tl :TestLast<CR>"
-
   vim.cmd "noremap <Leader>ci <cmd>lua vim.lsp.buf.hover()<CR>"
   vim.cmd "noremap <Leader>cd <cmd>lua vim.lsp.buf.definition()<CR>"
   vim.cmd "noremap <Leader>cD <cmd>lua vim.lsp.buf.references()<CR>"
   vim.cmd "noremap <Leader>cR <cmd>lua vim.lsp.buf.rename()<CR>"
   vim.cmd "noremap <Leader>cI <cmd>lua vim.diagnostic.open_float()<CR>"
   vim.cmd "noremap <Leader>cC :ConjureConnect<CR>"
-  vim.cmd "noremap <Leader>e :ConjureEval<CR>"
+  vim.cmd "noremap <Leader>ce :ConjureEval<CR>"
+  vim.cmd "noremap <Leader>ctt :TestNearest<CR>"
+  vim.cmd "noremap <Leader>ctf :TestFile<CR>"
+  vim.cmd "noremap <Leader>cts :TestSuite<CR>"
+  vim.cmd "noremap <Leader>ctl :TestLast<CR>"
 
   -- -- Mappings.
   -- -- See `:help vim.lsp.*` for documentation on any of the below functions
