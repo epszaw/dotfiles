@@ -48,26 +48,17 @@ return require("packer").startup(function()
     use { "nvim-lualine/lualine.nvim" }
     use { "hrsh7th/nvim-compe" }
     use { "folke/which-key.nvim" }
-    use { "gregsexton/MatchTag" }
     use { "cakebaker/scss-syntax.vim" }
     use { "hail2u/vim-css3-syntax" }
     use { "tomlion/vim-solidity" }
     use { "digitaltoad/vim-pug" }
+    use { "gregsexton/MatchTag" }
+    use { "RRethy/vim-illuminate" }
     -- Themes
     use { "cocopon/iceberg.vim" }
-    use { "rakr/vim-one" }
-    use { "arcticicestudio/nord-vim" }
-    use { "tomasiser/vim-code-dark" }
-    use { "dracula/vim" }
-    use { "crusoexia/vim-monokai" }
-    use { "lifepillar/vim-solarized8" }
-    use { "mhartington/oceanic-next" }
-    use { "NLKNguyen/papercolor-theme" }
     use { "sainnhe/everforest" }
+    use { "sainnhe/gruvbox-material" }
     use { "projekt0n/github-nvim-theme" }
-    use { "lifepillar/vim-gruvbox8" }
-    use { "tomasr/molokai" }
-    use { "saltdotac/citylights.vim" }
 
     local lspconfig = require("lspconfig")
     local lspinstall = require("nvim-lsp-installer")
