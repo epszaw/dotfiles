@@ -6,6 +6,8 @@ require("keymap")
 
 vim.g.gruvbox_material_background = "medium"
 vim.g.everforest_background = "medium"
+vim.g.sonokai_style = 'atlantis'
+vim.g.sonokai_better_performance = 1
 
 vim.cmd "syntax enable"
 vim.cmd "set encoding=UTF-8"

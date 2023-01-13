@@ -14,6 +14,7 @@ if not (vim.g.vscode) then
     R = "Find and replace globally",
     q = "Close buffer",
     Q = "Close other buffers",
+    E = "Eval",
     b = {
       name = "Buffers",
       b = "Find buffer",
@@ -56,7 +57,7 @@ if not (vim.g.vscode) then
       C = "Connect REPL",
       e = "Eval",
       t = {
-	name = "Test",
+	      name = "Test",
         t = "Run nearest test",
         f = "Run file tests",
         s = "Run test suite",
@@ -129,6 +130,7 @@ if not (vim.g.vscode) then
   vim.cmd "noremap <Leader>cR <cmd>lua vim.lsp.buf.rename()<CR>"
   vim.cmd "noremap <Leader>cI <cmd>lua vim.diagnostic.open_float()<CR>"
   vim.cmd "noremap <Leader>cC :ConjureConnect<CR>"
+  vim.cmd "noremap <Leader>E :ConjureEval<CR>"
   vim.cmd "noremap <Leader>ce :ConjureEval<CR>"
   vim.cmd "noremap <Leader>ctt :TestNearest<CR>"
   vim.cmd "noremap <Leader>ctf :TestFile<CR>"

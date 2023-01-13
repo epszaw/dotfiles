@@ -36,14 +36,14 @@ return require("packer").startup(function()
     use { "lilydjwg/colorizer" }
     use { "cocopon/inspecthi.vim" }
     use { "williamboman/nvim-lsp-installer" }
-    use { "jremmen/vim-ripgrep" }
+    use { "jremmen/vim-ripgrep", run = "cargo install --locked ripgrep" }
     use { "jxnblk/vim-mdx-js" }
     use { "slim-template/vim-slim" }
     use { "Olical/conjure" }
     use { "tpope/vim-fugitive" }
     use { "sindrets/diffview.nvim" }
     use { "kyazdani42/nvim-tree.lua" }
-    use { "nvim-treesitter/nvim-treesitter" }
+    use { "nvim-treesitter/nvim-treesitter", run = "cargo install --locked tree-sitter-cli" }
     use { "neovim/nvim-lspconfig" }
     use { "nvim-lualine/lualine.nvim" }
     use { "hrsh7th/nvim-compe" }
@@ -54,11 +54,13 @@ return require("packer").startup(function()
     use { "digitaltoad/vim-pug" }
     use { "gregsexton/MatchTag" }
     use { "RRethy/vim-illuminate" }
+    use { "wfxr/minimap.vim", run = "cargo install --locked code-minimap" }
     -- Themes
     use { "cocopon/iceberg.vim" }
     use { "sainnhe/everforest" }
     use { "sainnhe/gruvbox-material" }
     use { "projekt0n/github-nvim-theme" }
+    use { "sainnhe/sonokai" }
 
     local lspconfig = require("lspconfig")
     local lspinstall = require("nvim-lsp-installer")
