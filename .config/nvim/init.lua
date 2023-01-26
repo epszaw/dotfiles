@@ -23,9 +23,9 @@ vim.cmd "set cul"
 vim.cmd "set wrap"
 vim.cmd "set termguicolors"
 vim.cmd "set t_Co=256"
-vim.cmd "set background=dark"
+vim.cmd "set background=light"
 vim.cmd "set mouse=n"
-vim.cmd "colorscheme gruvbox-material"
+vim.cmd "colorscheme github_light"
 
 if not (vim.g.vscode) then
   vim.cmd "let $FZF_DEFAULT_COMMAND='rg --files --hidden'"

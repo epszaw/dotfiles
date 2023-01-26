@@ -23,7 +23,9 @@ if not (vim.g.vscode) then
     },
     t = {
       name = "Toggle",
-      e = "Toggle project tree",
+      e = "Project tree",
+      R = "REPL",
+      Z = "Zen mode"
     },
     g = {
       name = "Git",
@@ -113,6 +115,8 @@ if not (vim.g.vscode) then
   vim.cmd "noremap <Leader>Q :BufOnly<CR>"
 
   vim.cmd "noremap <Leader>te :NvimTreeToggle<CR>"
+  vim.cmd "noremap <Leader>tZ :ZenMode<CR>"
+  vim.cmd "noremap <Leader>tR :ConjureLogVSplit<CR>"
 
   vim.cmd 'noremap <Leader>R "hy:CtrlSF <C-r>h<CR>'
   vim.cmd 'noremap <Leader>r "hy:%s@<C-r>h@<C-r>h@gc<left><left><left>'

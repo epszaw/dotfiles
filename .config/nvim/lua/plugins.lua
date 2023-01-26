@@ -54,7 +54,8 @@ return require("packer").startup(function()
     use { "digitaltoad/vim-pug" }
     use { "gregsexton/MatchTag" }
     use { "RRethy/vim-illuminate" }
-    use { "wfxr/minimap.vim", run = "cargo install --locked code-minimap" }
+    use { "folke/zen-mode.nvim" }
+    use { "mustache/vim-mustache-handlebars" }
     -- Themes
     use { "cocopon/iceberg.vim" }
     use { "sainnhe/everforest" }
@@ -145,7 +146,7 @@ return require("packer").startup(function()
         lualine_a = {'mode'},
         lualine_b = {{'branch', icon = nil, icons_enabled = false}, {'diff', icon = nil, icons_enabled = false}},
         lualine_c = {'filename'},
-        lualine_x = {'filetype'},
+        lualine_x = {{'diagnostics', symbols = {error = 'E', warn = 'W', info = 'I', hint = 'H'}}, 'filetype'},
         lualine_y = {'progress'},
         lualine_z = {'location'},
       },
@@ -161,6 +162,12 @@ return require("packer").startup(function()
 
     require("nvim-treesitter.configs").setup({
       auto_install = true,
+    })
+
+    require("zen-mode").setup({
+      window = {
+        width = .50,
+      },
     })
 
     -- require("diffview").setup()
