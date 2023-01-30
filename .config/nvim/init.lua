@@ -5,7 +5,7 @@ require("plugins")
 require("keymap")
 
 vim.g.gruvbox_material_background = "medium"
-vim.g.everforest_background = "medium"
+vim.g.everforest_background = "hard"
 vim.g.sonokai_style = 'atlantis'
 vim.g.sonokai_better_performance = 1
 
@@ -23,9 +23,9 @@ vim.cmd "set cul"
 vim.cmd "set wrap"
 vim.cmd "set termguicolors"
 vim.cmd "set t_Co=256"
-vim.cmd "set background=light"
+vim.cmd "set background=dark"
 vim.cmd "set mouse=n"
-vim.cmd "colorscheme github_light"
+vim.cmd "colorscheme everforest"
 
 if not (vim.g.vscode) then
   vim.cmd "let $FZF_DEFAULT_COMMAND='rg --files --hidden'"

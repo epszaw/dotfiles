@@ -107,7 +107,7 @@ export GO111MODULE="on"
 export PATH=/usr/local/go/bin:/usr/local/opt/openjdk/bin:$GOPATH:$NPM_PACKAGES/bin:$PATH
 export JAVA_HOME=/Library/Java/JavaVirtualMachines/liberica-jdk-17.jdk/Contents/Home/
 
-export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#68737E"
+export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#737E7A"
 
 alias gA="git add ."
 alias gs="git status"
