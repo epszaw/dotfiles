@@ -15,12 +15,17 @@ return require("packer").startup(function()
   use { "tpope/vim-surround" }
   use { "tpope/vim-endwise" }
   use { "jiangmiao/auto-pairs" }
-  use { "easymotion/vim-easymotion" }
+
+  if (vim.g.vscode) then
+    use { "asvetliakov/vim-easymotion", as = "vsc-easymotion" }
+  end
 
   if not (vim.g.vscode) then
+    use { "easymotion/vim-easymotion" }
     use { "editorconfig/editorconfig-vim" }
     use { "christoomey/vim-tmux-navigator" }
     use { "dyng/ctrlsf.vim" }
+    -- use { "mhinz/vim-signify" }
     use { "airblade/vim-gitgutter" }
     use { "vim-scripts/BufOnly.vim" }
     use { "dense-analysis/ale" }
@@ -30,7 +35,6 @@ return require("packer").startup(function()
     use { "evanleck/vim-svelte" }
     use { "junegunn/fzf", dir = "~/.fzf", run = "./install --all" }
     use { "junegunn/fzf.vim" }
-    use { "junegunn/goyo.vim" }
     use { "vim-test/vim-test" }
     use { "cocopon/colorswatch.vim" }
     use { "lilydjwg/colorizer" }
@@ -41,7 +45,7 @@ return require("packer").startup(function()
     use { "slim-template/vim-slim" }
     use { "Olical/conjure" }
     use { "tpope/vim-fugitive" }
-    use { "sindrets/diffview.nvim" }
+    use { "sindrets/diffview.nvim", requires = 'nvim-lua/plenary.nvim' }
     use { "kyazdani42/nvim-tree.lua" }
     use { "nvim-treesitter/nvim-treesitter", run = "cargo install --locked tree-sitter-cli" }
     use { "neovim/nvim-lspconfig" }
@@ -61,7 +65,10 @@ return require("packer").startup(function()
     use { "sainnhe/everforest" }
     use { "sainnhe/gruvbox-material" }
     use { "projekt0n/github-nvim-theme" }
-    use { "sainnhe/sonokai" }
+    use { "NLKNguyen/papercolor-theme" }
+    use { "GlennLeo/cobalt2" }
+    use { "lifepillar/vim-gruvbox8" }
+    use { "lifepillar/vim-solarized8" }
 
     local lspconfig = require("lspconfig")
     local lspinstall = require("nvim-lsp-installer")
@@ -162,6 +169,9 @@ return require("packer").startup(function()
 
     require("nvim-treesitter.configs").setup({
       auto_install = true,
+      highlight = {
+        enable = true
+      }
     })
 
     require("zen-mode").setup({
@@ -184,6 +194,14 @@ return require("packer").startup(function()
     vim.g.ctrlsf_confirm_save = 0
     vim.g.ctrlsf_ackprg = 'rg'
     vim.g.ctrlsf_default_root = 'project'
+
+    -- gitgutter
+    vim.g.gitgutter_sign_added = "▌"
+    vim.g.gitgutter_sign_modified = "▌"
+    vim.g.gitgutter_sign_removed = "▌"
+    vim.g.gitgutter_sign_removed_first_line = "▌"
+    vim.g.gitgutter_sign_removed_above_and_below = "▌"
+    vim.g.gitgutter_sign_modified_removed = "▌"
 
     -- ALE
     vim.g.ale_linters = {

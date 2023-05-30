@@ -4,12 +4,13 @@ vim.g.EasyMotion_leader_key = ""
 require("plugins")
 require("keymap")
 
-vim.g.gruvbox_material_background = "medium"
+vim.g.gruvbox_material_background = "soft"
 vim.g.everforest_background = "hard"
 vim.g.sonokai_style = 'atlantis'
 vim.g.sonokai_better_performance = 1
 
-vim.cmd "syntax enable"
+-- not need, due treesitter package
+-- vim.cmd "syntax enable"
 vim.cmd "set encoding=UTF-8"
 vim.cmd "set number"
 vim.cmd "set relativenumber"
@@ -23,19 +24,15 @@ vim.cmd "set cul"
 vim.cmd "set wrap"
 vim.cmd "set termguicolors"
 vim.cmd "set t_Co=256"
-vim.cmd "set background=dark"
+vim.cmd "set background=light"
 vim.cmd "set mouse=n"
-vim.cmd "colorscheme everforest"
+vim.cmd "colorscheme solarized8_flat"
 
 if not (vim.g.vscode) then
   vim.cmd "let $FZF_DEFAULT_COMMAND='rg --files --hidden'"
   vim.cmd "let g:rg_command='rg --vimgrep -S'"
   vim.cmd "let g:rg_derive_root=1"
   vim.cmd "let g:rg_highlight=1"
-
-  vim.cmd "let g:goyo_height='100%'"
-  vim.cmd "let g:goyo_width=100"
-  vim.cmd "let g:solarized_termcolors=16"
 
   vim.cmd([[
   function! FindGitRoot()
