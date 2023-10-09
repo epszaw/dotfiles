@@ -100,11 +100,13 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 export NPM_PACKAGES="${HOME}/.npm-packages"
+export NODE_OPTIONS=--openssl-legacy-provider
 export N_PRESERVE_NPM=1
 export TERM="xterm-256color"
 export GOPATH="${HOME}/go"
 export GO111MODULE="on"
-export PATH=/usr/local/go/bin:/usr/local/opt/openjdk/bin:$GOPATH:$NPM_PACKAGES/bin:$PATH
+export NIMBLEPATH="${HOME}/.nimble/bin"
+export PATH=/usr/local/go/bin:/usr/local/opt/openjdk/bin:$GOPATH:$NIMBLEPATH:$NPM_PACKAGES/bin:$PATH
 export JAVA_HOME=/Library/Java/JavaVirtualMachines/liberica-jdk-17.jdk/Contents/Home/
 
 export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#737E7A"
@@ -121,6 +123,13 @@ eval "$(starship init zsh)"
 
 # pnpm
 export PNPM_HOME="/Users/epszaw/Library/pnpm"
-export PATH="$PNPM_HOME:$PATH"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
 # pnpm end
 [ -f ~/.private.zsh ] && source ~/.private.zsh
+
+
+# Load Angular CLI autocompletion.
+source <(ng completion script)

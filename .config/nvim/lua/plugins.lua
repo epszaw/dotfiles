@@ -60,15 +60,15 @@ return require("packer").startup(function()
     use { "RRethy/vim-illuminate" }
     use { "folke/zen-mode.nvim" }
     use { "mustache/vim-mustache-handlebars" }
+    use { "github/copilot.vim" }
     -- Themes
     use { "cocopon/iceberg.vim" }
     use { "sainnhe/everforest" }
-    use { "sainnhe/gruvbox-material" }
     use { "projekt0n/github-nvim-theme" }
-    use { "NLKNguyen/papercolor-theme" }
-    use { "GlennLeo/cobalt2" }
     use { "lifepillar/vim-gruvbox8" }
     use { "lifepillar/vim-solarized8" }
+    use { "gbprod/nord.nvim" }
+    use { "Mofiqul/vscode.nvim" }
 
     local lspconfig = require("lspconfig")
     local lspinstall = require("nvim-lsp-installer")
