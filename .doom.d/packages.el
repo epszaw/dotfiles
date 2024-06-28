@@ -42,6 +42,7 @@
 
 (package! neotree)
 (package! flycheck)
+(package! doom-alabaster-theme :recipe (:host github :repo "agraul/doom-alabaster-theme"))
 
 ;; Doom's packages are pinned to a specific commit and updated from release to
 ;; release. The `unpin!' macro allows you to unpin single packages...

@@ -39,7 +39,7 @@ return require("packer").startup(function()
     use { "cocopon/colorswatch.vim" }
     use { "lilydjwg/colorizer" }
     use { "cocopon/inspecthi.vim" }
-    use { "williamboman/nvim-lsp-installer" }
+    -- use { "williamboman/nvim-lsp-installer" }
     use { "jremmen/vim-ripgrep", run = "cargo install --locked ripgrep" }
     use { "jxnblk/vim-mdx-js" }
     use { "slim-template/vim-slim" }
@@ -47,8 +47,8 @@ return require("packer").startup(function()
     use { "tpope/vim-fugitive" }
     use { "sindrets/diffview.nvim", requires = 'nvim-lua/plenary.nvim' }
     use { "kyazdani42/nvim-tree.lua" }
-    use { "nvim-treesitter/nvim-treesitter", run = "cargo install --locked tree-sitter-cli" }
-    use { "neovim/nvim-lspconfig" }
+    -- use { "nvim-treesitter/nvim-treesitter", run = "cargo install --locked tree-sitter-cli" }
+    -- use { "neovim/nvim-lspconfig" }
     use { "nvim-lualine/lualine.nvim" }
     use { "hrsh7th/nvim-compe" }
     use { "folke/which-key.nvim" }
@@ -60,7 +60,7 @@ return require("packer").startup(function()
     use { "RRethy/vim-illuminate" }
     use { "folke/zen-mode.nvim" }
     use { "mustache/vim-mustache-handlebars" }
-    use { "github/copilot.vim" }
+    -- use { "github/copilot.vim" }
     -- Themes
     use { "cocopon/iceberg.vim" }
     use { "sainnhe/everforest" }
@@ -69,15 +69,17 @@ return require("packer").startup(function()
     use { "lifepillar/vim-solarized8" }
     use { "gbprod/nord.nvim" }
     use { "Mofiqul/vscode.nvim" }
+    use { "p00f/alabaster.nvim" }
+    use { "navarasu/onedark.nvim" }
 
-    local lspconfig = require("lspconfig")
-    local lspinstall = require("nvim-lsp-installer")
+    -- local lspconfig = require("lspconfig")
+    -- local lspinstall = require("nvim-lsp-installer")
 
-    lspinstall.on_server_ready(function(server)
-      local opts = {}
+    -- lspinstall.on_server_ready(function(server)
+    --   local opts = {}
 
-      server:setup(opts)
-    end)
+    --   server:setup(opts)
+    -- end)
 
     require("compe").setup({
       enabled = true;
@@ -167,12 +169,12 @@ return require("packer").startup(function()
       },
     })
 
-    require("nvim-treesitter.configs").setup({
-      auto_install = true,
-      highlight = {
-        enable = true
-      }
-    })
+    -- require("nvim-treesitter.configs").setup({
+    --   auto_install = true,
+    --   highlight = {
+    --     enable = true
+    --   }
+    -- })
 
     require("zen-mode").setup({
       window = {
