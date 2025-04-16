@@ -99,18 +99,19 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+export GPG_TTY=$(tty)
 export NPM_PACKAGES="${HOME}/.npm-packages"
-export NODE_OPTIONS=--openssl-legacy-provider
 export N_PRESERVE_NPM=1
 export TERM="xterm-256color"
 export GOPATH="${HOME}/go"
 export GO111MODULE="on"
 export NIMBLEPATH="${HOME}/.nimble/bin"
 export PATH=/usr/local/go/bin:/usr/local/opt/openjdk/bin:$GOPATH:$NIMBLEPATH:$NPM_PACKAGES/bin:$PATH
-export JAVA_HOME=/Library/Java/JavaVirtualMachines/liberica-jdk-17.jdk/Contents/Home/
+export JAVA_HOME=/Library/Java/JavaVirtualMachines/liberica-jdk-21.jdk/Contents/Home/
 
 export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#737E7A"
 
+alias git="LANG=en_GB git"
 alias gA="git add ."
 alias gs="git status"
 alias gc="git commit"
@@ -127,9 +128,16 @@ case ":$PATH:" in
   *":$PNPM_HOME:"*) ;;
   *) export PATH="$PNPM_HOME:$PATH" ;;
 esac
-# pnpm end
+#pnpm end
+
+. "$HOME/.asdf/asdf.sh"
+
 [ -f ~/.private.zsh ] && source ~/.private.zsh
 
 
-# Load Angular CLI autocompletion.
-source <(ng completion script)
+# bun completions
+[ -s "/Users/epszaw/.bun/_bun" ] && source "/Users/epszaw/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"

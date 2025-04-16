@@ -1,0 +1,32 @@
+# Alabaster Colors
+background = #F7F7F7
+foreground = #434343
+selection-background = #325CC0
+selection-foreground = #434343
+cursor-color = #434343
+
+# black
+palette = 0=#000000
+palette = 8=#777777
+# red
+palette = 1=#AA3731
+palette = 9=#F05050
+# green
+palette = 2=#448C27
+palette = 10=#60CB00
+# yellow
+palette = 3=#CB9000
+palette = 11=#FFBC5D
+# blue
+palette = 4=#325CC0
+palette = 12=#007ACC
+# magenta
+palette = 5=#7A3E9D
+palette = 13=#E64CE6
+# cyan
+palette = 6=#0083B2
+palette = 14=#00AACB
+# white
+palette = 7=#BBBBBB
+palette = 15=#FFFFFF
+

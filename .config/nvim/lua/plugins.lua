@@ -39,7 +39,6 @@ return require("packer").startup(function()
     use { "cocopon/colorswatch.vim" }
     use { "lilydjwg/colorizer" }
     use { "cocopon/inspecthi.vim" }
-    -- use { "williamboman/nvim-lsp-installer" }
     use { "jremmen/vim-ripgrep", run = "cargo install --locked ripgrep" }
     use { "jxnblk/vim-mdx-js" }
     use { "slim-template/vim-slim" }
@@ -48,9 +47,15 @@ return require("packer").startup(function()
     use { "sindrets/diffview.nvim", requires = 'nvim-lua/plenary.nvim' }
     use { "kyazdani42/nvim-tree.lua" }
     -- use { "nvim-treesitter/nvim-treesitter", run = "cargo install --locked tree-sitter-cli" }
-    -- use { "neovim/nvim-lspconfig" }
+    use { "neovim/nvim-lspconfig" }
     use { "nvim-lualine/lualine.nvim" }
-    use { "hrsh7th/nvim-compe" }
+    use { "hrsh7th/nvim-cmp" }
+    use { 'neovim/nvim-lspconfig' }
+    use { 'hrsh7th/cmp-nvim-lsp' }
+    use { 'hrsh7th/cmp-buffer' }
+    use { 'hrsh7th/cmp-path' }
+    use { 'hrsh7th/cmp-cmdline' }
+    use { 'hrsh7th/nvim-cmp' }
     use { "folke/which-key.nvim" }
     use { "cakebaker/scss-syntax.vim" }
     use { "hail2u/vim-css3-syntax" }
@@ -60,7 +65,6 @@ return require("packer").startup(function()
     use { "RRethy/vim-illuminate" }
     use { "folke/zen-mode.nvim" }
     use { "mustache/vim-mustache-handlebars" }
-    -- use { "github/copilot.vim" }
     -- Themes
     use { "cocopon/iceberg.vim" }
     use { "sainnhe/everforest" }
@@ -71,48 +75,55 @@ return require("packer").startup(function()
     use { "Mofiqul/vscode.nvim" }
     use { "p00f/alabaster.nvim" }
     use { "navarasu/onedark.nvim" }
+    use { "catppuccin/nvim" }
+    use { "loctvl842/monokai-pro.nvim" }
 
-    -- local lspconfig = require("lspconfig")
-    -- local lspinstall = require("nvim-lsp-installer")
+    local lspconfig = require("lspconfig")
 
-    -- lspinstall.on_server_ready(function(server)
-    --   local opts = {}
+    lspconfig.rust_analyzer.setup {}
+    lspconfig.ts_ls.setup {}
+    lspconfig.svelte.setup {}
 
-    --   server:setup(opts)
-    -- end)
+    local cmp = require'cmp'
 
-    require("compe").setup({
-      enabled = true;
-      autocomplete = true;
-      debug = false;
-      min_length = 1;
-      preselect = "enable";
-      throttle_time = 80;
-      source_timeout = 200;
-      resolve_timeout = 800;
-      incomplete_delay = 400;
-      max_abbr_width = 100;
-      max_kind_width = 100;
-      max_menu_width = 100;
-      documentation = {
-        border = { "", "" ,"", " ", "", "", "", " " }, -- the border option is the same as `|help nvim_open_win|`
-        winhighlight = "NormalFloat:CompeDocumentation,FloatBorder:CompeDocumentationBorder",
-        max_width = 120,
-        min_width = 60,
-        max_height = math.floor(vim.o.lines * 0.3),
-        min_height = 1,
-      };
+    local has_words_before = function()
+      unpack = unpack or table.unpack
+      local line, col = unpack(vim.api.nvim_win_get_cursor(0))
+      return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match('%s') == nil
+    end
 
-      source = {
-        path = true;
-        buffer = true;
-        calc = false;
-        nvim_lsp = true;
-        nvim_lua = true;
-        vsnip = true;
-        ultisnips = true;
-        luasnip = true;
+    cmp.setup({
+      mapping = cmp.mapping.preset.insert({
+        ['<Tab>'] = function(fallback)
+          if not cmp.select_next_item() then
+            if vim.bo.buftype ~= 'prompt' and has_words_before() then
+              cmp.complete()
+            else
+              fallback()
+            end
+          end
+        end,
+        ['<S-Tab>'] = function(fallback)
+          if not cmp.select_prev_item() then
+            if vim.bo.buftype ~= 'prompt' and has_words_before() then
+              cmp.complete()
+            else
+              fallback()
+            end
+          end
+        end,
+        ['<CR>'] = cmp.mapping.confirm({ select = true }),
+      }),
+
+      sources = cmp.config.sources(
+      {
+        { name = "nvim_lsp" }
+      },
+      {
+        { name = "buffer" },
+        { name = "path" }
       }
+      )
     })
 
     vim.g.loaded_netrw = 1
