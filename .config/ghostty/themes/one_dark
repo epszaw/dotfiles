@@ -1,0 +1,33 @@
+# One Dark (Giuseppe Cesarano)
+
+background = #282c34
+foreground = #979eab
+selection-background = #979eab
+selection-foreground = #282c34
+cursor-color = #cccccc
+
+# black
+palette = 0=#282c34
+palette = 8=#393e48
+# red
+palette = 1=#e06c75
+palette = 9=#d19a66
+# green
+palette = 2=#98c379
+palette = 10=#56b6c2
+# yellow
+palette = 3=#e5c07b
+palette = 11=#e5c07b
+# blue
+palette = 4=#61afef
+palette = 12=#61afef
+# magenta
+palette = 5=#be5046
+palette = 13=#be5046
+# cyan
+palette = 6=#56b6c2
+palette = 14=#56b6c2
+# white
+palette = 7=#979eab
+palette = 15=#abb2bf
+

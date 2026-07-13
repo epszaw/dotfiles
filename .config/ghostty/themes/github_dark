@@ -1,0 +1,32 @@
+# Custom Colors
+background = #24292e
+foreground = #d1d5da
+selection-background = #22374B
+selection-foreground = #0E354B
+cursor-color = #d1d5da
+
+# black
+palette = 0=#24292e
+palette = 8=#666666
+# red
+palette = 1=#f14c4c
+palette = 9=#f14c4c
+# green
+palette = 2=#23d18b
+palette = 10=#23d18b
+# yellow
+palette = 3=#e2e210
+palette = 11=#f5f543
+# blue
+palette = 4=#3b8eea
+palette = 12=#3b8eea
+# magenta
+palette = 5=#bc3fbc
+palette = 13=#d670d6
+# cyan
+palette = 6=#29b7da
+palette = 14=#29b7da
+# white
+palette = 7=#d1d5da
+palette = 15=#d1d5da
+

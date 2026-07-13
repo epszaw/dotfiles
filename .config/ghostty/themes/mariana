@@ -1,0 +1,32 @@
+# Mariana (Sublime Text 4)
+background = #343d46
+foreground = #d8dee9
+selection-background = #4e5a65
+selection-foreground = #d8dee9
+cursor-color = #fcbb6a
+
+# black
+palette = 0=#000000
+palette = 8=#333333
+# red
+palette = 1=#ec5f66
+palette = 9=#f97b58
+# green
+palette = 2=#99c794
+palette = 10=#acd1a8
+# yellow
+palette = 3=#f9ae58
+palette = 11=#fac761
+# blue
+palette = 4=#6699cc
+palette = 12=#85add6
+# magenta
+palette = 5=#c695c6
+palette = 13=#d8b6d8
+# cyan
+palette = 6=#5fb4b4
+palette = 14=#82c4c4
+# white
+palette = 7=#f7f7f7
+palette = 15=#ffffff
+

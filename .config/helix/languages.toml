@@ -1,0 +1,4 @@
+[[language]]
+name = "typescript"
+workspace-lsp-roots = ["."]
+roots = ["yarn.lock", "pnpm-lock.yaml", "package.json", "tsconfig.json", ".git"]

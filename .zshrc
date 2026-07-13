@@ -106,7 +106,7 @@ export TERM="xterm-256color"
 export GOPATH="${HOME}/go"
 export GO111MODULE="on"
 export NIMBLEPATH="${HOME}/.nimble/bin"
-export PATH=/usr/local/go/bin:/usr/local/opt/openjdk/bin:$GOPATH:$NIMBLEPATH:$NPM_PACKAGES/bin:$PATH
+export PATH=$HOME/.local/bin:/usr/local/go/bin:/usr/local/opt/openjdk/bin:${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH:$GOPATH:$NIMBLEPATH:$NPM_PACKAGES/bin:/opt/homebrew/opt/curl/bin:$PATH
 export JAVA_HOME=/Library/Java/JavaVirtualMachines/liberica-jdk-21.jdk/Contents/Home/
 
 export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#737E7A"
@@ -128,12 +128,12 @@ case ":$PATH:" in
   *":$PNPM_HOME:"*) ;;
   *) export PATH="$PNPM_HOME:$PATH" ;;
 esac
-#pnpm end
+# pnpm end
 
-. "$HOME/.asdf/asdf.sh"
+source ~/.private.zsh
 
-[ -f ~/.private.zsh ] && source ~/.private.zsh
-
+# opencode
+export PATH=/Users/epszaw/.opencode/bin:$PATH
 
 # bun completions
 [ -s "/Users/epszaw/.bun/_bun" ] && source "/Users/epszaw/.bun/_bun"

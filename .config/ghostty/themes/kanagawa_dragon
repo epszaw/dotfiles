@@ -1,0 +1,36 @@
+# Kanagawa Dragon Colors
+background = #181616
+foreground = #c5c9c5
+selection-background = #2d4f67
+selection-foreground = #c8c093
+cursor-color = #c5c9c5
+
+# black
+palette = 0=#0d0c0c
+palette = 8=#a6a69c
+# red
+palette = 1=#c4746e
+palette = 9=#E46876
+# green
+palette = 2=#8a9a7b
+palette = 10=#87a987
+# yellow
+palette = 3=#c4b28a
+palette = 11=#E6C384
+# blue
+palette = 4=#8ba4b0
+palette = 12=#7FB4CA
+# magenta
+palette = 5=#a292a3
+palette = 13=#938AA9
+# cyan
+palette = 6=#8ea4a2
+palette = 14=#7AA89F
+# white
+palette = 7=#C8C093
+palette = 15=#c5c9c5
+
+# Extra indexed colors
+palette = 16=#ffa066
+palette = 17=#ff5d62
+

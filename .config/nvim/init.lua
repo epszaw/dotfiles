@@ -8,6 +8,8 @@ vim.g.gruvbox_material_background = "soft"
 vim.g.everforest_background = "hard"
 vim.g.sonokai_style = 'atlantis'
 vim.g.sonokai_better_performance = 1
+vim.g.material_style = 'mariana'
+vim.g.material_style_fix = true
 
 -- not need, due treesitter package
 -- vim.cmd "syntax enable"
@@ -26,7 +28,7 @@ vim.cmd "set termguicolors"
 vim.cmd "set t_Co=256"
 vim.cmd "set background=light"
 vim.cmd "set mouse=n"
-vim.cmd "colorscheme alabaster"
+vim.cmd "colorscheme gruvbox8"
 
 if not (vim.g.vscode) then
   vim.cmd "let $FZF_DEFAULT_COMMAND='rg --files --hidden'"

@@ -1,0 +1,53 @@
+// Zed keymap
+//
+// For information on binding keys, see the Zed
+// documentation: https://zed.dev/docs/key-bindings
+//
+// To see the default key bindings run `zed: open default keymap`
+// from the command palette.
+[
+  {
+    "context": "Editor",
+    "bindings": {
+      "cmd-d": "editor::GoToDefinition"
+    }
+  },
+  {
+    "context": "Editor",
+    "bindings": {
+      "ctrl-h": ["workspace::SendKeystrokes", "ctrl-w h"]
+    }
+  },
+  {
+    "context": "Editor",
+    "bindings": {
+      "ctrl-l": ["workspace::SendKeystrokes", "ctrl-w l"]
+    }
+  },
+  {
+    "context": "Editor",
+    "bindings": {
+      "ctrl-k": ["workspace::SendKeystrokes", "ctrl-w k"]
+    }
+  },
+  {
+    "context": "Editor",
+    "bindings": {
+      "ctrl-j": ["workspace::SendKeystrokes", "ctrl-w j"]
+    }
+  },
+  {
+    "context": "VimControl && !menu",
+    "bindings": {
+      "shift-h": "pane::ActivatePreviousItem",
+      "shift-l": "pane::ActivateNextItem"
+    }
+  },
+  {
+    "context": "VimControl && !menu",
+    "bindings": {
+      "shift-j": "pane::ActivateNextItem",
+      "shift-k": "pane::ActivatePreviousItem"
+    }
+  }
+]

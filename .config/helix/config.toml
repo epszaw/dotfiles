@@ -1,0 +1,19 @@
+theme = "github_light"
+
+[editor]
+line-number = "relative"
+auto-completion = true
+completion-trigger-len = 2
+idle-timeout = 100
+
+[editor.cursor-shape]
+insert = "bar"
+normal = "block"
+
+[keys.normal.space]
+space = "file_picker"
+
+[keys.normal.space.o]
+c = ":open ~/.config/helix/config.toml"
+r = ":config-reload"
+

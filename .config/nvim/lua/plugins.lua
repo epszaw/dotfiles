@@ -77,6 +77,7 @@ return require("packer").startup(function()
     use { "navarasu/onedark.nvim" }
     use { "catppuccin/nvim" }
     use { "loctvl842/monokai-pro.nvim" }
+    use { "ray-x/material_plus.nvim" }
 
     local lspconfig = require("lspconfig")
 

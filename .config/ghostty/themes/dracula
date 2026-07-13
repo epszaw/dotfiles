@@ -1,0 +1,32 @@
+# Dracula
+
+background = #282a36
+foreground = #f8f8f2
+selection-background = #44475a
+selection-foreground = #f8f8f2
+cursor-color = #f8f8f2
+
+# black
+palette = 0=#000000
+palette = 8=#555555
+# red
+palette = 1=#ff5555
+palette = 9=#ff5555
+# green
+palette = 2=#50fa7b
+palette = 10=#50fa7b
+# yellow
+palette = 3=#f1fa8c
+palette = 11=#f1fa8c
+# blue
+palette = 4=#bd93f9
+palette = 12=#caa9fa
+# magenta
+palette = 5=#ff79c6
+palette = 13=#ff79c6
+# cyan
+palette = 6=#8be9fd
+palette = 14=#8be9fd
+# white
+palette = 7=#bbbbbb
+palette = 15=#ffffff
