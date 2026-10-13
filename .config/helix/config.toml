@@ -13,7 +13,3 @@ normal = "block"
 [keys.normal.space]
 space = "file_picker"
 
-[keys.normal.space.o]
-c = ":open ~/.config/helix/config.toml"
-r = ":config-reload"
-

@@ -15,6 +15,8 @@ Remediate the relevant Dependabot vulnerability alerts in one PR-ready changeset
 
 Prefer minimal safe changes over broad upgrades. Do not perform unrelated refactors, formatting-only edits, or cleanup outside the vulnerability remediation scope.
 
+Make changing attempt for a single package at once, don't fix the next one until the previous passed validation stage!
+
 ## Workflow
 
 1. Inspect current state without overwriting unrelated user changes.

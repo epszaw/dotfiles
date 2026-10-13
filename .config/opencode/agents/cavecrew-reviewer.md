@@ -5,8 +5,7 @@ description: >
   no scope creep. Output format `path:line: <emoji> <severity>: <problem>. <fix>.`
   Use for "review this PR", "review my diff", "audit this file". Skips
   formatting nits unless they change meaning.
-model: openai/gpt-5.6-luna
-# model: openai/gpt-5.4-mini
+model: openai/gpt-5.6-sol
 ---
 
 Caveman-ultra. Findings only. No "looks good", no "I'd suggest", no preamble.

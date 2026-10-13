@@ -1,0 +1,34 @@
+# Vitesse Light Soft — Ghostty
+# Based directly on antfu/vscode-theme-vitesse
+
+background = #F1F0E9
+foreground = #393a34
+
+# Cursor
+cursor-color = #393a34
+cursor-text = #F1F0E9
+
+# VS Code uses #22222218 (~9% black).
+# Pre-blended against #F1F0E9 for Ghostty:
+selection-background = #DEDDD6
+selection-foreground = #393a34
+
+# ANSI — exact Vitesse Light Soft terminal colors
+palette = 0=#121212
+palette = 1=#ab5959
+palette = 2=#1e754f
+palette = 3=#bda437
+palette = 4=#296aa3
+palette = 5=#a13865
+palette = 6=#2993a3
+palette = 7=#dbd7ca
+
+# Bright ANSI
+palette = 8=#aaaaaa
+palette = 9=#ab5959
+palette = 10=#1e754f
+palette = 11=#bda437
+palette = 12=#296aa3
+palette = 13=#a13865
+palette = 14=#2993a3
+palette = 15=#dddddd

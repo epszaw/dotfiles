@@ -1,0 +1,36 @@
+# Flexoki (Dark)
+
+background = #100F0F
+foreground = #CECDC3
+
+# black
+palette = 0=#100F0F
+palette = 8=#6F6E69
+
+# red
+palette = 1=#AF3029
+palette = 9=#D14D41
+
+# green
+palette = 2=#66800B
+palette = 10=#879A39
+
+# yellow
+palette = 3=#AD8301
+palette = 11=#D0A215
+
+# blue
+palette = 4=#205EA6
+palette = 12=#4385BE
+
+# magenta
+palette = 5=#A02F6F
+palette = 13=#CE5D97
+
+# cyan
+palette = 6=#24837B
+palette = 14=#3AA99F
+
+# white
+palette = 7=#878580
+palette = 15=#CECDC3

@@ -21,14 +21,14 @@
 # # separated by equals signs.
 # font-family = IBM Plex Mono
 # font-family = Lilex
-# font-family = Comic Code
+font-family = Comic Code
 # font-family = Victor Mono
-font-family = PragmataPro Mono
+# font-family = PragmataPro Mono
 # font-family = Fira Code
 # font-family = Input Mono Condensed
-font-size = 16
-# font-size = 15
-font-variation = wght=400
+# font-family = Monaspace Neon Var
+font-size = 15
+# font-variation = wght=400
 # window-padding-x = 2
 #
 # # Spacing around the equals sign does not matter.
@@ -50,4 +50,5 @@ font-variation = wght=400
 # # which is explained in the docs for that config option.
 # # Just for example:
 # resize-overlay-duration = 4s 200ms
-theme = gruvbox_light_medium
+theme = alabaster
+

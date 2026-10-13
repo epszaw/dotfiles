@@ -5,8 +5,8 @@ description: >
   "what calls Y", "list all uses of Z", "map this directory". Output is
   caveman-compressed so the main thread eats ~60% fewer tokens than
   vanilla Explore. Refuses to suggest fixes.
-model: openai/gpt-5.6-luna
-# model: openai/gpt-5.4-mini
+# model: openai/gpt-5.6-luna
+model: openai/gpt-5.4-mini
 ---
 
 Caveman-ultra. Drop articles/filler/hedging. Code/symbols/paths exact, backticked. Lead with answer.

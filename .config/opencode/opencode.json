@@ -12,9 +12,14 @@
         "mcp"
       ]
     },
+    "stripe": {
+      "type": "remote",
+      "enabled": true,
+      "url": "https://mcp.stripe.com"
+    },
     "wallaby": {
       "type": "local",
-      "enabled": true,
+      "enabled": false,
       "command": [
         "npx",
         "-y",
@@ -31,35 +36,6 @@
         "-y",
         "chrome-devtools-mcp@latest"
       ]
-    },
-    "cloudflare": {
-      "type": "remote",
-      "url": "https://mcp.cloudflare.com/mcp",
-      "enabled": true,
-      "oauth": {}
-    },
-    "cloudflare-docs": {
-      "type": "remote",
-      "url": "https://docs.mcp.cloudflare.com/mcp",
-      "enabled": true
-    },
-    "cloudflare-bindings": {
-      "type": "remote",
-      "url": "https://bindings.mcp.cloudflare.com/mcp",
-      "enabled": true,
-      "oauth": {}
-    },
-    "cloudflare-builds": {
-      "type": "remote",
-      "url": "https://builds.mcp.cloudflare.com/mcp",
-      "enabled": true,
-      "oauth": {}
-    },
-    "cloudflare-observability": {
-      "type": "remote",
-      "url": "https://observability.mcp.cloudflare.com/mcp",
-      "enabled": true,
-      "oauth": {}
     }
   },
   "plugin": [
